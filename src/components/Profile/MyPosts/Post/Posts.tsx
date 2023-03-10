@@ -3,7 +3,7 @@ import classes from './Post.module.css';
 
 type PostPropsType = {
     message: string,
-    likeCount: number
+    likesCount: number
 }
 
 const Post: React.FC<PostPropsType> = (props) => {
@@ -12,7 +12,7 @@ const Post: React.FC<PostPropsType> = (props) => {
             <img src='https://cdn.pixabay.com/photo/2016/03/31/19/10/avatar-1294767_960_720.png'/>
             {props.message}
             <div>
-                <span>like {props.likeCount}</span>
+                <span>like {props.likesCount}</span>
             </div>
         </div>
     )
