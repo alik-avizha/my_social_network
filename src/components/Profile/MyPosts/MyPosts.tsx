@@ -5,6 +5,7 @@ import Post, {PostType} from './Post/Post';
 
 type MyPostsType = {
     posts: PostType[]
+    addPost: (message: string) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
@@ -17,7 +18,8 @@ const MyPosts = (props: MyPostsType) => {
     let addPost = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value
-            alert(text)
+            props.addPost(text)
+            newPostElement.current.value=''
         }
     }
 

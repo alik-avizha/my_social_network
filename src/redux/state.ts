@@ -1,6 +1,21 @@
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 import {DialogItemType} from '../components/Dialogs/DialogItem/DialogItem';
 import {MessageItemType} from '../components/Dialogs/MessageItem/MessageItem';
+import {rerenderEntireTree} from '../render';
+
+export type ProfilePage = {
+    posts: PostType[]
+}
+
+export type DialogsPage = {
+    dialogs: DialogItemType[],
+    messages: MessageItemType[]
+}
+
+export type StateType = {
+    profilePage: ProfilePage,
+    dialogsPage: DialogsPage
+}
 
 let state = {
     profilePage: {
@@ -30,18 +45,14 @@ let state = {
     }
 }
 
-export type ProfilePage = {
-    posts: PostType[]
-}
-
-export type DialogsPage = {
-    dialogs: DialogItemType[],
-    messages: MessageItemType[]
-}
-
-export type StateType = {
-    profilePage: ProfilePage,
-    dialogsPage: DialogsPage
+export let addPost = (postMessage: string) => {
+    let newPost = {
+        id: 4,
+        message: postMessage,
+        likesCount : 0
+    }
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
 }
 
 export default state
