@@ -13,25 +13,38 @@ import {StateType} from './redux/state';
 
 type AppPropsType = {
     state: StateType
-    addPost: (message: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    addMessage: () => void
+    updateNewMessageText: (newText: string) => void
 }
 
 const App = (props: AppPropsType) => {
 
     return (
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <div className="app-wrapper-content">
-                    <Route path="/profile" render={()=><Profile
-                        state={props.state.profilePage} addPost={props.addPost}/>}/>
-                    <Route path="/dialogs" render={()=><Dialogs
-                        state={props.state.dialogsPage}/>}/>
-                    <Route path="/news" render={()=><News/>}/>
-                    <Route path="/music" render={()=><Music/>}/>
-                    <Route path="/settings" render={()=><Settings/>}/>
-                </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <div className="app-wrapper-content">
+                <Route path="/profile" render={() =>
+                    <Profile
+                        profilePage={props.state.profilePage}
+                        addPost={props.addPost}
+                        updateNewPostText={props.updateNewPostText}
+                    />
+                }/>
+                <Route path="/dialogs" render={() =>
+                    <Dialogs
+                        dialogsPage={props.state.dialogsPage}
+                        addMessage={props.addMessage}
+                        updateNewMessageText={props.updateNewMessageText}
+                    />
+                }/>
+                <Route path="/news" render={() => <News/>}/>
+                <Route path="/music" render={() => <Music/>}/>
+                <Route path="/settings" render={() => <Settings/>}/>
             </div>
+        </div>
     );
 }
 export default App;

@@ -5,21 +5,26 @@ import Post, {PostType} from './Post/Post';
 
 type MyPostsType = {
     posts: PostType[]
-    addPost: (message: string) => void
+    addPost: () => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
 
     let postsElements = props.posts
-        .map( p => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
+        .map(p => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
     let addPost = () => {
+        props.addPost()
+    }
+
+    let onPostChange = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value
-            props.addPost(text)
-            newPostElement.current.value=''
+            props.updateNewPostText(text)
         }
     }
 
@@ -28,7 +33,7 @@ const MyPosts = (props: MyPostsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add Post</button>

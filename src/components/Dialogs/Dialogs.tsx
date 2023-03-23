@@ -6,23 +6,28 @@ import MessageItem from './MessageItem/MessageItem';
 
 
 type DialogsPropsType= {
-    state: DialogsPage
+    dialogsPage: DialogsPage
+    addMessage: () => void
+    updateNewMessageText: (newText: string) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    let dialogsElements = props.state.dialogs
+    let dialogsElements = props.dialogsPage.dialogs
         .map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
 
-    let messagesElements = props.state.messages
+    let messagesElements = props.dialogsPage.messages
         .map(m => <MessageItem message={m.message} key={m.id}/>)
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     let addPost = () => {
+        props.addMessage()
+    }
+    let onMessageChange = () => {
         if (newMessageElement.current) {
             let text = newMessageElement.current.value
-            alert(text)
+            props.updateNewMessageText(text)
         }
     }
 
@@ -33,7 +38,10 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-                <textarea ref={newMessageElement}></textarea>
+                <textarea ref={newMessageElement}
+                          value={props.dialogsPage.newMessage}
+                          onChange={onMessageChange}
+                />
                 <button onClick={addPost}>Add</button>
             </div>
         </div>
