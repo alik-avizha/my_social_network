@@ -9,7 +9,7 @@ export type ProfilePage = {
 export type DialogsPage = {
     dialogs: DialogItemType[]
     messages: MessageItemType[]
-    newMessage: string
+    newMessageText: string
 }
 export type StateType = {
     profilePage: ProfilePage
@@ -36,7 +36,7 @@ export let store: Store = {
                 {id: 2, message: 'I am beginner programmer', likesCount: 5},
                 {id: 3, message: 'Here I are making my social network', likesCount: 25}
             ],
-            newPostText: 'You are welcome!'
+            newPostText: ''
         },
         dialogsPage: {
             dialogs: [
@@ -55,7 +55,7 @@ export let store: Store = {
                 {id: 5, message: 'Hey'},
                 {id: 6, message: 'Yes.I do'}
             ],
-            newMessage: 'Hello my friend'
+            newMessageText: ''
         }
     },
     _callSubscriber() {
@@ -83,21 +83,24 @@ export let store: Store = {
         } else if (action.type === 'ADD-MESSAGE') {
             let newMessage = {
                 id: 7,
-                message: this._state.dialogsPage.newMessage
+                message: this._state.dialogsPage.newMessageText
             }
             this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessage = ''
+            this._state.dialogsPage.newMessageText = ''
             this._callSubscriber();
         } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessage = action.newText
+            this._state.dialogsPage.newMessageText = action.newText
             this._callSubscriber();
         }
     }
 }
+
+//Выражение as const используется в TypeScript для явного указания, что выражение должно быть рассмотрено как константа, а не как переменная.
+//Action creator берет данные из приложения и формирует объект действия, который передается в хранилище Redux через функцию dispatch().
 
 export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
 export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'}) as const
 export const updateNewMessageTextActionCreator = (text: string) =>
-    ({type: 'UPDATE-NEW-MESSAGE-TEXT',newText: text}) as const
+    ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text}) as const

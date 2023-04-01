@@ -15,11 +15,11 @@ const MyPosts = (props: MyPostsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addPost = () => {
+    let addPostHandler = () => {
         props.dispatch(addPostActionCreator())
     }
 
-    let onPostChange = () => {
+    let onPostChangeHandler = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value
             props.dispatch(updateNewPostTextActionCreator(text))
@@ -31,10 +31,11 @@ const MyPosts = (props: MyPostsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                    <textarea onChange={onPostChangeHandler} ref={newPostElement} value={props.newPostText}
+                              placeholder={'send your Post'}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add Post</button>
+                    <button onClick={addPostHandler}>Add Post</button>
                 </div>
             </div>
             <div className={classes.posts}>
