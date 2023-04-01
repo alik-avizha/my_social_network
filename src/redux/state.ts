@@ -15,30 +15,6 @@ export type StateType = {
     profilePage: ProfilePage
     dialogsPage: DialogsPage
 }
-
-type AddPostActionType = {
-    type: 'ADD-POST'
-    newPost: string
-}
-type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
-    newMessage: string
-}
-type UpdateNewMessageTextActionType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newText: string
-}
-
-export type ActionsType =
-    AddPostActionType
-    | UpdateNewPostTextActionType
-    | AddMessageActionType
-    | UpdateNewMessageTextActionType
-
 export type Store = {
     _state: StateType
     _callSubscriber: () => void
@@ -46,6 +22,11 @@ export type Store = {
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsType) => void
 }
+export type ActionsType =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof updateNewPostTextActionCreator>
+    | ReturnType<typeof addMessageActionCreator>
+    | ReturnType<typeof updateNewMessageTextActionCreator>
 
 export let store: Store = {
     _state: {
@@ -114,3 +95,9 @@ export let store: Store = {
     }
 }
 
+export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
+export const updateNewPostTextActionCreator = (text: string) =>
+    ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
+export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'}) as const
+export const updateNewMessageTextActionCreator = (text: string) =>
+    ({type: 'UPDATE-NEW-MESSAGE-TEXT',newText: text}) as const

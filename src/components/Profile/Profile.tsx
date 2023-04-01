@@ -3,7 +3,6 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {ActionsType, ProfilePage} from '../../redux/state';
 
-
 type ProfilePagePropsType = {
     profilePage: ProfilePage
     dispatch: (action: ActionsType) => void

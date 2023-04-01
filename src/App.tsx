@@ -10,13 +10,8 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {ActionsType, StateType} from './redux/state';
 
-
 type AppPropsType = {
     state: StateType
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-    // addMessage: () => void
-    // updateNewMessageText: (newText: string) => void
     dispatch: (action: ActionsType) => void
 }
 
