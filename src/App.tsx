@@ -20,7 +20,6 @@ type AppPropsType = {
 }
 
 const App = (props: AppPropsType) => {
-
     return (
         <div className="app-wrapper">
             <Header/>
