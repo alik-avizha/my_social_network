@@ -1,6 +1,8 @@
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 import {DialogItemType} from '../components/Dialogs/DialogItem/DialogItem';
 import {MessageItemType} from '../components/Dialogs/MessageItem/MessageItem';
+import {addPostActionCreator, profileReducer, updateNewPostTextActionCreator} from './profile-reducer';
+import {addMessageActionCreator, dialogsReducer, updateNewMessageTextActionCreator} from './dialogs-reducer';
 
 export type ProfilePage = {
     posts: PostType[]
@@ -68,39 +70,16 @@ export let store: Store = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 4,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.unshift(newPost);
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber();
-        } else if (action.type === 'ADD-MESSAGE') {
-            let newMessage = {
-                id: 7,
-                message: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = ''
-            this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newText
-            this._callSubscriber();
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber();
     }
 }
 
 //Выражение as const используется в TypeScript для явного указания, что выражение должно быть рассмотрено как константа, а не как переменная.
 //Action creator берет данные из приложения и формирует объект действия, который передается в хранилище Redux через функцию dispatch().
+//Reducer - это чистая функция в Redux, которая принимает текущее состояние приложения и объект действия (action), и возвращает новое состояние приложения.
+// Reducer определяет, каким образом приложение должно реагировать на объекты действий (actions) и как должно обновлять свое состояние.
+// Reducer должен быть чистой функцией, то есть никак не изменять входные параметры, а возвращать новый объект с обновленным состоянием.
 
-export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
-export const updateNewPostTextActionCreator = (text: string) =>
-    ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
-export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'}) as const
-export const updateNewMessageTextActionCreator = (text: string) =>
-    ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text}) as const
+
