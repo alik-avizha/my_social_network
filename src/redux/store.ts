@@ -1,8 +1,9 @@
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 import {DialogItemType} from '../components/Dialogs/DialogItem/DialogItem';
 import {MessageItemType} from '../components/Dialogs/MessageItem/MessageItem';
-import {addPostActionCreator, profileReducer, updateNewPostTextActionCreator} from './profile-reducer';
-import {addMessageActionCreator, dialogsReducer, updateNewMessageTextActionCreator} from './dialogs-reducer';
+import {addPostActionCreator, updateNewPostTextActionCreator} from './profile-reducer';
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from './dialogs-reducer';
+
 
 export type ProfilePage = {
     posts: PostType[]
@@ -17,7 +18,7 @@ export type StateType = {
     profilePage: ProfilePage
     dialogsPage: DialogsPage
 }
-export type Store = {
+export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     getState: () => StateType
@@ -30,51 +31,51 @@ export type ActionsType =
     | ReturnType<typeof addMessageActionCreator>
     | ReturnType<typeof updateNewMessageTextActionCreator>
 
-export let store: Store = {
-    _state: {
-        profilePage: {
-            posts: [
-                {id: 1, message: 'Hi', likesCount: 13},
-                {id: 2, message: 'I am beginner programmer', likesCount: 5},
-                {id: 3, message: 'Here I are making my social network', likesCount: 25}
-            ],
-            newPostText: ''
-        },
-        dialogsPage: {
-            dialogs: [
-                {id: 1, name: 'Aleksandr'},
-                {id: 2, name: 'Denis'},
-                {id: 3, name: 'Nikita'},
-                {id: 4, name: 'Ivan'},
-                {id: 5, name: 'Stepan'},
-                {id: 6, name: 'Viktor'}
-            ],
-            messages: [
-                {id: 1, message: 'Hello friend'},
-                {id: 2, message: 'How are you do?'},
-                {id: 3, message: 'Byi'},
-                {id: 4, message: 'How do you feel?'},
-                {id: 5, message: 'Hey'},
-                {id: 6, message: 'Yes.I do'}
-            ],
-            newMessageText: ''
-        }
-    },
-    _callSubscriber() {
-        console.log('Hello my friend!!')
-    },
-    subscribe(observer) {
-        this._callSubscriber = observer; //наблюдатель(observer) - патерн(publisher-subscriber)
-    },
-    getState() {
-        return this._state
-    },
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._callSubscriber();
-    }
-}
+// export let store: StoreType = {
+//     _state: {
+//         profilePage: {
+//             posts: [
+//                 {id: 1, message: 'Hi', likesCount: 13},
+//                 {id: 2, message: 'I am beginner programmer', likesCount: 5},
+//                 {id: 3, message: 'Here I are making my social network', likesCount: 25}
+//             ],
+//             newPostText: ''
+//         },
+//         dialogsPage: {
+//             dialogs: [
+//                 {id: 1, name: 'Aleksandr'},
+//                 {id: 2, name: 'Denis'},
+//                 {id: 3, name: 'Nikita'},
+//                 {id: 4, name: 'Ivan'},
+//                 {id: 5, name: 'Stepan'},
+//                 {id: 6, name: 'Viktor'}
+//             ],
+//             messages: [
+//                 {id: 1, message: 'Hello friend'},
+//                 {id: 2, message: 'How are you do?'},
+//                 {id: 3, message: 'Byi'},
+//                 {id: 4, message: 'How do you feel?'},
+//                 {id: 5, message: 'Hey'},
+//                 {id: 6, message: 'Yes.I do'}
+//             ],
+//             newMessageText: ''
+//         }
+//     },
+//     _callSubscriber() {
+//         console.log('Hello my friend!!')
+//     },
+//     subscribe(observer) {
+//         this._callSubscriber = observer; //наблюдатель(observer) - патерн(publisher-subscriber)
+//     },
+//     getState() {
+//         return this._state
+//     },
+//     dispatch(action) {
+//         this._state.profilePage = profileReducer(this._state.profilePage, action)
+//         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+//         this._callSubscriber();
+//     }
+// }
 
 //Выражение as const используется в TypeScript для явного указания, что выражение должно быть рассмотрено как константа, а не как переменная.
 //Action creator берет данные из приложения и формирует объект действия, который передается в хранилище Redux через функцию dispatch().

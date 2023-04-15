@@ -27,7 +27,6 @@ const Dialogs = (props: DialogsPropsType) => {
             props.updateNewMessageText(text)
         }
     }
-
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>

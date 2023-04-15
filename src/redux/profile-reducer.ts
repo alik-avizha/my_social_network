@@ -1,5 +1,6 @@
 import {ActionsType, ProfilePage} from './store';
 
+
 export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
@@ -14,7 +15,7 @@ let initialState = {
     newPostText: ''
 }
 
-export const profileReducer = (state: ProfilePage = initialState, action: ActionsType) => {
+export const profileReducer = (state: ProfilePage = initialState, action: ActionsType): ProfilePage => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost = {
