@@ -1,8 +1,7 @@
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 import {DialogItemType} from '../components/Dialogs/DialogItem/DialogItem';
 import {MessageItemType} from '../components/Dialogs/MessageItem/MessageItem';
-import {addPostActionCreator, updateNewPostTextActionCreator} from './profile-reducer';
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from './dialogs-reducer';
+import {ActionsType} from './redux-store';
 
 
 export type ProfilePage = {
@@ -25,11 +24,7 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionsType) => void
 }
-export type ActionsType =
-    ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof updateNewPostTextActionCreator>
-    | ReturnType<typeof addMessageActionCreator>
-    | ReturnType<typeof updateNewMessageTextActionCreator>
+
 
 // export let store: StoreType = {
 //     _state: {

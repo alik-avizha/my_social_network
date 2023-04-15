@@ -1,4 +1,5 @@
-import {ActionsType} from './store';
+import {ActionsType} from './redux-store';
+
 
 let initialState = {}
 

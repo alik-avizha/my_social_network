@@ -1,4 +1,5 @@
-import {ActionsType, DialogsPage} from './store';
+import {DialogsPage} from './store';
+import {ActionsType} from './redux-store';
 
 export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'}) as const
 export const updateNewMessageTextActionCreator = (text: string) =>
@@ -26,18 +27,16 @@ let initialState = {
 
 
 export const dialogsReducer = (state: DialogsPage = initialState, action: ActionsType): DialogsPage => {
+
     switch (action.type) {
         case 'ADD-MESSAGE':
             let newMessage = {
                 id: 7,
                 message: state.newMessageText
             }
-            state.messages.push(newMessage);
-            state.newMessageText = '';
-            return state
+            return  {...state, messages: [...state.messages, newMessage], newMessageText: ''}
         case 'UPDATE-NEW-MESSAGE-TEXT':
-            state.newMessageText = action.newText
-            return state
+            return {...state, newMessageText: action.newText }
         default:
             return state
     }

@@ -1,4 +1,5 @@
-import {ActionsType, ProfilePage} from './store';
+import { ProfilePage} from './store';
+import {ActionsType} from './redux-store';
 
 
 export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
@@ -23,12 +24,9 @@ export const profileReducer = (state: ProfilePage = initialState, action: Action
                 message: state.newPostText,
                 likesCount: 0
             }
-            state.posts.unshift(newPost);
-            state.newPostText = ''
-            return state
+            return  {...state, posts: [newPost,...state.posts], newPostText: ''}
         case 'UPDATE-NEW-POST-TEXT':
-            state.newPostText = action.newText
-            return state
+            return  {...state, newPostText: action.newText}
         default:
             return state
     }

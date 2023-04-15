@@ -13,10 +13,10 @@ type DialogsPropsType = {
 const Dialogs = (props: DialogsPropsType) => {
 
     let dialogsElements = props.dialogsPage.dialogs
-        .map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
+        .map((d,index) => <DialogItem name={d.name} id={d.id} key={index}/>)
 
     let messagesElements = props.dialogsPage.messages
-        .map(m => <MessageItem message={m.message} key={m.id}/>)
+        .map((m,index) => <MessageItem message={m.message} key={index}/>)
 
     let addMessageHandler = () => {
         props.addMessage()
