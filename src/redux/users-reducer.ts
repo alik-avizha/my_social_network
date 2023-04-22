@@ -8,10 +8,9 @@ export const setUsersAC = (users: UserType[] ) => ({type: 'SET-USERS', users}) a
 export type UserType = {
     id: number
     followed: boolean
-    fullName: string
-    photoUrl: string
+    name: string
+    photos: { small : string, large: string }
     status: string
-    location: {city: string, country: string}
 }
 
 export type UsersType = {
@@ -19,11 +18,7 @@ export type UsersType = {
 }
 
 let initialState: UsersType = {
-    users: [
-        // {id: 1, photoUrl: 'https://cdn-icons-png.flaticon.com/512/5556/5556487.png', followed: false, fullName: 'Aleksandr', status: 'Hop hey la la ley', location: {city: 'Minsk', country: 'Belarus'}},
-        // {id: 2, photoUrl: 'https://cdn-icons-png.flaticon.com/512/5556/5556487.png', followed: true, fullName: 'Viktor', status: 'Hello', location: {city: 'Kiev', country: 'Ukraine'}},
-        // {id: 3, photoUrl: 'https://cdn-icons-png.flaticon.com/512/5556/5556487.png', followed: false, fullName: 'Dima', status: 'What to do today?', location: {city: 'Moscow', country: 'Russia'}}
-    ]
+    users: []
 }
 
 export const usersReducer = (state: UsersType = initialState, action: ActionsType): UsersType => {

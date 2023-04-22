@@ -5,7 +5,7 @@ const ProfileInfo = () => {
     return (
         <div>
             <div>
-                <img src={'https://texterra.ru/upload/iblock/ac2/socialprev.jpg'}/>
+                <img className={classes.img} src={'https://soft.sibnet.ru/data/screenshot/19091.jpg'} alt={'WorkPlace'}/>
             </div>
             <div className={classes.descriptionBlock}>
                 Avatar + description
