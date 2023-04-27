@@ -1,6 +1,5 @@
 import {ActionsType} from './redux-store';
 
-
 export const followAC = (userId: number) => ({type: 'FOLLOW', userId}) as const
 export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId}) as const
 export const setUsersAC = (users: UserType[] ) => ({type: 'SET-USERS', users}) as const

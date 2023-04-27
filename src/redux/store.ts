@@ -1,30 +1,15 @@
-import {PostType} from '../components/Profile/MyPosts/Post/Post';
-import {DialogItemType} from '../components/Dialogs/DialogItem/DialogItem';
-import {MessageItemType} from '../components/Dialogs/MessageItem/MessageItem';
-import {ActionsType} from './redux-store';
-
-
-export type ProfilePage = {
-    posts: PostType[]
-    newPostText: string
-}
-export type DialogsPage = {
-    dialogs: DialogItemType[]
-    messages: MessageItemType[]
-    newMessageText: string
-}
-export type StateType = {
-    profilePage: ProfilePage
-    dialogsPage: DialogsPage
-}
-export type StoreType = {
-    _state: StateType
-    _callSubscriber: () => void
-    getState: () => StateType
-    subscribe: (observer: () => void) => void
-    dispatch: (action: ActionsType) => void
-}
-
+export {}
+// export type StateType = {
+//     profilePage: ProfilePage
+//     dialogsPage: DialogsPage
+// }
+// export type StoreType = {
+//     _state: StateType
+//     _callSubscriber: () => void
+//     getState: () => StateType
+//     subscribe: (observer: () => void) => void
+//     dispatch: (action: ActionsType) => void
+// }
 
 // export let store: StoreType = {
 //     _state: {

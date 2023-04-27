@@ -11,11 +11,8 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import {UsersContainer} from './components/Users/UsersContainer';
 
 
-type AppPropsType = {
-    //store: Store
-}
 
-const App = (props: AppPropsType) => {
+const App = () => {
     return (
         <div className="app-wrapper">
             <Header/>

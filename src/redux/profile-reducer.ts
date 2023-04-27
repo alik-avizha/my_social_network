@@ -1,11 +1,14 @@
-import { ProfilePage} from './store';
 import {ActionsType} from './redux-store';
+import {PostType} from '../components/Profile/MyPosts/Post/Post';
 
+export type ProfilePage = {
+    posts: PostType[]
+    newPostText: string
+}
 
 export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
-
 
 let initialState = {
     posts: [
