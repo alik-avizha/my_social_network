@@ -1,6 +1,7 @@
 import {ActionsType} from './redux-store';
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 
+
 export type ProfilePage = {
     posts: PostType[]
     newPostText: string
@@ -44,7 +45,7 @@ let initialState: ProfilePage = {
     ],
     newPostText: '',
     profile: {
-        aboutMe: '',
+        aboutMe: 'I am beginner programmer',
         contacts: {
             facebook: '',
             website: '',

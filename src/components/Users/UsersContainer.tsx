@@ -13,19 +13,24 @@ import axios from 'axios';
 import {Users} from './Users';
 import {Preloader} from '../common/PreLoader/Preloader';
 
-type UsersPropsType = {
+
+type MapStateToProps = {
     users: UserType[]
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
+}
+type MapDispatchTopProps = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
-    isFetching: boolean
     toggleIsFetching: (isFetching: boolean) => void
 }
+
+type UsersPropsType = MapStateToProps & MapDispatchTopProps
 
 export class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
@@ -36,7 +41,6 @@ export class UsersContainer extends React.Component<UsersPropsType> {
             this.props.setTotalUsersCount(response.data.totalCount)
         })
     }
-
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
@@ -45,7 +49,6 @@ export class UsersContainer extends React.Component<UsersPropsType> {
             this.props.setUsers(response.data.items)
         })
     }
-
     render() {
         return (
             <>
@@ -66,7 +69,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

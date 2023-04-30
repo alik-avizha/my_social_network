@@ -12,7 +12,7 @@ export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'}) as const
 export const updateNewMessageTextActionCreator = (text: string) =>
     ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text}) as const
 
-let initialState = {
+let initialState: DialogsPage = {
     dialogs: [
         {id: 1, name: 'Aleksandr'},
         {id: 2, name: 'Denis'},
