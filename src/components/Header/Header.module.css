@@ -1,8 +1,12 @@
 .header {
+    display: flex; /* Делаем блок .header flex-контейнером */
+    align-items: center;
     grid-area: h;
-    background-color: bisque;
+    background-color: #e5e2df;
+    border-radius: 20px;
 }
 .header img {
     width: 58px;
     border-radius: 36px;
+    margin-left: 5px;
 }

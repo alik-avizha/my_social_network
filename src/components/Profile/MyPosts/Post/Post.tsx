@@ -1,5 +1,7 @@
-import React from "react";
+import React from 'react';
 import classes from './Post.module.css';
+import postImg from '../../../../assets/images/postImg.png'
+import likeImg from '../../../../assets/images/like.jpg'
 
 export type PostType = {
     id?: number
@@ -8,12 +10,16 @@ export type PostType = {
 }
 
 const Post= (props:PostType) => {
+
     return (
         <div className={classes.item}>
-            <img src='https://cdn.pixabay.com/photo/2016/03/31/19/10/avatar-1294767_960_720.png' alt="avatar"/>
-            {props.message}
-            <div>
-                <span>like {props.likesCount}</span>
+            <div className={classes.postMessage}>
+                <img src={postImg} alt="avatar"/>
+                <span className={classes.message}>{props.message}</span>
+            </div>
+            <div className={classes.likes}>
+                <img src={likeImg} alt={'like'} className={classes.likeImg}/>
+                <span>{props.likesCount}</span>
             </div>
         </div>
     )
