@@ -4,9 +4,21 @@
     grid-area: h;
     background-color: #e5e2df;
     border-radius: 20px;
+    justify-content: space-between;
+    padding: 0 20px 0 20px;
 }
 .header img {
     width: 58px;
     border-radius: 36px;
     margin-left: 5px;
+}
+
+.loginBlock{
+    float: right;
+
+}
+.loginBlock a {
+    color: lightseagreen;
+    font-size: 20px;
+    text-decoration: none;
 }

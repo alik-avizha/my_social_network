@@ -1,5 +1,6 @@
 import {ActionsType} from './redux-store';
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
+import {v1} from 'uuid';
 
 
 export type ProfilePage = {
@@ -39,9 +40,9 @@ export const setUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFIL
 
 let initialState: ProfilePage = {
     posts: [
-        {id: 1, message: 'Hi', likesCount: 13},
-        {id: 2, message: 'I am beginner programmer', likesCount: 5},
-        {id: 3, message: 'Here I are making my social network', likesCount: 25}
+        {id: v1(), message: 'Hi', likesCount: 13},
+        {id: v1(), message: 'I am beginner programmer', likesCount: 5},
+        {id: v1(), message: 'Here I are making my social network', likesCount: 25}
     ],
     newPostText: '',
     profile: {
@@ -71,7 +72,7 @@ export const profileReducer = (state: ProfilePage = initialState, action: Action
     switch (action.type) {
         case 'ADD-POST':
             let newPost = {
-                id: 4,
+                id: v1(),
                 message: state.newPostText,
                 likesCount: 0
             }

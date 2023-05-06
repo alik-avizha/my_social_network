@@ -4,7 +4,7 @@ import postImg from '../../../../assets/images/postImg.png'
 import likeImg from '../../../../assets/images/like.jpg'
 
 export type PostType = {
-    id?: number
+    id?: string
     message: string,
     likesCount: number
 }

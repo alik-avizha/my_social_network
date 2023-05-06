@@ -9,12 +9,16 @@ import {
     unfollowAC,
     usersReducer
 } from './users-reducer';
+import {authReducer, setAuthUserDataAC} from './auth-reducer';
+import {sidebarReducer} from './sidebar-reducer';
 
 
 let rootReducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    usersPage: usersReducer
+    sidebar: sidebarReducer,
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 type RootReducerType = typeof rootReducers
@@ -34,6 +38,7 @@ export type ActionsType =
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setUsersTotalCountAC>
     | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof setAuthUserDataAC>
 
 
 // @ts-ignore
