@@ -5,7 +5,7 @@ import {
     followAC,
     setCurrentPageAC,
     setUsersAC,
-    setUsersTotalCountAC, toggleIsFetchingAC,
+    setUsersTotalCountAC, toggleIsFetchingAC, toggleIsFollowingProgressAC,
     unfollowAC,
     usersReducer
 } from './users-reducer';
@@ -39,6 +39,7 @@ export type ActionsType =
     | ReturnType<typeof setUsersTotalCountAC>
     | ReturnType<typeof toggleIsFetchingAC>
     | ReturnType<typeof setAuthUserDataAC>
+    | ReturnType<typeof toggleIsFollowingProgressAC>
 
 
 // @ts-ignore
