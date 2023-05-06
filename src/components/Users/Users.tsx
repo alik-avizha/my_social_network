@@ -3,6 +3,7 @@ import {UserType} from '../../redux/users-reducer';
 import styles from './users.module.css'
 import userPhoto from '../../assets/images/user.jpg'
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 
 type UsersPropsType = {
     users: UserType[]
@@ -18,10 +19,30 @@ type UsersPropsType = {
 export const Users = (props: UsersPropsType) => {
 
     let followHandler = (userId: number) => {
-        props.follow(userId)
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '594e8ece-c3d0-41d5-adc9-eca0a193295b'
+            }
+        })
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    props.follow(userId)
+                }
+            })
     }
     let unfollowHandler = (userId: number) => {
-        props.unfollow(userId)
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '594e8ece-c3d0-41d5-adc9-eca0a193295b'
+            }
+        })
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    props.unfollow(userId)
+                }
+            })
     }
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -34,7 +55,9 @@ export const Users = (props: UsersPropsType) => {
         <div className={styles.usersWrapper}>
             <div>
                 {pages.map(p => {
-                    return <span key={p} className={props.currentPage === p ? styles.selectedPage : ''} onClick={()=>{props.onPageChanged(p)}}>{p}</span>
+                    return <span key={p} className={props.currentPage === p ? styles.selectedPage : ''} onClick={() => {
+                        props.onPageChanged(p)
+                    }}>{p}</span>
                 })}
             </div>
             {props.users.map(u => {

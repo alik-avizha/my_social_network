@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import classes from './ProfileInfo.module.css';
 import {ProfileType} from '../../../redux/profile-reducer';
 import {Preloader} from '../../common/PreLoader/Preloader';
@@ -21,20 +21,23 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             <div className={classes.descriptionBlock}>
                 {props.profile.photos.large
                     ? <img src={props.profile.photos.large} alt={'avatar'} className={classes.imgAvatar}/>
-                    : <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'} alt={'avatar'} className={classes.imgAvatar}/>
+                    : <img
+                        src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'}
+                        alt={'avatar'} className={classes.imgAvatar}/>
                 }
-                <div>
+                <div className={classes.descriptionWrapper}>
                     <div className={classes.fullName}>{props.profile.fullName}</div>
                     <div className={classes.description}>
-                        <span>{props.profile.aboutMe}</span>
-                        <span>{props.profile.contacts.vk}</span>
-                        <span>{props.profile.contacts.github}</span>
-                        <span>{props.profile.contacts.instagram}</span>
-                        <span>{props.profile.contacts.twitter}</span>
-                        <span>{props.profile.contacts.facebook}</span>
-                        <span>{props.profile.contacts.youtube}</span>
-                        <span>{props.profile.lookingForAJob}</span>
-                        <span>{props.profile.lookingForAJobDescription}</span>
+                        <span>{props.profile.aboutMe ? props.profile.aboutMe : 'Нету информации'}</span>
+                        <span>{props.profile.lookingForAJob ?props.profile.lookingForAJob : 'Без работы'}</span>
+                        <span>{props.profile.lookingForAJobDescription ?
+                            props.profile.lookingForAJobDescription : 'Нету информации'}</span>
+                        <span>{props.profile.contacts.vk ? props.profile.contacts.vk : 'vk.com'}</span>
+                        <span>{props.profile.contacts.github ? props.profile.contacts.github : 'github.com'}</span>
+                        <span>{props.profile.contacts.instagram ? props.profile.contacts.instagram : 'instagram.com'}</span>
+                        <span>{props.profile.contacts.twitter ? props.profile.contacts.twitter : 'twitter.com'}</span>
+                        <span>{props.profile.contacts.facebook ? props.profile.contacts.facebook : 'facebook.com'}</span>
+                        <span>{props.profile.contacts.youtube ? props.profile.contacts.youtube : 'youtube.com'}</span>
                     </div>
                 </div>
             </div>
