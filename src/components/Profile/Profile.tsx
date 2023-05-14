@@ -6,9 +6,12 @@ import classes from './Profile.module.css';
 
 type ProfilePropsType = {
     profile: ProfileType
+
 }
 
 const Profile = (props: ProfilePropsType) => {
+
+
     return (
         <div className={classes.profileWrapper}>
             <ProfileInfo profile={props.profile}/>
