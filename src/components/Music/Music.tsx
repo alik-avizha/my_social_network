@@ -3,7 +3,9 @@ import classes from './Music.module.css';
 
 const Music = () => {
     return (
-       <div></div>
+       <div className={classes.musicWrapper}>
+           Music
+       </div>
     );
 };
 

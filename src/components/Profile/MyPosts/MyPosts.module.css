@@ -1,51 +1,45 @@
 .postsBlock {
-    padding: 10px;
-
 }
-
 
 .addPostWrapper {
     display: flex;
     align-items: center;
     gap: 20px;
     margin-bottom: 30px;
+    padding: 30px;
+    background-color: white;
 }
 
 .posts {
     margin-top: 10px;
+    background-color: white;
+    padding: 30px;
 }
 
-.writePost {
-    background-color: #eff5f5;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #888;
-    padding: 10px;
-    outline: none;
-    font-size: 18px;
-    color: #555;
-    min-width: 500px;
+.textarea {
+    width: 700px;
+    height: 50px;
+    padding: 20px;
 }
 
-.writePost:focus {
-    box-shadow: 0 0 0 2px #f2f2f2, 0 0 0 4px #888;
-}
 
 .addPost {
-    background: linear-gradient(to bottom, #4CAF50, #2E8B57);
+    padding: 5px 24px;
+    font-family: 'Montserrat', 'monospace';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 3px;
     border: none;
-    border-radius: 50px;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.4s;
     cursor: pointer;
-
+    color: #FFFFFF;
+    background: #0066CC;
 }
 
 .addPost:hover {
-    background: linear-gradient(to bottom, #2E8B57, #4CAF50);
+    background: #0080FF;
+}
+
+.addPost:active {
+    background: #0059B3;
 }

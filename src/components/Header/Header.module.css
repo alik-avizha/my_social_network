@@ -2,8 +2,7 @@
     display: flex; /* Делаем блок .header flex-контейнером */
     align-items: center;
     grid-area: h;
-    background-color: #e5e2df;
-    border-radius: 20px;
+    background-color: #7d93bd;
     justify-content: space-between;
     padding: 0 20px 0 20px;
 }

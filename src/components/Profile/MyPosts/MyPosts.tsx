@@ -11,8 +11,6 @@ type MyPostsType = {
 
 const MyPosts = (props: MyPostsType) => {
 
-
-
     let postsElements = props.posts.map((p) => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
@@ -32,7 +30,7 @@ const MyPosts = (props: MyPostsType) => {
         <div className={classes.postsBlock}>
             <div className={classes.addPostWrapper}>
                 <textarea onChange={onPostChangeHandler} ref={newPostElement} value={props.newPostText}
-                              placeholder={'send your Post'} className={classes.writePost}/>
+                              placeholder={'send your Post'} className={classes.textarea}/>
                 <button onClick={addPostHandler} className={classes.addPost}>Add Post</button>
             </div>
             <div className={classes.posts}>

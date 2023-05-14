@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Post.module.css';
 import postImg from '../../../../assets/images/postImg.png'
 import likeImg from '../../../../assets/images/like.jpg'
+import basket from '../../../../assets/images/basket.svg'
 
 export type PostType = {
     id?: string
@@ -18,6 +19,7 @@ const Post= (props:PostType) => {
                 <span className={classes.message}>{props.message}</span>
             </div>
             <div className={classes.likes}>
+                <img src={basket} alt={'basket'} className={classes.likeImg}/>
                 <img src={likeImg} alt={'like'} className={classes.likeImg}/>
                 <span>{props.likesCount}</span>
             </div>

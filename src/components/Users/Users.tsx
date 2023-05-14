@@ -3,7 +3,6 @@ import {UserType} from '../../redux/users-reducer';
 import styles from './users.module.css'
 import userPhoto from '../../assets/images/user.jpg'
 import {NavLink} from 'react-router-dom';
-import {usersAPI} from '../../api/api';
 
 type UsersPropsType = {
     users: UserType[]
@@ -13,31 +12,16 @@ type UsersPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
-    toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
 }
 
 export const Users = (props: UsersPropsType) => {
 
     let followHandler = (userId: number) => {
-        props.toggleIsFollowingProgress(true,userId)
-        usersAPI.followToUser(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    props.follow(userId)
-                }
-                props.toggleIsFollowingProgress(false,userId)
-            })
+        props.follow(userId)
     }
     let unfollowHandler = (userId: number) => {
-        props.toggleIsFollowingProgress(true,userId)
-        usersAPI.unfollowFromUser(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    props.unfollow(userId)
-                }
-                props.toggleIsFollowingProgress(false,userId)
-            })
+       props.unfollow(userId)
     }
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
