@@ -1,6 +1,8 @@
 import {ActionsType} from './redux-store';
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 import {v1} from 'uuid';
+import {Dispatch} from 'redux';
+import {usersAPI} from '../api/api';
 
 
 export type ProfilePage = {
@@ -31,12 +33,6 @@ export type ProfileType = {
     userId: number;
     photos: PhotosType;
 }
-
-
-export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
-export const updateNewPostTextActionCreator = (text: string) =>
-    ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
-export const setUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile}) as const
 
 let initialState: ProfilePage = {
     posts: [
@@ -76,12 +72,25 @@ export const profileReducer = (state: ProfilePage = initialState, action: Action
                 message: state.newPostText,
                 likesCount: 0
             }
-            return  {...state, posts: [newPost,...state.posts], newPostText: ''}
+            return {...state, posts: [newPost, ...state.posts], newPostText: ''}
         case 'UPDATE-NEW-POST-TEXT':
-            return  {...state, newPostText: action.newText}
+            return {...state, newPostText: action.newText}
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile}
         default:
             return state
+    }
+}
+
+export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
+export const updateNewPostTextActionCreator = (text: string) =>
+    ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
+export const setUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile}) as const
+
+export const getUserProfileThunkCreator = (userId: string) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getProfile(userId).then(data => {
+            dispatch(setUserProfile(data.data))
+        })
     }
 }
