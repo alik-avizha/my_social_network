@@ -3,22 +3,23 @@ import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {getUserProfileThunkCreator, ProfileType} from '../../redux/profile-reducer';
-import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type PathParamsType = {
     userId: string
 }
-type MapStateToProps = {
+type MapStateToPropsType = {
     profile: ProfileType
-    isAuth: boolean
 }
-type MapDispatchTopProps = {
+type MapDispatchTopPropsType = {
     getUserProfile: (userId: string) => void
 }
-type ProfileContainerPropsType = MapStateToProps & MapDispatchTopProps
+type ProfileContainerPropsType = MapStateToPropsType & MapDispatchTopPropsType
 type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType
 
 class ProfileContainer extends React.Component<PropsType> {
+
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
@@ -28,11 +29,7 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
-
-        if (!this.props.isAuth) return <Redirect to={'/login'}/>
-
         return (
-
             <div>
                 <Profile profile={this.props.profile} />
             </div>
@@ -40,11 +37,12 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps = (state: AppStateType): MapStateToProps => ({
-    profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
+    profile: state.profilePage.profile
 })
 
-let withUrlDataContainerComponent = withRouter(ProfileContainer)
+let withUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 export default connect(mapStateToProps, {getUserProfile: getUserProfileThunkCreator})(withUrlDataContainerComponent)

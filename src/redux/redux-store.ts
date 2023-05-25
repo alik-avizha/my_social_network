@@ -14,7 +14,7 @@ import {sidebarReducer} from './sidebar-reducer';
 import thunk from 'redux-thunk'
 
 
-let rootReducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
@@ -22,10 +22,10 @@ let rootReducers = combineReducers({
     auth: authReducer
 })
 
-type RootReducerType = typeof rootReducers
+type RootReducerType = typeof rootReducer
 export type AppStateType = ReturnType<RootReducerType>
 
-export const store = createStore(rootReducers, applyMiddleware(thunk))
+export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type ActionsType =
     ReturnType<typeof addPostActionCreator>

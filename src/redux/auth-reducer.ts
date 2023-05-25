@@ -2,7 +2,6 @@ import {ActionsType} from './redux-store';
 import {Dispatch} from 'redux';
 import {authAPI} from '../api/api';
 
-
 export type UserAuthType = {
     userId: null | number,
     email: null | string,

@@ -75,7 +75,6 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
         })
     }
 }
-
 export const followThunkCreator = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFollowingProgressAC(true, userId))

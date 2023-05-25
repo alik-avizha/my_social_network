@@ -2,11 +2,10 @@ import React, {ChangeEvent} from 'react';
 import classes from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import MessageItem from './MessageItem/MessageItem';
-import {DialogsPage} from '../../redux/dialogs-reducer';
-import {Redirect} from 'react-router-dom';
+import {DialogsPageType} from '../../redux/dialogs-reducer';
 
 type DialogsPropsType = {
-    dialogsPage: DialogsPage
+    dialogsPage: DialogsPageType
     addMessage: () => void
     updateNewMessageText: (newText: string) => void
     isAuth: boolean
@@ -30,8 +29,6 @@ const Dialogs = (props: DialogsPropsType) => {
             props.updateNewMessageText(text)
         }
     }
-
-    if (!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={classes.dialogs}>

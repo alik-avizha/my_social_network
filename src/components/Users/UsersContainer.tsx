@@ -6,7 +6,7 @@ import {followThunkCreator, getUsersThunkCreator,unfollowThunkCreator,
 } from '../../redux/users-reducer';
 import {Users} from './Users';
 import {Preloader} from '../common/PreLoader/Preloader';
-
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type MapStateToProps = {
     users: UserType[]
@@ -65,31 +65,8 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => {
     }
 }
 
-// let mapDispatchToProps = (dispatch: Dispatch) => {
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId: number) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users: UserType[]) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (currentPage: number) => {
-//             dispatch(setCurrentPageAC(currentPage))
-//         },
-//         setTotalUsersCount: (totalCount: number) => {
-//             dispatch(setUsersTotalCountAC(totalCount))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
-//     }
-// }
-
-export default connect(mapStateToProps, {
+export default withAuthRedirect(connect(mapStateToProps, {
     follow: followThunkCreator,
     unfollow: unfollowThunkCreator,
     getUsers: getUsersThunkCreator
-})(UsersContainer)
+})(UsersContainer))

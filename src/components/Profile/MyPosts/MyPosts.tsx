@@ -30,7 +30,7 @@ const MyPosts = (props: MyPostsType) => {
         <div className={classes.postsBlock}>
             <div className={classes.addPostWrapper}>
                 <textarea onChange={onPostChangeHandler} ref={newPostElement} value={props.newPostText}
-                              placeholder={'send your Post'} className={classes.textarea}/>
+                          placeholder={'send your Post'} className={classes.textarea}/>
                 <button onClick={addPostHandler} className={classes.addPost}>Add Post</button>
             </div>
             <div className={classes.posts}>

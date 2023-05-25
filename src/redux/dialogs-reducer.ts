@@ -2,17 +2,13 @@ import {ActionsType} from './redux-store';
 import {DialogItemType} from '../components/Dialogs/DialogItem/DialogItem';
 import {MessageItemType} from '../components/Dialogs/MessageItem/MessageItem';
 
-export type DialogsPage = {
+export type DialogsPageType = {
     dialogs: DialogItemType[]
     messages: MessageItemType[]
     newMessageText: string
 }
 
-export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'}) as const
-export const updateNewMessageTextActionCreator = (text: string) =>
-    ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text}) as const
-
-let initialState: DialogsPage = {
+let initialState: DialogsPageType = {
     dialogs: [
         {id: 1, name: 'Aleksandr'},
         {id: 2, name: 'Denis'},
@@ -32,7 +28,7 @@ let initialState: DialogsPage = {
     newMessageText: ''
 }
 
-export const dialogsReducer = (state: DialogsPage = initialState, action: ActionsType): DialogsPage => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType): DialogsPageType => {
 
     switch (action.type) {
         case 'ADD-MESSAGE':
@@ -47,3 +43,7 @@ export const dialogsReducer = (state: DialogsPage = initialState, action: Action
             return state
     }
 }
+
+export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'}) as const
+export const updateNewMessageTextActionCreator = (text: string) =>
+    ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text}) as const

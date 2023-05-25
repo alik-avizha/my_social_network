@@ -5,7 +5,7 @@ import {Dispatch} from 'redux';
 import {usersAPI} from '../api/api';
 
 
-export type ProfilePage = {
+export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
     profile: ProfileType
@@ -34,7 +34,7 @@ export type ProfileType = {
     photos: PhotosType;
 }
 
-let initialState: ProfilePage = {
+let initialState: ProfilePageType = {
     posts: [
         {id: v1(), message: 'Hi', likesCount: 13},
         {id: v1(), message: 'I am beginner programmer', likesCount: 5},
@@ -64,7 +64,7 @@ let initialState: ProfilePage = {
     }
 }
 
-export const profileReducer = (state: ProfilePage = initialState, action: ActionsType): ProfilePage => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost = {
