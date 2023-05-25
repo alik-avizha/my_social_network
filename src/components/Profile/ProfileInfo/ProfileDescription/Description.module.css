@@ -1,0 +1,11 @@
+.descriptionWrapper{
+    display: flex;
+    flex-direction: column;
+}
+.description {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #0e0d0d;
+    display: flex;
+    flex-direction: column;
+}
