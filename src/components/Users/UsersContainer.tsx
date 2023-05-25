@@ -7,6 +7,7 @@ import {followThunkCreator, getUsersThunkCreator,unfollowThunkCreator,
 import {Users} from './Users';
 import {Preloader} from '../common/PreLoader/Preloader';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {compose} from 'redux';
 
 type MapStateToProps = {
     users: UserType[]
@@ -24,7 +25,7 @@ type MapDispatchTopProps = {
 
 type UsersPropsType = MapStateToProps & MapDispatchTopProps
 
-export class UsersContainer extends React.Component<UsersPropsType> {
+export class UsersContainerSecond extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
@@ -64,9 +65,20 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
+compose<React.ComponentType>(
+    connect(mapStateToProps, {
+        follow: followThunkCreator,
+        unfollow: unfollowThunkCreator,
+        getUsers: getUsersThunkCreator
+    }),
+    withAuthRedirect
+)(UsersContainerSecond)
 
-export default withAuthRedirect(connect(mapStateToProps, {
-    follow: followThunkCreator,
-    unfollow: unfollowThunkCreator,
-    getUsers: getUsersThunkCreator
-})(UsersContainer))
+export const UsersContainer = compose<React.ComponentType>(
+    connect(mapStateToProps, {
+        follow: followThunkCreator,
+        unfollow: unfollowThunkCreator,
+        getUsers: getUsersThunkCreator
+    }),
+    withAuthRedirect
+)(UsersContainerSecond)

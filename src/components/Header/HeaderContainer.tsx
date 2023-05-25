@@ -14,7 +14,7 @@ type MapDispatchTopProps = {
 
 type HeaderContainerPropsType = MapDispatchTopProps & MapStateToProps
 
-export class HeaderContainer extends React.Component<HeaderContainerPropsType> {
+export class HeaderContainerSecond extends React.Component<HeaderContainerPropsType> {
 
     componentDidMount() {
         this.props.getAuthUserData()
@@ -32,4 +32,4 @@ const mapStateToProps = (state: AppStateType): MapStateToProps => ({
     login: state.auth.login
 })
 
-export default connect(mapStateToProps, {getAuthUserData: getAuthUserDataThunkCreator})(HeaderContainer)
+export const HeaderContainer = connect(mapStateToProps, {getAuthUserData: getAuthUserDataThunkCreator})(HeaderContainerSecond)
