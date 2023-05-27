@@ -1,31 +1,44 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 type ProfileStatusType = {
     status: string
+    updateStatus: (status: string) => void
 }
 
-export class ProfileStatus extends React.Component<ProfileStatusType>{
+export class ProfileStatus extends React.Component<ProfileStatusType> {
 
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
     activateEditMode = () => {
         this.setState({
-          editMode: true
+            editMode: true
         })
     }
     deactivateEditMode = () => {
         this.setState({
             editMode: false
         })
+        this.props.updateStatus(this.state.status)
+    }
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
     }
 
-    render () {
+    render() {
         return (
             <>
                 {!this.state.editMode
-                    ? <div><span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span></div>
-                    : <div><input autoFocus onBlur={this.deactivateEditMode.bind(this)} value={this.props.status}/></div>
+                    ? <span onDoubleClick={this.activateEditMode}>{this.props.status || 'no status'}</span>
+                    : <input
+                        autoFocus
+                        onBlur={this.deactivateEditMode}
+                        value={this.state.status}
+                        onChange={this.onStatusChange}
+                    />
                 }
             </>
         )

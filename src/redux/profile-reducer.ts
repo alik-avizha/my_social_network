@@ -2,13 +2,14 @@ import {ActionsType} from './redux-store';
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
-import {usersAPI} from '../api/api';
+import {profileApi, usersAPI} from '../api/api';
 
 
 export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
     profile: ProfileType
+    status: string
 }
 type ContactsType = {
     facebook: string | null;
@@ -61,7 +62,8 @@ let initialState: ProfilePageType = {
             small: '',
             large: '',
         }
-    }
+    },
+    status: ''
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
@@ -77,6 +79,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, newPostText: action.newText}
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile}
+        case 'SET-STATUS':
+            return {...state, status: action.status}
         default:
             return state
     }
@@ -85,12 +89,31 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
-export const setUserProfile = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile}) as const
+export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile}) as const
+export const setStatusActionCreator = (status: string) => ({type: 'SET-STATUS', status}) as const
+
 
 export const getUserProfileThunkCreator = (userId: string) => {
     return (dispatch: Dispatch) => {
         usersAPI.getProfile(userId).then(data => {
-            dispatch(setUserProfile(data.data))
+            dispatch(setUserProfileActionCreator(data.data))
         })
     }
 }
+export const getStatusThunkCreator = (userId: string) => {
+    return (dispatch: Dispatch) => {
+        profileApi.getStatus(userId).then(response => {
+            dispatch(setStatusActionCreator(response.data))
+        })
+    }
+}
+export const updateStatusThunkCreator = (status: string) => {
+    return (dispatch: Dispatch) => {
+        profileApi.updateStatus(status).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatusActionCreator(status))
+            }
+        })
+    }
+}
+
