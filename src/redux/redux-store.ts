@@ -1,22 +1,17 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {
-    addPostActionCreator,
-    profileReducer,
-    setStatusActionCreator, setUserProfileActionCreator,
+    addPostActionCreator, profileReducer, setStatusActionCreator, setUserProfileActionCreator,
     updateNewPostTextActionCreator
 } from './profile-reducer';
 import {addMessageActionCreator, dialogsReducer, updateNewMessageTextActionCreator} from './dialogs-reducer';
 import {
-    followAC,
-    setCurrentPageAC,
-    setUsersAC,
-    setUsersTotalCountAC, toggleIsFetchingAC, toggleIsFollowingProgressAC,
-    unfollowAC,
-    usersReducer
+    followAC, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, toggleIsFetchingAC, toggleIsFollowingProgressAC,
+    unfollowAC, usersReducer
 } from './users-reducer';
 import {authReducer, setAuthUserDataAC} from './auth-reducer';
 import {sidebarReducer} from './sidebar-reducer';
 import thunk from 'redux-thunk'
+import {reducer as formReducer} from 'redux-form';
 
 
 let rootReducer = combineReducers({
@@ -24,7 +19,8 @@ let rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 })
 
 type RootReducerType = typeof rootReducer
@@ -47,7 +43,6 @@ export type ActionsType =
     | ReturnType<typeof setAuthUserDataAC>
     | ReturnType<typeof toggleIsFollowingProgressAC>
     | ReturnType<typeof setStatusActionCreator>
-
 
 // @ts-ignore
 window.store = store
