@@ -1,13 +1,10 @@
-import {ActionsType} from './redux-store';
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
 import {profileApi, usersAPI} from '../api/api';
 
-
 export type ProfilePageType = {
     posts: PostType[]
-    newPostText: string
     profile: ProfileType
     status: string
 }
@@ -34,6 +31,10 @@ export type ProfileType = {
     userId: number;
     photos: PhotosType;
 }
+export type ProfileActionsType =
+    | ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof setUserProfileActionCreator>
+    | ReturnType<typeof setStatusActionCreator>
 
 let initialState: ProfilePageType = {
     posts: [
@@ -41,7 +42,6 @@ let initialState: ProfilePageType = {
         {id: v1(), message: 'I am beginner programmer', likesCount: 5},
         {id: v1(), message: 'Here I are making my social network', likesCount: 25}
     ],
-    newPostText: '',
     profile: {
         aboutMe: 'I am beginner programmer',
         contacts: {
@@ -66,17 +66,15 @@ let initialState: ProfilePageType = {
     status: ''
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionsType): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost = {
                 id: v1(),
-                message: state.newPostText,
+                message: action.newPost,
                 likesCount: 0
             }
-            return {...state, posts: [newPost, ...state.posts], newPostText: ''}
-        case 'UPDATE-NEW-POST-TEXT':
-            return {...state, newPostText: action.newText}
+            return {...state, posts: [newPost, ...state.posts]}
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile}
         case 'SET-STATUS':
@@ -85,14 +83,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return state
     }
 }
-
-export const addPostActionCreator = () => ({type: 'ADD-POST'}) as const
-export const updateNewPostTextActionCreator = (text: string) =>
-    ({type: 'UPDATE-NEW-POST-TEXT', newText: text}) as const
+//ActionCreators
+export const addPostActionCreator = (newPost: string) => ({type: 'ADD-POST', newPost}) as const
 export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile}) as const
 export const setStatusActionCreator = (status: string) => ({type: 'SET-STATUS', status}) as const
 
-
+//ThunkCreators
 export const getUserProfileThunkCreator = (userId: string) => {
     return (dispatch: Dispatch) => {
         usersAPI.getProfile(userId).then(data => {

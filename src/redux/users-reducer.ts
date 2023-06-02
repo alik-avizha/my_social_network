@@ -1,4 +1,3 @@
-import {ActionsType} from './redux-store';
 import {Dispatch} from 'redux';
 import {usersAPI} from '../api/api';
 
@@ -17,6 +16,14 @@ export type UsersType = {
     isFetching: boolean
     followingInProgress: Array<number>
 }
+export type UsersActionsType =
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setUsersTotalCountAC>
+    | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof toggleIsFollowingProgressAC>
 
 let initialState: UsersType = {
     users: [],
@@ -27,7 +34,7 @@ let initialState: UsersType = {
     followingInProgress: []
 }
 
-export const usersReducer = (state: UsersType = initialState, action: ActionsType): UsersType => {
+export const usersReducer = (state: UsersType = initialState, action: UsersActionsType): UsersType => {
     switch (action.type) {
         case 'FOLLOW':
             return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)}
@@ -51,7 +58,7 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
             return state
     }
 }
-
+//ActionCreators
 export const followAC = (userId: number) => ({type: 'FOLLOW', userId}) as const
 export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId}) as const
 export const setUsersAC = (users: UserType[]) => ({type: 'SET-USERS', users}) as const
@@ -64,6 +71,7 @@ export const toggleIsFollowingProgressAC = (isFetching: boolean, userId: number)
     userId
 }) as const
 
+//ThunkCreators
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFetchingAC(true))

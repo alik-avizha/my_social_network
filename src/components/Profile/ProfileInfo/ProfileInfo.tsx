@@ -12,8 +12,6 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void
 }
 
-
-
 const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     if (!props.profile) {

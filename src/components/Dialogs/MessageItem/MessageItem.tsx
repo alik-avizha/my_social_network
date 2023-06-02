@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './../Dialogs.module.css'
 
-
 export type MessageItemType = {
     id?: number
     message: string

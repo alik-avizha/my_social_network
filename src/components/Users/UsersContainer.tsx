@@ -65,14 +65,6 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
-compose<React.ComponentType>(
-    connect(mapStateToProps, {
-        follow: followThunkCreator,
-        unfollow: unfollowThunkCreator,
-        getUsers: getUsersThunkCreator
-    }),
-    withAuthRedirect
-)(UsersContainerSecond)
 
 export const UsersContainer = compose<React.ComponentType>(
     connect(mapStateToProps, {
