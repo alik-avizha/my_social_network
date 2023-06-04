@@ -1,7 +1,7 @@
 import {PostType} from '../components/Profile/MyPosts/Post/Post';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
-import {profileApi, usersAPI} from '../api/api';
+import {profileApi} from '../api/api';
 
 export type ProfilePageType = {
     posts: PostType[]
@@ -9,26 +9,26 @@ export type ProfilePageType = {
     status: string
 }
 type ContactsType = {
-    facebook: string | null;
-    website: string | null;
-    vk: string | null;
-    twitter: string | null;
-    instagram: string | null;
-    youtube: string | null;
-    github: string | null;
-    mainLink: string | null;
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
 }
 type PhotosType = {
     small: string;
     large: string;
 }
 export type ProfileType = {
+    userId: number;
+    lookingForAJob: boolean;
+    lookingForAJobDescription: string;
+    fullName: string;
     aboutMe: string;
     contacts: ContactsType;
-    lookingForAJob: boolean;
-    lookingForAJobDescription: string | null;
-    fullName: string;
-    userId: number;
     photos: PhotosType;
 }
 export type ProfileActionsType =
@@ -91,7 +91,7 @@ export const setStatusActionCreator = (status: string) => ({type: 'SET-STATUS', 
 //ThunkCreators
 export const getUserProfileThunkCreator = (userId: string) => {
     return (dispatch: Dispatch) => {
-        usersAPI.getProfile(userId).then(data => {
+        profileApi.getProfile(userId).then(data => {
             dispatch(setUserProfileActionCreator(data.data))
         })
     }

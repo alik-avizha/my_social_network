@@ -3,10 +3,13 @@ import {usersAPI} from '../api/api';
 
 export type UserType = {
     id: number
-    followed: boolean
     name: string
-    photos: { small: string, large: string }
     status: string
+    photos: {
+        small: string,
+        large: string
+    }
+    followed: boolean
 }
 export type UsersType = {
     users: UserType[]

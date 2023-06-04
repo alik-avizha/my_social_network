@@ -10,11 +10,6 @@
     background-color: white;
 }
 
-.posts {
-    background-color: white;
-    padding: 30px;
-}
-
 .textarea {
     width: 80%;
     height: 50px;
@@ -39,4 +34,9 @@
 
 .addPost:active {
     background: #0059B3;
+}
+
+.posts {
+    background-color: white;
+    padding: 30px;
 }
