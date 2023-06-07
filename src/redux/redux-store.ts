@@ -5,7 +5,7 @@ import {UsersActionsType, usersReducer} from './users-reducer';
 import {AuthActionsType, authReducer} from './auth-reducer';
 import {sidebarReducer} from './sidebar-reducer';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
-import {reducer as formReducer} from 'redux-form';
+import {FormAction, reducer as formReducer} from 'redux-form';
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -20,7 +20,7 @@ type RootReducerType = typeof rootReducer
 export type AppStateType = ReturnType<RootReducerType>
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
-export type ActionsType = ProfileActionsType | DialogsActionsType |UsersActionsType | AuthActionsType
+export type ActionsType = ProfileActionsType | DialogsActionsType |UsersActionsType | AuthActionsType | FormAction
 
 //typing dispatch for thunks
 export type AppDispatchType = ThunkDispatch<AppStateType, any, ActionsType>

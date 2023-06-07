@@ -10,7 +10,6 @@ import {
 } from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type PathParamsType = {
     userId: string
@@ -18,6 +17,8 @@ type PathParamsType = {
 type MapStateToPropsType = {
     profile: ProfileType
     status: string
+    authorizedUserId: number | null
+    isAuth: boolean
 }
 type MapDispatchTopPropsType = {
     getUserProfile: (userId: string) => void
@@ -32,7 +33,7 @@ class ProfileContainerSecond extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = String(28769)
+            userId = String(this.props.authorizedUserId)
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -41,7 +42,10 @@ class ProfileContainerSecond extends React.Component<PropsType> {
     render() {
         return (
             <div>
-                <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+                <Profile
+                    profile={this.props.profile}
+                    status={this.props.status}
+                    updateStatus={this.props.updateStatus}/>
             </div>
         )
     }
@@ -49,11 +53,13 @@ class ProfileContainerSecond extends React.Component<PropsType> {
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 })
 
 export const ProfileContainer = compose<React.ComponentType>(
-    withAuthRedirect,
+    /*withAuthRedirect,*/
     connect(mapStateToProps, {getUserProfile: getUserProfileThunkCreator, getStatus: getStatusThunkCreator, updateStatus:updateStatusThunkCreator}),
     withRouter
 )(ProfileContainerSecond)

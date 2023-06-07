@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {loginThunkCreator} from '../../redux/auth-reducer';
 import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../../redux/redux-store';
+import classes from '../common/FormsControls/FormsControls.module.css'
 
 type FormDataType = {
     email: string
@@ -32,6 +33,9 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <div>
                 <Field type={'checkbox'} name={'rememberMy'} component={Input}/>remember my
             </div>
+            {props.error && <div className={classes.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
@@ -55,8 +59,7 @@ const Login = (props: LoginPropsType) => {
 };
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
-    isAuth: state.auth.isAuth,
-
+    isAuth: state.auth.isAuth
 })
 
 export default connect(mapStateToProps,{login: loginThunkCreator,})(Login)
