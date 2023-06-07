@@ -4,8 +4,9 @@ import logo from '../../assets/images/logo.gif'
 import {NavLink} from 'react-router-dom';
 
 type HeaderPropsType = {
-    isAuth: boolean,
+    isAuth: boolean
     login: string | null
+    logout: () => void
 }
 
 export const Header = (props: HeaderPropsType) => {
@@ -14,7 +15,7 @@ export const Header = (props: HeaderPropsType) => {
             <img src={logo} alt={'logo'}/>
             <div className={classes.loginBlock}>
                 { props.isAuth
-                    ? props.login
+                    ? <div>{props.login} <button onClick={props.logout}>Log out</button></div>
                     : <NavLink to={'/Login'}>Login</NavLink>
                 }
             </div>

@@ -10,6 +10,7 @@ import {
 } from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type PathParamsType = {
     userId: string
@@ -52,6 +53,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 })
 
 export const ProfileContainer = compose<React.ComponentType>(
+    withAuthRedirect,
     connect(mapStateToProps, {getUserProfile: getUserProfileThunkCreator, getStatus: getStatusThunkCreator, updateStatus:updateStatusThunkCreator}),
     withRouter
 )(ProfileContainerSecond)
