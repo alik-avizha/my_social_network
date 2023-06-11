@@ -38,12 +38,12 @@ export type ProfileActionsType =
 
 let initialState: ProfilePageType = {
     posts: [
-        {id: v1(), message: 'Hi', likesCount: 13},
-        {id: v1(), message: 'I am beginner programmer', likesCount: 5},
-        {id: v1(), message: 'Here I are making my social network', likesCount: 25}
+        {id: v1(), message: '', likesCount: 13},
+        {id: v1(), message: '', likesCount: 5},
+        {id: v1(), message: '', likesCount: 25}
     ],
     profile: {
-        aboutMe: 'I am beginner programmer',
+        aboutMe: '',
         contacts: {
             facebook: '',
             website: '',
@@ -56,7 +56,7 @@ let initialState: ProfilePageType = {
         },
         lookingForAJob: true,
         lookingForAJobDescription: '',
-        fullName: 'Aleksandr Avizha',
+        fullName: '',
         userId: 28769,
         photos: {
             small: '',
