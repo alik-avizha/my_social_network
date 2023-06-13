@@ -38,9 +38,9 @@ export type ProfileActionsType =
 
 let initialState: ProfilePageType = {
     posts: [
-        {id: v1(), message: '', likesCount: 13},
-        {id: v1(), message: '', likesCount: 5},
-        {id: v1(), message: '', likesCount: 25}
+        {id: v1(), message: 'Hi', likesCount: 13},
+        {id: v1(), message: 'My name is Alex', likesCount: 5},
+        {id: v1(), message: 'How are you?', likesCount: 25}
     ],
     profile: {
         aboutMe: '',

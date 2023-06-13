@@ -1,8 +1,12 @@
 import classes from './News.module.css';
+import works from '../../assets/images/work.jpg';
+import React from 'react';
 
 const News = () => {
     return (
-        <div></div>
+        <div>
+            <img src={works} alt=""/>
+        </div>
     );
 };
 
