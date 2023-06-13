@@ -5,6 +5,7 @@ import {Preloader} from '../../common/PreLoader/Preloader';
 import {Description} from './ProfileDescription/Description';
 import {ProfileAvatar} from './ProfileAvatar/ProfileAvatar';
 import {ProfileStatus} from './ProfileStatus/ProfileStatus';
+import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks';
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -23,7 +24,8 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             <div className={classes.descriptionBlock}>
                 <div className={classes.avatarAndStatusBlock}>
                     <ProfileAvatar avatar={props.profile.photos.large}/>
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                    {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
+                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                 </div>
                 <Description profile={props.profile}/>
             </div>
