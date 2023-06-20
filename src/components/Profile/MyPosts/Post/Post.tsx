@@ -5,12 +5,17 @@ import likeImg from '../../../../assets/images/like.jpg'
 import basket from '../../../../assets/images/basket.svg'
 
 export type PostType = {
-    id?: string
+    id: string
     message: string,
     likesCount: number
 }
+type PropsType = PostType & {deletePost: (postId: string) => void}
 
-const Post = (props: PostType) => {
+const Post = (props: PropsType) => {
+
+    const deletePost = () => {
+        props.deletePost(props.id)
+    }
 
     return (
         <div className={classes.item}>
@@ -19,7 +24,7 @@ const Post = (props: PostType) => {
                 <span className={classes.message}>{props.message}</span>
             </div>
             <div className={classes.likes}>
-                <img src={basket} alt={'basket'} className={classes.likeImg}/>
+                <img src={basket} alt={'basket'} className={classes.likeImg} onClick={deletePost}/>
                 <img src={likeImg} alt={'like'} className={classes.likeImg}/>
                 <span>{props.likesCount}</span>
             </div>

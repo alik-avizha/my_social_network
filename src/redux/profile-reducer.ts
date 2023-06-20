@@ -35,6 +35,7 @@ export type ProfileActionsType =
     | ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof setUserProfileActionCreator>
     | ReturnType<typeof setStatusActionCreator>
+    | ReturnType<typeof removePostActionCreator>
 
 let initialState: ProfilePageType = {
     posts: [
@@ -79,6 +80,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
             return {...state, profile: action.profile}
         case 'SET-STATUS':
             return {...state, status: action.status}
+        case 'REMOVE-POST':
+            return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
         default:
             return state
     }
@@ -87,6 +90,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
 export const addPostActionCreator = (newPost: string) => ({type: 'ADD-POST', newPost}) as const
 export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile}) as const
 export const setStatusActionCreator = (status: string) => ({type: 'SET-STATUS', status}) as const
+export const removePostActionCreator = (postId: string) => ({type: 'REMOVE-POST', postId}) as const
 
 //ThunkCreators
 export const getUserProfileThunkCreator = (userId: string) => {
