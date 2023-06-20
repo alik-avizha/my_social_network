@@ -15,14 +15,17 @@ type AddPostFormType = {
 
 const maxLength10 = maxLengthCreator(10)
 
-export const MyPosts = (props: MyPostsType) => {
+export const MyPosts = React.memo((props: MyPostsType) => {
 
-    let postsElements = props.posts.map((p) => <Post message={p.message} likesCount={p.likesCount} key={p.id}/>)
+    console.log('render')
+
+    let postsElements = props.posts.map((p) => <Post message={p.message} likesCount={p.likesCount}
+                                                     key={p.id}/>)
 
     let addPostHandler = (value: AddPostFormType) => {
         props.addPost(value.newPostText)
     }
-    
+
     return (
         <div className={classes.postsBlock}>
             <AddMessageFormRedux onSubmit={addPostHandler}/>
@@ -31,7 +34,8 @@ export const MyPosts = (props: MyPostsType) => {
             </div>
         </div>
     )
-}
+})
+
 export const AddPostForm: React.FC<InjectedFormProps<AddPostFormType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={classes.addPostWrapper}>

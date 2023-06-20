@@ -11,7 +11,6 @@ type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
-
     return (
         <div className={classes.profileWrapper}>
             <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
