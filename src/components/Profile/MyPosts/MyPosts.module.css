@@ -6,15 +6,18 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 30px;
-    padding: 30px;
+    padding: 50px;
     background-color: white;
 }
 
 .textarea {
-    width: 80%;
-    height: 50px;
-    padding: 20px;
+    width: 100%;
+    height: 80px;
 }
+.textarea span {
+    color: red;
+}
+
 
 .addPost {
     padding: 15px 30px;

@@ -5,7 +5,7 @@ import React from 'react';
 const News = () => {
     return (
         <div>
-            <img src={works} alt=""/>
+            <img src={works} alt="" className={classes.image}/>
         </div>
     );
 };

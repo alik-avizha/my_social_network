@@ -36,7 +36,7 @@ export const AddPostForm: React.FC<InjectedFormProps<AddPostFormType>> = (props)
     return (
         <form onSubmit={props.handleSubmit} className={classes.addPostWrapper}>
             <Field
-                /*className={classes.textarea}*/
+                className={classes.textarea}
                 component={Textarea}
                 name="newPostText"
                 placeholder="Enter your post"

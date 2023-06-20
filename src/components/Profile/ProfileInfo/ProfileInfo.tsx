@@ -4,7 +4,6 @@ import {ProfileType} from '../../../redux/profile-reducer';
 import {Preloader} from '../../common/PreLoader/Preloader';
 import {Description} from './ProfileDescription/Description';
 import {ProfileAvatar} from './ProfileAvatar/ProfileAvatar';
-import {ProfileStatus} from './ProfileStatus/ProfileStatus';
 import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks';
 
 type ProfileInfoPropsType = {

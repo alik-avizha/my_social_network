@@ -5,7 +5,7 @@ import works from '../../assets/images/work.jpg';
 const Settings = () => {
     return (
         <div>
-            <img src={works} alt=""/>
+            <img src={works} alt="" className={classes.image}/>
         </div>
     );
 };
