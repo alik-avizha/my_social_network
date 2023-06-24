@@ -19,7 +19,7 @@ let initialState: UserAuthType = {
 
 export const authReducer = (state: UserAuthType = initialState, action: AuthActionsType): UserAuthType => {
     switch (action.type) {
-        case 'SET-USER-DATA':
+        case 'AUTH/SET-USER-DATA':
             return {...state, ...action.data}
         default:
             return state
@@ -27,7 +27,7 @@ export const authReducer = (state: UserAuthType = initialState, action: AuthActi
 }
 //ActionCreators
 export const setAuthUserDataAC = (userId: number | null, login: string | null, email: string | null, isAuth: boolean) => ({
-        type: 'SET-USER-DATA',
+        type: 'AUTH/SET-USER-DATA',
         data: {
             userId,
             email,
@@ -38,29 +38,27 @@ export const setAuthUserDataAC = (userId: number | null, login: string | null, e
 ) as const
 
 //ThunkCreators
-export const getAuthUserDataThunkCreator = (): AppThunk => (dispatch) => {
-    return authAPI.auth().then(data => {
-        if (data.resultCode === 0) {
-            let {id, login, email} = data.data
-            dispatch(setAuthUserDataAC(id, login, email, true))
-        }
-    })
+export const getAuthUserDataThunkCreator = (): AppThunk => async (dispatch) => {
+    let response = await authAPI.auth()
+    if (response.resultCode === 0) {
+        let {id, login, email} = response.data
+        dispatch(setAuthUserDataAC(id, login, email, true))
+    }
 }
-export const loginThunkCreator = (email: string, password: string, rememberMe: boolean): AppThunk => (dispatch) => {
 
-    authAPI.logIn(email, password, rememberMe).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(getAuthUserDataThunkCreator())
-        } else {
-            let message = data.messages.length > 0  ? data.messages[0] : 'Some error'
-            dispatch(stopSubmit('login',{_error: message}))
-        }
-    })
+export const loginThunkCreator = (email: string, password: string, rememberMe: boolean): AppThunk => async (dispatch) => {
+    let data = await authAPI.logIn(email, password, rememberMe)
+    if (data.resultCode === 0) {
+        dispatch(getAuthUserDataThunkCreator())
+    } else {
+        let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
+        dispatch(stopSubmit('login', {_error: message}))
+    }
 }
-export const logoutThunkCreator = (): AppThunk => (dispatch) => {
-    authAPI.logOut().then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setAuthUserDataAC(null, null, null, false))
-        }
-    })
+
+export const logoutThunkCreator = (): AppThunk => async (dispatch) => {
+    let data = await authAPI.logOut()
+    if (data.resultCode === 0) {
+        dispatch(setAuthUserDataAC(null, null, null, false))
+    }
 }

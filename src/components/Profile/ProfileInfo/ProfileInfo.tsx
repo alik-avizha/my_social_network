@@ -12,9 +12,11 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileInfo = (props: ProfileInfoPropsType) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
-    if (!props.profile) {
+    const {profile, status, updateStatus} = props
+
+    if (!profile) {
         return <Preloader/>
     }
 
@@ -22,11 +24,10 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         <div className={classes.profileInfoWrapper}>
             <div className={classes.descriptionBlock}>
                 <div className={classes.avatarAndStatusBlock}>
-                    <ProfileAvatar avatar={props.profile.photos.large}/>
-                    {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
-                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                    <ProfileAvatar avatar={profile.photos.large}/>
+                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 </div>
-                <Description profile={props.profile}/>
+                <Description profile={profile}/>
             </div>
         </div>
     )

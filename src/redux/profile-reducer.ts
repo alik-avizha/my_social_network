@@ -94,26 +94,26 @@ export const removePostActionCreator = (postId: string) => ({type: 'REMOVE-POST'
 
 //ThunkCreators
 export const getUserProfileThunkCreator = (userId: string) => {
-    return (dispatch: Dispatch) => {
-        profileApi.getProfile(userId).then(data => {
-            dispatch(setUserProfileActionCreator(data.data))
-        })
+    return async (dispatch: Dispatch) => {
+        let response = await profileApi.getProfile(userId)
+        dispatch(setUserProfileActionCreator(response.data))
     }
 }
+
 export const getStatusThunkCreator = (userId: string) => {
-    return (dispatch: Dispatch) => {
-        profileApi.getStatus(userId).then(response => {
-            dispatch(setStatusActionCreator(response.data))
-        })
+    return async (dispatch: Dispatch) => {
+        let response = await profileApi.getStatus(userId)
+        dispatch(setStatusActionCreator(response.data))
     }
 }
+
 export const updateStatusThunkCreator = (status: string) => {
-    return (dispatch: Dispatch) => {
-        profileApi.updateStatus(status).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setStatusActionCreator(status))
-            }
-        })
+    return async (dispatch: Dispatch) => {
+        let response = await profileApi.updateStatus(status)
+        if (response.data.resultCode === 0) {
+            dispatch(setStatusActionCreator(status))
+        }
     }
 }
+
 

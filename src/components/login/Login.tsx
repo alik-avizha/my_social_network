@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Input} from '../common/FormsControls/FormsControls';
+import {InjectedFormProps, reduxForm} from 'redux-form';
+import {createField, Input} from '../common/FormsControls/FormsControls';
 import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
 import {loginThunkCreator} from '../../redux/auth-reducer';
@@ -16,29 +16,19 @@ type FormDataType = {
 type MapStateToPropsType = {
     isAuth: boolean
 }
-type MapDispatchToPropsType ={
+type MapDispatchToPropsType = {
     login: (email: string, password: string, rememberMe: boolean) => void
 }
 type LoginPropsType = MapDispatchToPropsType & MapStateToPropsType
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={'Email'} name={'email'} component={Input} validate={[required]}/>
-            </div>
-            <div>
-                <Field placeholder={'Password'} name={'password'} type={'password'} component={Input} validate={[required]}/>
-            </div>
-            <div>
-                <Field type={'checkbox'} name={'rememberMy'} component={Input}/>remember my
-            </div>
-            {props.error && <div className={classes.formSummaryError}>
-                {props.error}
-            </div>}
-            <div>
-                <button>Login</button>
-            </div>
+        <form onSubmit={handleSubmit}>
+            {createField('Email', 'email', [required], Input)}
+            {createField('Password', 'password', [required], Input, {type: 'password'})}
+            {createField('', 'rememberMy', [], Input, {type: 'checkbox'},'remember my')}
+            {error && <div className={classes.formSummaryError}>{error}</div>}
+            <button>Login</button>
         </form>
     );
 };
@@ -62,4 +52,4 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps,{login: loginThunkCreator,})(Login)
+export default connect(mapStateToProps, {login: loginThunkCreator,})(Login)

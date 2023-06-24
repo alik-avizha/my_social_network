@@ -59,11 +59,12 @@ type UsersResponseDataType = {
     totalCount: number
     error: string
 }
-type ResponseType<T = {}> = {
+export type ResponseType<T = {}> = {
     resultCode: number
     messages: string[]
     data: T
 }
+
 type AuthResponseData = {
     id: number
     email: string
