@@ -9,6 +9,7 @@ type MyPostsType = {
     posts: PostType[]
     addPost: (value: string) => void
     deletePost: (postId: string) => void
+    photo: string
 }
 type AddPostFormType = {
     newPostText: string
@@ -19,7 +20,7 @@ const maxLength10 = maxLengthCreator(10)
 export const MyPosts = React.memo((props: MyPostsType) => {
 
     let postsElements = props.posts.map((p) => <Post message={p.message} likesCount={p.likesCount}
-                                                     key={p.id} deletePost={props.deletePost} id={p.id}/>)
+                                                     key={p.id} deletePost={props.deletePost} id={p.id} photo={props.photo}/>)
 
     let addPostHandler = (value: AddPostFormType) => {
         props.addPost(value.newPostText)

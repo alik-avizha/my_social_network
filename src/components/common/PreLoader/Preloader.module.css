@@ -1,0 +1,10 @@
+.preloader{
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #7983ff;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: loading-rotate 1s linear infinite;
+    position: absolute;
+    margin: 100px 250px;
+}

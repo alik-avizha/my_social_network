@@ -9,7 +9,7 @@ export type PostType = {
     message: string,
     likesCount: number
 }
-type PropsType = PostType & {deletePost: (postId: string) => void}
+type PropsType = PostType & {deletePost: (postId: string) => void, photo: string}
 
 const Post = (props: PropsType) => {
 
@@ -20,7 +20,7 @@ const Post = (props: PropsType) => {
     return (
         <div className={classes.item}>
             <div className={classes.postMessage}>
-                <img src={postImg} alt="avatar"/>
+                {props.photo ? <img src={props.photo} alt="avatar"/> : <img src={postImg} alt="avatar"/>}
                 <span className={classes.message}>{props.message}</span>
             </div>
             <div className={classes.likes}>

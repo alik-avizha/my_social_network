@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import {ProfileActionsType, profileReducer} from './profile-reducer';
 import {DialogsActionsType, dialogsReducer} from './dialogs-reducer';
 import {UsersActionsType, usersReducer} from './users-reducer';
@@ -21,7 +21,14 @@ let rootReducer = combineReducers({
 type RootReducerType = typeof rootReducer
 export type AppStateType = ReturnType<RootReducerType>
 
-export const store = createStore(rootReducer, applyMiddleware(thunk))
+
+
+
+//export const store = createStore(rootReducer, applyMiddleware(thunk))
+
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+
 export type ActionsType =
     | ProfileActionsType
     | DialogsActionsType
@@ -37,4 +44,4 @@ export type AppDispatchType = ThunkDispatch<AppStateType, any, ActionsType>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsType>
 
 // @ts-ignore
-window.store = store
+//window.store = store
