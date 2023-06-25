@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {Route, withRouter} from 'react-router-dom';
+import {BrowserRouter, Route, withRouter} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -10,10 +10,10 @@ import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {ProfileContainer} from './components/Profile/ProfileContainer';
 import {HeaderContainer} from './components/Header/HeaderContainer';
 import {UsersContainer} from './components/Users/UsersContainer';
-import {connect} from 'react-redux';
+import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
 import {initializeAppThunkCreator} from './redux/app-reducer';
-import {AppStateType} from './redux/redux-store';
+import {AppStateType, store} from './redux/redux-store';
 import {Preloader} from './components/common/PreLoader/Preloader';
 
 type MapDispatchTopProps = {
@@ -24,7 +24,7 @@ type MapStateTopProps = {
 }
 type AppContainerPropsType = MapDispatchTopProps & MapStateTopProps
 
-class AppContainer extends React.Component<AppContainerPropsType> {
+class App extends React.Component<AppContainerPropsType> {
 
     componentDidMount() {
         this.props.initializeApp()
@@ -52,10 +52,22 @@ class AppContainer extends React.Component<AppContainerPropsType> {
         );
     }
 }
+
 let mapStateToProps = (state: AppStateType): MapStateTopProps => ({
-   initialised: state.app.initialised
+    initialised: state.app.initialised
 })
 
-export const App = compose<React.ComponentType>(
+const AppContainer = compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToProps,{initializeApp: initializeAppThunkCreator}))(AppContainer)
+    connect(mapStateToProps, {initializeApp: initializeAppThunkCreator}))(App)
+
+
+export const SamuraiApp = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
