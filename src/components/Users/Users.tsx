@@ -1,7 +1,7 @@
 import React from 'react';
 import {UserType} from '../../redux/users-reducer';
 import styles from './users.module.css'
-import {Pagination} from '../common/Pagination/Pagintation';
+import {Pagination} from '../common/Pagination/Pagination';
 import {User} from './User/User';
 
 type UsersPropsType = {
@@ -21,10 +21,11 @@ export const Users: React.FC<UsersPropsType> = (props) => {
     return (
         <div className={styles.usersWrapper}>
             <Pagination
-                totalUsersCount={totalUsersCount}
+                totalItemsCount={totalUsersCount}
                 currentPage={currentPage}
                 onPageChanged={onPageChanged}
                 pageSize={pageSize}
+                portionSize={10}
             />
             {users.map(u => {
                     return (
