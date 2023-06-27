@@ -84,10 +84,12 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => {
     }
 }
 
-export const UsersContainer = compose<React.ComponentType>(
+const UsersContainer = compose<React.ComponentType>(
     connect(mapStateToProps, {
         follow: followThunkCreator,
         unfollow: unfollowThunkCreator,
         getUsers: getUsersThunkCreator
     })
 )(UsersContainerSecond)
+
+export default UsersContainer
