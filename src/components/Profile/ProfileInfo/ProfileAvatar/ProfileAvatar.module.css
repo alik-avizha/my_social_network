@@ -1,10 +1,10 @@
-.imgAvatar {
+.mainPhoto {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     margin-right: 20px;
     transition: transform 0.2s ease-in-out;
 }
-.imgAvatar:hover {
+.mainPhoto:hover {
     transform: scale(1.1);
 }

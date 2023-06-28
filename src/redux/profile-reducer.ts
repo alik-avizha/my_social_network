@@ -18,7 +18,7 @@ type ContactsType = {
     github: string
     mainLink: string
 }
-type PhotosType = {
+export type PhotosType = {
     small: string;
     large: string;
 }
@@ -36,6 +36,7 @@ export type ProfileActionsType =
     | ReturnType<typeof setUserProfileActionCreator>
     | ReturnType<typeof setStatusActionCreator>
     | ReturnType<typeof removePostActionCreator>
+    | ReturnType<typeof savePhotoSuccessActionCreator>
 
 let initialState: ProfilePageType = {
     posts: [
@@ -82,6 +83,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
             return {...state, status: action.status}
         case 'REMOVE-POST':
             return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
+        case 'SAVE-PHOTOS-SUCCESS':
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state
     }
@@ -91,6 +94,7 @@ export const addPostActionCreator = (newPost: string) => ({type: 'ADD-POST', new
 export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile}) as const
 export const setStatusActionCreator = (status: string) => ({type: 'SET-STATUS', status}) as const
 export const removePostActionCreator = (postId: string) => ({type: 'REMOVE-POST', postId}) as const
+export const savePhotoSuccessActionCreator = (photos: PhotosType) => ({type: 'SAVE-PHOTOS-SUCCESS', photos}) as const
 
 //ThunkCreators
 export const getUserProfileThunkCreator = (userId: string) => {
@@ -112,6 +116,14 @@ export const updateStatusThunkCreator = (status: string) => {
         let response = await profileApi.updateStatus(status)
         if (response.data.resultCode === 0) {
             dispatch(setStatusActionCreator(status))
+        }
+    }
+}
+export const savePhotoThunkCreator = (file: File) => {
+    return async (dispatch: Dispatch) => {
+        let response = await profileApi.savePhoto(file)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccessActionCreator(response.data.data.photos))
         }
     }
 }
