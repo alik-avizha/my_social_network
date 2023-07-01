@@ -8,8 +8,9 @@ export type PostType = {
     id: string
     message: string,
     likesCount: number
+    date: string
 }
-type PropsType = PostType & {deletePost: (postId: string) => void, photo: string}
+type PropsType = PostType & { deletePost: (postId: string) => void, photo: string, login: string | null }
 
 const Post = (props: PropsType) => {
 
@@ -19,14 +20,18 @@ const Post = (props: PropsType) => {
 
     return (
         <div className={classes.item}>
+            {props.photo ? <img className={classes.userPhoto} src={props.photo} alt="avatar"/> : <img className={classes.userPhoto} src={postImg} alt="avatar"/>}
             <div className={classes.postMessage}>
-                {props.photo ? <img src={props.photo} alt="avatar"/> : <img src={postImg} alt="avatar"/>}
                 <span className={classes.message}>{props.message}</span>
             </div>
-            <div className={classes.likes}>
+            <div className={classes.activities}>
                 <img src={basket} alt={'basket'} className={classes.likeImg} onClick={deletePost}/>
                 <img src={likeImg} alt={'like'} className={classes.likeImg}/>
                 <span>{props.likesCount}</span>
+            </div>
+            <div className={classes.loginAndDate}>
+                <span>{props.login}</span>
+                <span>{props.date}</span>
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ import {
     getUserProfileThunkCreator,
     ProfileType, savePhotoThunkCreator,
     updateStatusThunkCreator
-} from '../../redux/profile-reducer';
+} from '../../redux/profile/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
 

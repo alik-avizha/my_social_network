@@ -1,9 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import classes from './ProfileInfo.module.css';
-import {ProfileType} from '../../../redux/profile-reducer';
+import {ProfileType} from '../../../redux/profile/profile-reducer';
 import {Preloader} from '../../common/PreLoader/Preloader';
 import {Description} from './ProfileDescription/Description';
-import {ProfileAvatar} from './ProfileAvatar/ProfileAvatar';
 import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks';
 
 type ProfileInfoPropsType = {
@@ -32,7 +31,10 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
         <div className={classes.profileInfoWrapper}>
             <div className={classes.descriptionBlock}>
                 <div className={classes.avatarAndStatusBlock}>
-                    <ProfileAvatar avatar={profile.photos.large}/>
+                    <img
+                        src={props.profile.photos.large || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'}
+                        alt={'avatar'} className={classes.mainPhoto}
+                    />
                     {props.isOwner && <input type={'file'} onChange={mainPhotoSelected}/>}
                     <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 </div>

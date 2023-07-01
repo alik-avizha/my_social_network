@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
-import {ResponseType, usersAPI} from '../api/api';
-import {updateObjectInArray} from '../utils/object-helpers';
+import {ResponseType, usersAPI} from '../../api/api';
+import {updateObjectInArray} from '../../utils/object-helpers';
 
 export type UserType = {
     id: number

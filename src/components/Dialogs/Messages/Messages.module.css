@@ -1,8 +1,9 @@
 .messagesWrapper{
-
+    padding: 10px;
 }
 
 .messages {
     height: 60vh;
     overflow-y: auto;
+    border-bottom: 1px solid black;
 }

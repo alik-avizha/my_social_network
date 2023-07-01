@@ -19,7 +19,8 @@
     background-color: #7d93bd;
 }
 .nav a.activeLink{
-    color: #10c2c2;
+    color: white;
+    background-color: #7d93bd;
 }
 .icon{
     height: 20px;

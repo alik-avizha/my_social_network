@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from './Header';
 import {connect} from 'react-redux';
-import {logoutThunkCreator} from '../../redux/auth-reducer';
+import {logoutThunkCreator} from '../../redux/auth/auth-reducer';
 import {AppStateType} from '../../redux/redux-store';
 
 type MapStateToProps = {

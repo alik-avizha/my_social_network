@@ -8,7 +8,7 @@ import Settings from './components/Settings/Settings';
 import {HeaderContainer} from './components/Header/HeaderContainer';
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
-import {initializeAppThunkCreator} from './redux/app-reducer';
+import {initializeAppThunkCreator} from './redux/app/app-reducer';
 import {AppStateType, store} from './redux/redux-store';
 import {Preloader} from './components/common/PreLoader/Preloader';
 import {withSuspense} from './hoc/withSuspense';

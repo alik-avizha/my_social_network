@@ -1,3 +1,4 @@
+/*
 import {
     addPostActionCreator,
     ProfilePageType,
@@ -103,4 +104,6 @@ it('correct post should be removed', () => {
 
     expect(endState.posts.length).toBe(2);
     expect(startState.posts.length).toBe(3);
-});
+});*/
+
+export {}

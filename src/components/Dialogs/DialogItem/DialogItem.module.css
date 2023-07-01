@@ -18,7 +18,8 @@
     background-color: #7d93bd;
 }
 .item a.activeLink{
-    color: #10c2c2;
+    color: white;
+    background-color: #7d93bd;
 }
 
 .dialogAva{

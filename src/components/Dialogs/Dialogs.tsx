@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
-import {DialogsPageType} from '../../redux/dialogs-reducer';
+import {DialogsPageType} from '../../redux/dialogs/dialogs-reducer';
 import {Route, Switch} from 'react-router-dom';
 import {Messages} from './Messages/Messages';
 

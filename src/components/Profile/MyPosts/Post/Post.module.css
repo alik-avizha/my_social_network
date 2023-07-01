@@ -2,37 +2,40 @@
     background: linear-gradient(to bottom, #fff, #f2f2f2);
     border-radius: 10px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.2);
-    padding: 10px;
+    padding: 50px;
     margin-bottom: 20px;
     position: relative;
+    min-height: 70px;
 }
-
-.postMessage {
+.userPhoto {
+    position: absolute;
+    height: 60px;
+    border-radius: 50%;
+    left: 5px;
+    top: 5px;
+}
+.loginAndDate{
+    position: absolute;
     display: flex;
-    gap: 10px;
-    align-items: center;
+    flex-direction: column;
+    top:8px;
+    left: 75px;
 }
-
-.item img {
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
+.postMessage {
+    margin-top: 20px;
+    margin-left: 22px;
 }
-
-.item .message {
-    font-size: 14px;
-    margin-left: 10px;
+.message {
+    font-size: 18px;
     word-break: break-all
 }
-
-.item .likes {
+.item .activities {
     display: flex;
     position: absolute;
     bottom: 0;
     right: 5px;
     padding-left: 30px;
 }
-
 .item .likeImg {
     width: 20px;
     height: 20px;
@@ -41,7 +44,7 @@
     filter: grayscale(100%);
     transition: all 0.3s ease-in-out;
 }
-
 .item .likeImg:hover {
     filter: grayscale(0%);
 }
+

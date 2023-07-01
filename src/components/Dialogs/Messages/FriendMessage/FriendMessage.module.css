@@ -49,9 +49,6 @@
     border-color: #7d93bd;
     margin-left: -0.9em;
 }
-.friendText:after {
-
-}
 .friendName {
     display: flex;
     font-weight: bold;

@@ -1,7 +1,7 @@
-import {PostType} from '../components/Profile/MyPosts/Post/Post';
+import {PostType} from '../../components/Profile/MyPosts/Post/Post';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
-import {profileApi} from '../api/api';
+import {profileApi} from '../../api/api';
 
 export type ProfilePageType = {
     posts: PostType[]
@@ -40,9 +40,9 @@ export type ProfileActionsType =
 
 let initialState: ProfilePageType = {
     posts: [
-        {id: v1(), message: 'Hi', likesCount: 13},
-        {id: v1(), message: 'My name is Alex', likesCount: 5},
-        {id: v1(), message: 'How are you?', likesCount: 25}
+        {id: v1(), message: 'Hi', likesCount: 13, date: '05.02.2023'},
+        {id: v1(), message: 'My name is Alex', likesCount: 5, date: '26.01.2023'},
+        {id: v1(), message: 'How are you?', likesCount: 25, date: '20.01.2023'}
     ],
     profile: {
         aboutMe: '',
@@ -71,10 +71,12 @@ let initialState: ProfilePageType = {
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionsType): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
+            const date = new Date();
             let newPost = {
                 id: v1(),
                 message: action.newPost,
-                likesCount: 0
+                likesCount: 0,
+                date: `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear().toString()}`
             }
             return {...state, posts: [newPost, ...state.posts]}
         case 'SET-USER-PROFILE':

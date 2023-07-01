@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {UserType} from '../redux/users-reducer';
-import {PhotosType, ProfileType} from '../redux/profile-reducer';
+import {UserType} from '../redux/users/users-reducer';
+import {PhotosType, ProfileType} from '../redux/profile/profile-reducer';
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',

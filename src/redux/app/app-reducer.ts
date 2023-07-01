@@ -1,5 +1,5 @@
-import {AppThunk} from './redux-store';
-import {getAuthUserDataThunkCreator} from './auth-reducer';
+import {AppThunk} from '../redux-store';
+import {getAuthUserDataThunkCreator} from '../auth/auth-reducer';
 
 export type AppInitialType = {
     initialised: boolean

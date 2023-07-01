@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Description.module.css'
-import {ProfileType} from '../../../../redux/profile-reducer';
+import {ProfileType} from '../../../../redux/profile/profile-reducer';
 
 type DescriptionPropsType = {
     profile: ProfileType

@@ -1,45 +1,8 @@
 .postsBlock {
 }
 
-.addPostWrapper {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
-    padding: 50px;
-    background-color: white;
-}
-
-.textarea {
-    width: 100%;
-    height: 80px;
-}
-.textarea span {
-    color: red;
-}
-
-
-.addPost {
-    padding: 15px 30px;
-    font-family: 'Montserrat', 'monospace';
-    font-weight: 600;
-    font-size: 14px;
-    border-radius: 3px;
-    border: none;
-    cursor: pointer;
-    color: #FFFFFF;
-    background: #0066CC;
-}
-
-.addPost:hover {
-    background: #0080FF;
-}
-
-.addPost:active {
-    background: #0059B3;
-}
-
 .posts {
+    margin-top: 30px;
     background-color: white;
     padding: 30px;
 }

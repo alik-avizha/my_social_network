@@ -2,9 +2,9 @@ import React from 'react';
 import classes from './Messages.module.css'
 import {DialogItemType} from '../DialogItem/DialogItem';
 import {useParams} from 'react-router-dom';
-import {MessageFormSender} from './MessageFormSender/MessageFormSender';
 import {MyMessage} from './MainMessage/MainMessage';
 import {FriendMessage} from './FriendMessage/FriendMessage';
+import {SenderContent} from '../../common/SenderContent/SenderContent';
 
 export type MessageItemType = {
     id: number
@@ -25,14 +25,14 @@ export type MessageItemPropsType = {
 }
 export const Messages = (props: MessageItemPropsType) => {
 
-    const params = useParams<{id: string}>()
+    const params = useParams<{ id: string }>()
 
-    const messagesForMap = props.messages[params.id].map((el,index) => index === 0
-        ? <FriendMessage key={index} message={el.message} name={props.names[Number(params.id)-1].name} time={el.time}/>
+    const messagesForMap = props.messages[params.id].map((el, index) => el.id !== 0
+        ? <FriendMessage key={index} message={el.message} name={props.names[Number(params.id) - 1].name} time={el.time}/>
         : <MyMessage key={index} message={el.message} name={props.login} time={el.time} photo={props.photo}/>
     )
 
-    const addNewMessage = (text: string) => {
+    const addNewMessageHandler = (text: string) => {
         props.addNewMessage(params.id, text)
     }
 
@@ -41,7 +41,7 @@ export const Messages = (props: MessageItemPropsType) => {
             <div className={classes.messages}>
                 {messagesForMap}
             </div>
-            <MessageFormSender callback={addNewMessage}/>
+            <SenderContent callback={addNewMessageHandler} placeholder={'Enter your post'}/>
         </div>
     )
 }

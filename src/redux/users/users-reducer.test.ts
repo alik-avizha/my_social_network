@@ -1,13 +1,13 @@
 import {
     followAC,
     setCurrentPageAC,
-    setUsersAC,
-    setUsersTotalCountAC,
+    setUsersAC, setUsersTotalCountAC,
     toggleIsFetchingAC,
     unfollowAC,
     usersReducer,
     UsersType
 } from './users-reducer';
+
 
 let startState: UsersType
 
