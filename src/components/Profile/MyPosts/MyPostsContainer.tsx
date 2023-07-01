@@ -9,7 +9,7 @@ import {PostType} from './Post/Post';
 type MapStateToPropsType = {
     posts: PostType[]
     photo: string
-    login: string | null
+    userName: string
 }
 type MapDispatchToPropsType = {
     addPost: (value: string) => void
@@ -20,7 +20,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
         photo: state.profilePage.profile.photos.large,
-        login: state.auth.login
+        userName: state.profilePage.profile.fullName
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {

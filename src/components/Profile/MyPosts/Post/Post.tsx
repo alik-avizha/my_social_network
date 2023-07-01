@@ -10,7 +10,8 @@ export type PostType = {
     likesCount: number
     date: string
 }
-type PropsType = PostType & { deletePost: (postId: string) => void, photo: string, login: string | null }
+type PropsType = PostType & { deletePost: (postId: string) => void, photo: string,
+    userName: string }
 
 const Post = (props: PropsType) => {
 
@@ -30,7 +31,7 @@ const Post = (props: PropsType) => {
                 <span>{props.likesCount}</span>
             </div>
             <div className={classes.loginAndDate}>
-                <span>{props.login}</span>
+                <span>{props.userName}</span>
                 <span>{props.date}</span>
             </div>
         </div>

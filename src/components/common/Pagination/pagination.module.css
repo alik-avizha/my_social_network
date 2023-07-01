@@ -1,12 +1,45 @@
 .paginator {
     margin: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 .pageNumber {
-    padding: 2px;
+    border-radius: 10px;
     border: 1px solid grey;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageNumber:hover{
+    background-color: #a5b5d2;
+    color: white;
 }
 
 .pageNumber.selectedPage {
-    font-weight: bold;
-    border-color: black;
+    color: white;
+    background-color: #7d93bd;
+}
+
+
+.btn{
+    width: 7%;
+    background: #06C;
+    font-size: 12px;
+    color: #FFF;
+    border: 0;
+    cursor: pointer;
+    padding: 15px 0;
+    border-radius: 20px;
+}
+.btn:hover{
+    background: #0080FF;
+}
+.btn:active{
+    background: #0059B3;
+}
+.btn:disabled{
+    opacity: 0.5;
 }

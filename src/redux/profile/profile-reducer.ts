@@ -40,9 +40,9 @@ export type ProfileActionsType =
 
 let initialState: ProfilePageType = {
     posts: [
-        {id: v1(), message: 'Hi', likesCount: 13, date: '05.02.2023'},
-        {id: v1(), message: 'My name is Alex', likesCount: 5, date: '26.01.2023'},
-        {id: v1(), message: 'How are you?', likesCount: 25, date: '20.01.2023'}
+        {id: v1(), message: 'Hi there', likesCount: 13, date: '05.02.2023'},
+        {id: v1(), message: 'Welcome to my Page', likesCount: 5, date: '26.01.2023'},
+        {id: v1(), message: 'It is social network', likesCount: 25, date: '20.01.2023'}
     ],
     profile: {
         aboutMe: '',

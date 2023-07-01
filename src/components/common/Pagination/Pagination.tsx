@@ -7,7 +7,7 @@ type UsersPropsType = {
     pageSize: number
     onPageChanged: (pageNumber: number) => void
     currentPage?: number
-    portionSize?:number
+    portionSize?: number
 }
 
 export const Pagination: React.FC<UsersPropsType> = (props) => {
@@ -27,10 +27,10 @@ export const Pagination: React.FC<UsersPropsType> = (props) => {
 
     return (
         <div className={cn(styles.paginator)}>
-            {portionNumber > 1 &&
-                <button onClick={() => {
-                    setPortionNumber(portionNumber - 1)
-                }}>PREV</button>}
+            <button disabled={portionNumber === 1} className={styles.btn} onClick={() => {
+                setPortionNumber(portionNumber - 1)
+            }}>PREV
+            </button>
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map((p) => {
@@ -43,7 +43,7 @@ export const Pagination: React.FC<UsersPropsType> = (props) => {
                                  }}>{p}</span>
                 })}
             {portionCount > portionNumber &&
-                <button onClick={() => {
+                <button className={styles.btn}  onClick={() => {
                     setPortionNumber(portionNumber + 1)
                 }}>NEXT</button>}
         </div>

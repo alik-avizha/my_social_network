@@ -8,7 +8,7 @@ type MyPostsType = {
     addPost: (value: string) => void
     deletePost: (postId: string) => void
     photo: string
-    login: string | null
+    userName: string
 }
 
 export const MyPosts = React.memo((props: MyPostsType) => {
@@ -20,7 +20,7 @@ export const MyPosts = React.memo((props: MyPostsType) => {
                                                      deletePost={props.deletePost}
                                                      id={p.id}
                                                      photo={props.photo}
-                                                     login={props.login}
+                                                     userName={props.userName}
     />)
 
     return (
