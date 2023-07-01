@@ -11,6 +11,10 @@
     border-radius: 36px;
     margin-left: 5px;
 }
+.imgLog{
+    height: 40px;
+    cursor: pointer;
+}
 
 .loginBlock{
     float: right;
