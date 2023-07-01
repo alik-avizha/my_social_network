@@ -8,20 +8,24 @@ import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type MapStateToPropsType = {
     dialogsPage: DialogsPageType
+    login: string | null
+    photo: string
 }
 type MadDispatchToPropsType = {
-    addMessage: (newMessageText: string) => void
+    addMessage: (dialogsId: string, newMessageText: string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        login: state.auth.login,
+        photo: state.profilePage.profile.photos.large
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): MadDispatchToPropsType => {
     return {
-        addMessage: (newMessageText: string) => {
-            dispatch(addMessageActionCreator(newMessageText))
+        addMessage: (dialogsId: string, newMessageText: string) => {
+            dispatch(addMessageActionCreator(dialogsId, newMessageText))
         }
     }
 }

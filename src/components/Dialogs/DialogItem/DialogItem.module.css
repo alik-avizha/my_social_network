@@ -1,27 +1,26 @@
-.nav {
-    grid-area: n;
-    background-color: #ffffff;
-    padding: 20px;
+.item {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.nav a {
+.item a {
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 14px;
     color: black;
+    display: flex;
+    gap: 10px;
 }
-.nav a:hover{
+.item a:hover{
     color: white;
     background-color: #7d93bd;
 }
-.nav a.activeLink{
+.item a.activeLink{
     color: #10c2c2;
 }
-.icon{
-    height: 20px;
-    margin-right: 5px;
+
+.dialogAva{
+    height: 40px;
 }

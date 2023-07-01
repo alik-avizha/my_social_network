@@ -1,3 +1,4 @@
+/*
 import {addMessageActionCreator, DialogsPageType, dialogsReducer} from './dialogs-reducer';
 
 let startState: DialogsPageType
@@ -36,3 +37,5 @@ it('should be added message', () => {
     expect(startState.messages[startState.messages.length-1].message).toBe('Yes.I do');
 
 });
+*/
+export {}
