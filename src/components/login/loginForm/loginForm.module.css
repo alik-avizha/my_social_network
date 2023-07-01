@@ -1,0 +1,37 @@
+.formControl{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.formControl input{
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+}
+.formControl input[type='checkbox']{
+    height: 50px;
+}
+.btn{
+    background: #06C;
+    font-size: 19px;
+    color: #FFF;
+    border: 0;
+    cursor: pointer;
+    padding: 15px 10px;
+    border-radius: 20px;
+}
+.btn:hover{
+    background: #0080FF;
+}
+
+.btn:active{
+    background: #0059B3;
+}
+.btn:disabled{
+    opacity: 0.5;
+}
+.formSummaryError{
+    color: red;
+}

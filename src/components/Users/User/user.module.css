@@ -1,5 +1,40 @@
-.usersPhoto{
+.userWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.userPhoto {
     width: 100px;
     height: 100px;
-    border-radius: 50px;
+    border-radius: 50%;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.btn:hover{
+    background: #0080FF;
+}
+.btn:active{
+    background: #0059B3;
+}
+.btn:disabled{
+    opacity: 0.5;
+}
+
+.userName {
+    font-size: 14px;
+    font-weight: bold;
 }

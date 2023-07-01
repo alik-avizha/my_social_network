@@ -1,4 +1,12 @@
 .usersWrapper{
     padding: 20px;
     background-color: white;
+
+}
+.users{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px
 }

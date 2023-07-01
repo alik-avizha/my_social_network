@@ -1,18 +1,12 @@
 import React from 'react';
-import {InjectedFormProps, reduxForm} from 'redux-form';
-import {createField, Input} from '../common/FormsControls/FormsControls';
-import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
 import {loginThunkCreator} from '../../redux/auth/auth-reducer';
 import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../../redux/redux-store';
-import classes from '../common/FormsControls/FormsControls.module.css'
+import styles from './login.module.css'
+import {FormDataType, LoginReduxForm} from './loginForm/LoginForm';
 
-type FormDataType = {
-    email: string
-    password: string
-    rememberMy: boolean
-}
+
 type MapStateToPropsType = {
     isAuth: boolean
 }
@@ -21,19 +15,6 @@ type MapDispatchToPropsType = {
 }
 type LoginPropsType = MapDispatchToPropsType & MapStateToPropsType
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
-    return (
-        <form onSubmit={handleSubmit}>
-            {createField('Email', 'email', [required], Input)}
-            {createField('Password', 'password', [required], Input, {type: 'password'})}
-            {createField('', 'rememberMy', [], Input, {type: 'checkbox'},'remember my')}
-            {error && <div className={classes.formSummaryError}>{error}</div>}
-            <button>Login</button>
-        </form>
-    );
-};
-const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
-
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMy)
@@ -41,8 +22,8 @@ const Login = (props: LoginPropsType) => {
     if (props.isAuth) return <Redirect to={'/profile'}/>
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className={styles.loginWrapper}>
+            <span className={styles.title}>Login</span>
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     );

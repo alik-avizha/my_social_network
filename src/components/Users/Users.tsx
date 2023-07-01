@@ -27,13 +27,15 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                 pageSize={pageSize}
                 portionSize={10}
             />
-            {users.map(u => {
-                    return (
-                        <User key={u.id} follow={follow} unfollow={unfollow} user={u}
-                              followingInProgress={followingInProgress}/>
-                    )
-                }
-            )}
+            <div className={styles.users}>
+                {users.map(u => {
+                        return (
+                            <User key={u.id} follow={follow} unfollow={unfollow} user={u}
+                                  followingInProgress={followingInProgress}/>
+                        )
+                    }
+                )}
+            </div>
         </div>
     )
 }
