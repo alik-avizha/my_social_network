@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './MainMessage.module.css';
+import classes from './MyMessage.module.css';
 import messageAva from '../../../../assets/images/user-svgrepo-com.svg';
 
 

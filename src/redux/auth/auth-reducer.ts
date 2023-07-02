@@ -1,6 +1,7 @@
 import {authAPI} from '../../api/api';
 import {AppThunk} from '../redux-store';
 import {stopSubmit} from 'redux-form';
+import {clearDataAC, getFriendsThunkCreator} from '../sidebar/sidebar-reducer';
 
 export type UserAuthType = {
     userId: null | number,
@@ -50,6 +51,7 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
     let data = await authAPI.logIn(email, password, rememberMe)
     if (data.resultCode === 0) {
         dispatch(getAuthUserDataThunkCreator())
+        await dispatch(getFriendsThunkCreator())
     } else {
         let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
         dispatch(stopSubmit('login', {_error: message}))
@@ -60,5 +62,6 @@ export const logoutThunkCreator = (): AppThunk => async (dispatch) => {
     let data = await authAPI.logOut()
     if (data.resultCode === 0) {
         dispatch(setAuthUserDataAC(null, null, null, false))
+        dispatch(clearDataAC())
     }
 }

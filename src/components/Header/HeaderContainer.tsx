@@ -17,6 +17,7 @@ type HeaderContainerPropsType = MapDispatchTopProps & MapStateToProps
 
 export class HeaderContainerSecond extends React.Component<HeaderContainerPropsType> {
 
+
     render() {
         return (
             <Header

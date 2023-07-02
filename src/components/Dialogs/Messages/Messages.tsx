@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Messages.module.css'
 import {DialogItemType} from '../DialogItem/DialogItem';
 import {useParams} from 'react-router-dom';
-import {MyMessage} from './MainMessage/MainMessage';
+import {MyMessage} from './MyMessage/MyMessage';
 import {FriendMessage} from './FriendMessage/FriendMessage';
 import {SenderContent} from '../../common/SenderContent/SenderContent';
 
