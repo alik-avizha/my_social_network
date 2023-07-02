@@ -13,6 +13,7 @@
     --background: #212A34;
 }
 
+
 body {
     background-color: var(--background);
     color: var(--color);

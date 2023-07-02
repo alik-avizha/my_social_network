@@ -4,7 +4,6 @@ import Navbar from './components/Navbar/Navbar';
 import {HashRouter, Redirect, Route, withRouter} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
 import {HeaderContainer} from './components/Header/HeaderContainer';
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
@@ -13,6 +12,7 @@ import {AppStateType, store} from './redux/redux-store';
 import {Preloader} from './components/common/PreLoader/Preloader';
 import {withSuspense} from './hoc/withSuspense';
 import {Sidebar} from './components/SideBar/Sidebar';
+
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
@@ -48,7 +48,7 @@ class App extends React.Component<AppContainerPropsType> {
                     <Route path="/login" render={withSuspense(Login)}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
-                    <Route path="/settings" render={() => <Settings/>}/>
+                    {/*<Route path="/settings" render={() => <Settings/>}/>*/}
 
                     <Route exact path="/" render={() => <Redirect to="/profile" />} />
                 </div>
@@ -64,7 +64,7 @@ let mapStateToProps = (state: AppStateType): MapStateTopProps => ({
 
 const AppContainer = compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToProps, {initializeApp: initializeAppThunkCreator, }))(App)
+    connect(mapStateToProps, {initializeApp: initializeAppThunkCreator}))(App)
 
 
 export const SamuraiApp = () => {

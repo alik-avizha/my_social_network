@@ -1,9 +1,9 @@
 import React from 'react';
 import classes from './Header.module.css';
-import logo from '../../assets/images/logo.gif'
 import {NavLink} from 'react-router-dom';
 import logoOut from '../../assets/images/logout-svgrepo-com.svg'
 import logoIn from '../../assets/images/login-svgrepo-com.svg'
+import Settings from '../Settings/Settings';
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -16,7 +16,7 @@ export const Header = (props: HeaderPropsType) => {
 
     return (
         <header className={classes.header}>
-            <img src={logo} alt={'logo'}/>
+            <Settings/>
             <div className={classes.loginBlock}>
                 {props.isAuth
                     ? <div>{props.photo

@@ -16,13 +16,16 @@
     color: black;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
+
 .nav a:hover{
     color: white;
     background-color: #7d93bd;
 }
+
 .lastLink{
     margin-top: 40px;
 }
+
 .nav a.activeLink{
     color: white;
     background-color: #7d93bd;

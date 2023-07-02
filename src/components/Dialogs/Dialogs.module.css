@@ -1,14 +1,13 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
-    background-color: #f4f2f2;
+    grid-gap: 20px;
 }
 .dialogsItems {
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 50px;
-    margin-right: 20px;
     background-color: white;
 }
 .messages {

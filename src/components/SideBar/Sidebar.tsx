@@ -19,14 +19,14 @@ export const Sidebar = () => {
     let regExp = new RegExp("", "gi")
 
     const [filter, setFilter] = useState(regExp)
-    const onChangeHandlerFilter = (e: ChangeEvent<HTMLInputElement>): void => {
+    const changeFilter = (e: ChangeEvent<HTMLInputElement>): void => {
         let regExp = new RegExp(`${e.currentTarget.value}`, "gi")
         setFilter(regExp)
     }
 
-    const contactElementFilterSearch = friends.filter(el => filter.test(el.name))
+    const friendsFilterSearch = friends.filter(el => filter.test(el.name))
 
-    const contactElement = contactElementFilterSearch.map(contact => <Friend  key={contact.id}
+    const friendElement = friendsFilterSearch.map(contact => <Friend  key={contact.id}
                                                                               id={contact.id}
                                                                               name={contact.name}
                                                                               photo={contact.photos.large}
@@ -37,10 +37,10 @@ export const Sidebar = () => {
             <div className={classes.title}>Friends</div>
             <div>
                 <input className={classes.search} type="search" placeholder="  Search Contacts..."
-                       onChange={onChangeHandlerFilter}/>
+                       onChange={changeFilter}/>
             </div>
             <div className={classes.contactElement}>
-                {contactElement}
+                {friendElement}
             </div>
         </div>
     );
