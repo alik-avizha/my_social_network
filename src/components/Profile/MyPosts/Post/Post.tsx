@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Post.module.css';
-import postImg from '../../../../assets/images/postImg.png'
+import postImg from '../../../../assets/images/user.jpg'
 import likeImg from '../../../../assets/images/like.jpg'
 import basket from '../../../../assets/images/basket.svg'
 

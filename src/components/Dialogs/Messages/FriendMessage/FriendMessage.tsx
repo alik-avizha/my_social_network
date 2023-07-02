@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './FriendMessage.module.css';
-import messageAva from '../../../../assets/images/user-svgrepo-com.png';
+import messageAva from '../../../../assets/images/dialogsUser.png';
 
 
 type MainMessagePropsType = {
