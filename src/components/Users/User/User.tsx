@@ -28,7 +28,7 @@ export const User: React.FC<UsersPropsType> = (props) => {
                               onClick={() => follow(user.id)} className={styles.btn}>Follow</button>
                 }
             </div>
-            <div className={styles.userName}>{user.name}</div>
+            <div className={styles.userName}>{user.name.length > 8 ? user.name.slice(0,9)+'...' : user.name}</div>
         </div>
     )
 }

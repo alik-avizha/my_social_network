@@ -49,7 +49,6 @@ class App extends React.Component<AppContainerPropsType> {
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     {/*<Route path="/settings" render={() => <Settings/>}/>*/}
-
                     <Route exact path="/" render={() => <Redirect to="/profile" />} />
                 </div>
                 <Sidebar/>

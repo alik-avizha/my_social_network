@@ -12,6 +12,7 @@
     color: black;
     display: flex;
     gap: 10px;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 .item a:hover{
     color: white;
