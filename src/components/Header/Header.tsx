@@ -3,6 +3,7 @@ import classes from './Header.module.css';
 import logo from '../../assets/images/logo.gif'
 import {NavLink} from 'react-router-dom';
 import logoOut from '../../assets/images/logout-svgrepo-com.svg'
+import logoIn from '../../assets/images/login-svgrepo-com.svg'
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -23,7 +24,9 @@ export const Header = (props: HeaderPropsType) => {
                         : props.login} <img src={logoOut} alt={'logOut'} className={classes.imgLog}
                                             onClick={props.logout}/>
                     </div>
-                    : <NavLink to={'/Login'}>Login</NavLink>
+                    : <NavLink to={'/Login'}>
+                        <img src={logoIn} alt={'logIn'} className={classes.imgLog} />
+                      </NavLink>
                 }
             </div>
         </header>

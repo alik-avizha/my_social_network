@@ -10,6 +10,7 @@ import {
 } from '../../redux/profile/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type PathParamsType = {
     userId: string
@@ -84,7 +85,8 @@ const ProfileContainer = compose<React.ComponentType>(
         updateStatus: updateStatusThunkCreator,
         savePhoto: savePhotoThunkCreator
     }),
-    withRouter
+    withRouter,
+    withAuthRedirect
 )(ProfileContainerSecond)
 
 export default ProfileContainer

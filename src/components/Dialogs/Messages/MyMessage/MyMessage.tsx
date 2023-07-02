@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './MyMessage.module.css';
-import messageAva from '../../../../assets/images/user-svgrepo-com.svg';
+import messageAva from '../../../../assets/images/user-svgrepo-com.png';
 
 
 type MainMessagePropsType = {

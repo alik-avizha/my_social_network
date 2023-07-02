@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './DialogItem.module.css'
 import {NavLink} from 'react-router-dom';
-import dialogAva from '../../../assets/images/user-svgrepo-com.svg'
+import dialogAva from '../../../assets/images/user-svgrepo-com.png'
 
 export type DialogItemType = {
     name: string,

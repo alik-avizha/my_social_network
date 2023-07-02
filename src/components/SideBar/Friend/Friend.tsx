@@ -1,5 +1,5 @@
 import React from 'react';
-import friendIcon from '../../../assets/images/user-svgrepo-com.svg'
+import friendIcon from '../../../assets/images/user.jpg'
 import classes from './Friend.module.css'
 import {NavLink} from 'react-router-dom';
 

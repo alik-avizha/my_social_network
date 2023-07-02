@@ -13,6 +13,7 @@ import {
     getTotalUsersCount,
     getUsers
 } from '../../redux/users/users-selectors';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type MapStateToProps = {
     users: UserType[]
@@ -89,7 +90,8 @@ const UsersContainer = compose<React.ComponentType>(
         follow: followThunkCreator,
         unfollow: unfollowThunkCreator,
         getUsers: getUsersThunkCreator
-    })
+    }),
+    withAuthRedirect
 )(UsersContainerSecond)
 
 export default UsersContainer
