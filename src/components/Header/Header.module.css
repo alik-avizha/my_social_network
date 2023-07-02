@@ -15,13 +15,3 @@
     height: 40px;
     cursor: pointer;
 }
-
-.loginBlock{
-    float: right;
-
-}
-.loginBlock a {
-    color: white;
-    font-size: 24px;
-    text-decoration: none;
-}

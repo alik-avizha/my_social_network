@@ -11,6 +11,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    color: black;
 }
 
 .pageNumber:hover{
@@ -22,7 +24,6 @@
     color: white;
     background-color: #7d93bd;
 }
-
 
 .btn{
     width: 7%;
@@ -41,5 +42,5 @@
     background: #0059B3;
 }
 .btn:disabled{
-    opacity: 0.5;
+    background: #82add9;
 }

@@ -14,15 +14,14 @@
     text-decoration: none;
     font-size: 20px;
     color: black;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
-
-.lastLink{
-    margin-top: 40px;
-}
-
 .nav a:hover{
     color: white;
     background-color: #7d93bd;
+}
+.lastLink{
+    margin-top: 40px;
 }
 .nav a.activeLink{
     color: white;

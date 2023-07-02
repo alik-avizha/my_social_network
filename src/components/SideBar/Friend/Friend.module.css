@@ -2,6 +2,7 @@
     display: flex;
     justify-content: start;
     margin-bottom: 20px;
+    color: black;
 }
 
 .contactInfo {
@@ -10,7 +11,6 @@
     justify-content: space-around;
     margin-left: 10px;
 }
-
 
 .name {
     font-size: 13px;

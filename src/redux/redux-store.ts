@@ -7,6 +7,7 @@ import {SidebarActionsType, sidebarReducer} from './sidebar/sidebar-reducer';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {FormAction, reducer as formReducer} from 'redux-form';
 import {AppActionsType, appReducer} from './app/app-reducer';
+import {ThemeActionType, themeReducer} from './settings/themeReducer';
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -15,7 +16,8 @@ let rootReducer = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
-    app: appReducer
+    app: appReducer,
+    theme: themeReducer
 })
 
 type RootReducerType = typeof rootReducer
@@ -35,6 +37,7 @@ export type ActionsType =
     | FormAction
     | AppActionsType
     | SidebarActionsType
+    | ThemeActionType
 
 //typing dispatch for thunks
 export type AppDispatchType = ThunkDispatch<AppStateType, any, ActionsType>

@@ -6,6 +6,7 @@
     margin-bottom: 20px;
     position: relative;
     min-height: 70px;
+    color: black;
 }
 .userPhoto {
     position: absolute;

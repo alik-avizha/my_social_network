@@ -1,6 +1,6 @@
 .myMessage {
     display: flex;
-    max-width: 40%;
+    max-width: 50%;
     flex-direction: column;
     flex-wrap: wrap;
 }

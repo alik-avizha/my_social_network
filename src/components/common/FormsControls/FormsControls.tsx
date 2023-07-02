@@ -51,7 +51,7 @@ export const createField = (placeholder: string,
                             props?: { type: string },
                             text: string = '') => {
     return (
-        <div style={{display:'flex', gap: '10px', justifyContent: 'center', alignItems: 'center'}}>
+        <div style={{display:'flex', gap: '10px', justifyContent: 'center', alignItems: 'center', color: 'black'}}>
             <Field placeholder={placeholder}
                    name={name}
                    component={component}
