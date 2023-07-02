@@ -1,6 +1,8 @@
 import {Dispatch} from 'redux';
 import {ResponseType, usersAPI} from '../../api/api';
 import {updateObjectInArray} from '../../utils/object-helpers';
+import {getFriendsThunkCreator} from '../sidebar/sidebar-reducer';
+import {AppThunk} from '../redux-store';
 
 export type UserType = {
     id: number
@@ -99,14 +101,15 @@ const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod:
     dispatch(toggleIsFollowingProgressAC(false, userId))
 }
 
-export const followThunkCreator = (userId: number) => {
-    return async (dispatch: Dispatch) => {
+export const followThunkCreator = (userId: number): AppThunk  => {
+    return async (dispatch)=> {
         await followUnfollowFlow(dispatch, userId, usersAPI.followToUser.bind(usersAPI), followAC)
+        await dispatch(getFriendsThunkCreator())
     }
 }
-export const unfollowThunkCreator = (userId: number) => {
-    return async (dispatch: Dispatch) => {
+export const unfollowThunkCreator = (userId: number): AppThunk => {
+    return async (dispatch) => {
         await followUnfollowFlow(dispatch, userId, usersAPI.unfollowFromUser.bind(usersAPI), unfollowAC)
+        await dispatch(getFriendsThunkCreator())
     }
 }
-

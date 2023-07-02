@@ -19,12 +19,16 @@ const Navbar = () => {
         {to: '/settings', name: 'Settings', src: settingsIcon},
     ]
 
-
     return (
         <nav className={classes.nav}>
             {navLinks.map((nav,index) => {
                 return (
-                    <NavLink key={index} to={nav.to} activeClassName={classes.activeLink}>
+                    <NavLink
+                        key={index}
+                        to={nav.to}
+                        activeClassName={classes.activeLink}
+                        className={index === navLinks.length - 1 ? classes.lastLink : ''}
+                    >
                         <img src={nav.src} alt={nav.name} className={classes.icon}/>
                         {nav.name}
                     </NavLink>

@@ -12,11 +12,7 @@ import {initializeAppThunkCreator} from './redux/app/app-reducer';
 import {AppStateType, store} from './redux/redux-store';
 import {Preloader} from './components/common/PreLoader/Preloader';
 import {withSuspense} from './hoc/withSuspense';
-
-//import DialogsContainer from './components/Dialogs/DialogsContainer';
-//import ProfileContainer from './components/Profile/ProfileContainer';
-//import UsersContainer from './components/Users/UsersContainer';
-//import Login from './components/login/Login';
+import {Sidebar} from './components/SideBar/Sidebar';
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
@@ -54,6 +50,7 @@ class App extends React.Component<AppContainerPropsType> {
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>
                 </div>
+                <Sidebar/>
             </div>
         );
     }
@@ -65,7 +62,7 @@ let mapStateToProps = (state: AppStateType): MapStateTopProps => ({
 
 const AppContainer = compose<React.ComponentType>(
     withRouter,
-    connect(mapStateToProps, {initializeApp: initializeAppThunkCreator}))(App)
+    connect(mapStateToProps, {initializeApp: initializeAppThunkCreator, }))(App)
 
 
 export const SamuraiApp = () => {

@@ -3,7 +3,7 @@ import {ProfileActionsType, profileReducer} from './profile/profile-reducer';
 import {DialogsActionsType, dialogsReducer} from './dialogs/dialogs-reducer';
 import {UsersActionsType, usersReducer} from './users/users-reducer';
 import {AuthActionsType, authReducer} from './auth/auth-reducer';
-import {sidebarReducer} from './sidebar-reducer';
+import {SidebarActionsType, sidebarReducer} from './sidebar/sidebar-reducer';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {FormAction, reducer as formReducer} from 'redux-form';
 import {AppActionsType, appReducer} from './app/app-reducer';
@@ -22,8 +22,6 @@ type RootReducerType = typeof rootReducer
 export type AppStateType = ReturnType<RootReducerType>
 
 
-
-
 //export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -36,6 +34,7 @@ export type ActionsType =
     | AuthActionsType
     | FormAction
     | AppActionsType
+    | SidebarActionsType
 
 //typing dispatch for thunks
 export type AppDispatchType = ThunkDispatch<AppStateType, any, ActionsType>

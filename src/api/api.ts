@@ -23,6 +23,10 @@ export const usersAPI = {
         return instance.delete<ResponseType>(`follow/${userId}`)
             .then(response => response.data)
     },
+    getFriends() {
+        return instance.get<UsersResponseDataType>(`users?friend=true`)
+            .then(response => response.data)
+    },
 }
 
 export const profileApi = {

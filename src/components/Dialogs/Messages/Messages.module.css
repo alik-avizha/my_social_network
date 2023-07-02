@@ -5,5 +5,23 @@
 .messages {
     height: 60vh;
     overflow-y: auto;
-    border-bottom: 1px solid black;
+    border-bottom: 5px solid #f4f2f2;
+    padding-right: 10px;
+}
+/* Настройки скроллбара для браузеров на движке WebKit */
+.messages::-webkit-scrollbar {
+    width: 10px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background-color: #f4f2f2;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
 }
