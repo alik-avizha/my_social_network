@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Pagination.module.css'
 import cn from 'classnames'
+import {Button} from '../Button/Button';
 
 type UsersPropsType = {
     totalItemsCount: number
@@ -27,10 +28,9 @@ export const Pagination: React.FC<UsersPropsType> = (props) => {
 
     return (
         <div className={cn(styles.paginator)}>
-            <button disabled={portionNumber === 1} className={styles.btn} onClick={() => {
+            <Button name={'PREV'} callback={() => {
                 setPortionNumber(portionNumber - 1)
-            }}>PREV
-            </button>
+            }} disabled={portionNumber === 1}/>
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map((p) => {
@@ -42,10 +42,10 @@ export const Pagination: React.FC<UsersPropsType> = (props) => {
                                      onPageChanged(p);
                                  }}>{p}</span>
                 })}
-            {portionCount > portionNumber &&
-                <button className={styles.btn}  onClick={() => {
-                    setPortionNumber(portionNumber + 1)
-                }}>NEXT</button>}
+            {portionCount > portionNumber && <Button name={'NEXT'} callback={() => {
+                setPortionNumber(portionNumber + 1)
+            }} disabled={portionNumber === pagesCount}/>
+            }
         </div>
     )
 }

@@ -30,22 +30,19 @@
     font-size: 18px;
     word-break: break-all
 }
-.item .activities {
+.activities {
     display: flex;
     position: absolute;
-    bottom: 0;
-    right: 5px;
+    bottom: 5px;
+    right: 10px;
     padding-left: 30px;
 }
-.item .likeImg {
+.activities img {
     width: 20px;
     height: 20px;
     margin-left: 10px;
     cursor: pointer;
-    filter: grayscale(100%);
-    transition: all 0.3s ease-in-out;
 }
-.item .likeImg:hover {
-    filter: grayscale(0%);
-}
+
+
 

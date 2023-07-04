@@ -22,7 +22,7 @@ const Profile = (props: ProfilePropsType) => {
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
             />
-            <MyPostsContainer/>
+            <MyPostsContainer />
         </div>
     )
 }

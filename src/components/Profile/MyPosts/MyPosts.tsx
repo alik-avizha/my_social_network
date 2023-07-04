@@ -1,7 +1,8 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
-import Post, {PostType} from './Post/Post';
+import Post from './Post/Post';
 import {SenderContent} from '../../common/SenderContent/SenderContent';
+import {PostType} from '../../../redux/profile/profile-reducer';
 
 type MyPostsType = {
     posts: PostType[]
@@ -9,18 +10,18 @@ type MyPostsType = {
     deletePost: (postId: string) => void
     photo: string
     userName: string
+    changeLikesAndDislikes: (postId: string, name: string) => void
 }
 
 export const MyPosts = React.memo((props: MyPostsType) => {
 
-    let postsElements = props.posts.map((p) => <Post message={p.message}
-                                                     likesCount={p.likesCount}
-                                                     date={p.date}
-                                                     key={p.id}
-                                                     deletePost={props.deletePost}
-                                                     id={p.id}
-                                                     photo={props.photo}
-                                                     userName={props.userName}
+    let postsElements = props.posts.map((p) => <Post
+        post={p}
+        key={p.id}
+        deletePost={props.deletePost}
+        photo={props.photo}
+        userName={props.userName}
+        changeLikesAndDislikes={props.changeLikesAndDislikes}
     />)
 
     return (

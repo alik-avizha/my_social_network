@@ -1,8 +1,16 @@
-import {PostType} from '../../components/Profile/MyPosts/Post/Post';
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
 import {profileApi} from '../../api/api';
 
+export type PostType = {
+    id: string
+    message: string,
+    date: string
+    likesCount: number
+    dislikesCount: number
+    isLike: boolean
+    isDislike: boolean
+}
 export type ProfilePageType = {
     posts: PostType[]
     profile: ProfileType
@@ -37,12 +45,13 @@ export type ProfileActionsType =
     | ReturnType<typeof setStatusActionCreator>
     | ReturnType<typeof removePostActionCreator>
     | ReturnType<typeof savePhotoSuccessActionCreator>
+    | ReturnType<typeof clickLikeAC>
 
 let initialState: ProfilePageType = {
     posts: [
-        {id: v1(), message: 'Hi there', likesCount: 13, date: '05.02.2023'},
-        {id: v1(), message: 'Welcome to my Page', likesCount: 5, date: '26.01.2023'},
-        {id: v1(), message: 'It is social network', likesCount: 25, date: '20.01.2023'}
+        {id: v1(), message: 'Hi there', date: '05.02.2023', likesCount: 51, dislikesCount: 0, isDislike: false, isLike: false},
+        {id: v1(), message: 'Welcome to my Page', likesCount: 32, date: '26.01.2023', dislikesCount: 1, isDislike: false, isLike: false},
+        {id: v1(), message: 'It is social network', likesCount: 54, date: '20.01.2023', dislikesCount: 4, isDislike: false, isLike: false}
     ],
     profile: {
         aboutMe: '',
@@ -67,7 +76,6 @@ let initialState: ProfilePageType = {
     },
     status: ''
 }
-
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionsType): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
@@ -76,9 +84,44 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
                 id: v1(),
                 message: action.newPost,
                 likesCount: 0,
+                dislikesCount: 0,
+                isDislike: false,
+                isLike: false,
                 date: `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear().toString()}`
             }
             return {...state, posts: [newPost, ...state.posts]}
+        case 'CLICK_LIKE':
+            if (action.name === "like") {
+                return {
+                    ...state,
+                    posts: state.posts.map(el =>
+                        el.id === action.id
+                            ? {
+                                ...el,
+                                likesCount: el.likesCount + 1,
+                                dislikesCount: el.isDislike ? el.dislikesCount - 1 : el.dislikesCount,
+                                isLike: true,
+                                isDislike: false,
+                            }
+                            : el,
+                    ),
+                }
+            } else {
+                return {
+                    ...state,
+                    posts: state.posts.map(el =>
+                        el.id === action.id
+                            ? {
+                                ...el,
+                                likesCount: el.isLike ? el.likesCount - 1 : el.likesCount,
+                                dislikesCount: el.dislikesCount + 1,
+                                isLike: false,
+                                isDislike: true,
+                            }
+                            : el,
+                    ),
+                }
+            }
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile}
         case 'SET-STATUS':
@@ -97,6 +140,7 @@ export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'SE
 export const setStatusActionCreator = (status: string) => ({type: 'SET-STATUS', status}) as const
 export const removePostActionCreator = (postId: string) => ({type: 'REMOVE-POST', postId}) as const
 export const savePhotoSuccessActionCreator = (photos: PhotosType) => ({type: 'SAVE-PHOTOS-SUCCESS', photos}) as const
+export const clickLikeAC = (id: string, name: string) =>({type: 'CLICK_LIKE',id,name} as const)
 
 //ThunkCreators
 export const getUserProfileThunkCreator = (userId: string) => {
@@ -105,14 +149,12 @@ export const getUserProfileThunkCreator = (userId: string) => {
         dispatch(setUserProfileActionCreator(response.data))
     }
 }
-
 export const getStatusThunkCreator = (userId: string) => {
     return async (dispatch: Dispatch) => {
         let response = await profileApi.getStatus(userId)
         dispatch(setStatusActionCreator(response.data))
     }
 }
-
 export const updateStatusThunkCreator = (status: string) => {
     return async (dispatch: Dispatch) => {
         let response = await profileApi.updateStatus(status)

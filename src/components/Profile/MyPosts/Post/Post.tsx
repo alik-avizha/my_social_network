@@ -1,38 +1,53 @@
 import React from 'react';
 import classes from './Post.module.css';
 import postImg from '../../../../assets/images/user.jpg'
-import likeImg from '../../../../assets/images/like.jpg'
-import basket from '../../../../assets/images/basket.svg'
+import likeIcon from '../../../../assets/images/like.svg'
+import likeActiveIcon from '../../../../assets/images/likeActive.svg'
+import dislikeIcon from '../../../../assets/images/dislike-svgrepo-com.svg'
+import dislikeActiveIcon from '../../../../assets/images/dislikeActive.svg'
+import deleteIcon from '../../../../assets/images/delete-svgrepo-com.svg'
+import {PostType} from '../../../../redux/profile/profile-reducer';
 
-export type PostType = {
-    id: string
-    message: string,
-    likesCount: number
-    date: string
+type PropsType = {
+    post: PostType
+    userName: string
+    photo: string
+    deletePost: (postId: string) => void
+    changeLikesAndDislikes: (postId:string, name: string) => void
 }
-type PropsType = PostType & { deletePost: (postId: string) => void, photo: string,
-    userName: string }
 
 const Post = (props: PropsType) => {
 
     const deletePost = () => {
-        props.deletePost(props.id)
+        props.deletePost(props.post.id)
+    }
+    const likePost = () => {
+        if (!props.post.isLike){
+            props.changeLikesAndDislikes(props.post.id, 'like')
+        }
+    }
+    const dislikePost = () => {
+        if (!props.post.isDislike)  {
+            props.changeLikesAndDislikes(props.post.id, 'dislike')
+        }
     }
 
     return (
         <div className={classes.item}>
             {props.photo ? <img className={classes.userPhoto} src={props.photo} alt="avatar"/> : <img className={classes.userPhoto} src={postImg} alt="avatar"/>}
             <div className={classes.postMessage}>
-                <span className={classes.message}>{props.message}</span>
+                <span className={classes.message}>{props.post.message}</span>
             </div>
             <div className={classes.activities}>
-                <img src={basket} alt={'basket'} className={classes.likeImg} onClick={deletePost}/>
-                <img src={likeImg} alt={'like'} className={classes.likeImg}/>
-                <span>{props.likesCount}</span>
+                <img src={deleteIcon} alt={'deletePost'} onClick={deletePost}/>
+                <img onClick={dislikePost} src={!props.post.isDislike ? dislikeIcon : dislikeActiveIcon} alt="dislikePost"/>
+                <span>{props.post.dislikesCount}</span>
+                <img onClick={likePost} src={!props.post.isLike ? likeIcon: likeActiveIcon} alt={'likePost'} />
+                <span>{props.post.likesCount}</span>
             </div>
             <div className={classes.loginAndDate}>
                 <span>{props.userName}</span>
-                <span>{props.date}</span>
+                <span>{props.post.date}</span>
             </div>
         </div>
     )

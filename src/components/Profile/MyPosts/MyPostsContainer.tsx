@@ -1,10 +1,14 @@
 import React from 'react';
-import {addPostActionCreator, removePostActionCreator} from '../../../redux/profile/profile-reducer';
+import {
+    addPostActionCreator,
+    clickLikeAC,
+    PostType,
+    removePostActionCreator
+} from '../../../redux/profile/profile-reducer';
 import {MyPosts} from './MyPosts';
 import {AppStateType} from '../../../redux/redux-store';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {PostType} from './Post/Post';
 
 type MapStateToPropsType = {
     posts: PostType[]
@@ -14,13 +18,14 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     addPost: (value: string) => void
     deletePost: (postId: string) => void
+    changeLikesAndDislikes: (postId:string, name: string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
         photo: state.profilePage.profile.photos.large,
-        userName: state.profilePage.profile.fullName
+        userName: state.profilePage.profile.fullName,
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -30,6 +35,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         deletePost: (postId) => {
             dispatch(removePostActionCreator(postId))
+        },
+        changeLikesAndDislikes: (postId:string, name:string) => {
+            dispatch(clickLikeAC(postId, name))
         }
     }
 }
