@@ -21,8 +21,8 @@ export const User: React.FC<UsersPropsType> = (props) => {
                 <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="avatar"
                      className={styles.userPhoto}/>
             </NavLink>
-
-            <div className={styles.userName}>{user.name.length > 8 ? user.name.slice(0, 9) + '...' : user.name}</div>
+            <span className={styles.userName}>{user.name.length > 8 ? user.name.slice(0, 9) + '...' : user.name}</span>
+            <span className={styles.userId}>userId: {props.user.id}</span>
             <div>
                 {user.followed
                     ? <Button name={'UnFollow'} callback={() => unfollow(user.id)}

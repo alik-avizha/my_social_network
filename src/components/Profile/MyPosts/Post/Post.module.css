@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: column;
     top:10px;
-    left: 70px;
+    left: 80px;
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
@@ -64,6 +64,8 @@
     cursor: pointer;
     filter: invert(25%) sepia(90%) saturate(1000%) hue-rotate(180deg);
 }
-
+.activities span{
+    margin-left: 4px;
+}
 
 

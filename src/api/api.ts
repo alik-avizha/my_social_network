@@ -23,8 +23,8 @@ export const usersAPI = {
         return instance.delete<ResponseType>(`follow/${userId}`)
             .then(response => response.data)
     },
-    getFriends() {
-        return instance.get<UsersResponseDataType>(`users?friend=true`)
+    getFriends(count: number = 100) {
+        return instance.get<UsersResponseDataType>(`users?count=${count}&friend=true`)
             .then(response => response.data)
     },
 }
