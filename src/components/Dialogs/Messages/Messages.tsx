@@ -41,7 +41,7 @@ export const Messages = (props: MessageItemPropsType) => {
             <div className={classes.messages}>
                 {messagesForMap}
             </div>
-            <SenderContent callback={addNewMessageHandler} placeholder={'Enter your post'}/>
+            <SenderContent callback={addNewMessageHandler} placeholder={'Enter your message'}/>
         </div>
     )
 }

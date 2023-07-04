@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import classes from './SenderContent.module.css';
+import {Button} from '../Button/Button';
 
 type PostFormSenderPropsType = {
     callback: (newMessage: string) => void
@@ -26,7 +27,7 @@ export const SenderContent = (props: PostFormSenderPropsType) => {
         <div className={classes.addNewContentWrapper}>
             <textarea onKeyPress={onKeyPressHandler} placeholder={props.placeholder}
                       value={value} onChange={onChangeHandler}/>
-            <button disabled={value === ''} onClick={addNewContentHandler}>Send</button>
+            <Button name={'send'} callback={addNewContentHandler} disabled={value === ''}/>
         </div>
     );
 };

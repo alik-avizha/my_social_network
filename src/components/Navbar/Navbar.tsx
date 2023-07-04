@@ -16,7 +16,7 @@ const Navbar = () => {
         {to: '/users', name: 'Users', src: usersIcon},
         {to: '/news', name: 'News', src: newsIcon},
         {to: '/music', name: 'Music', src: musicIcon},
-        {to: '/settings', name: 'Settings', src: settingsIcon},
+        /*{to: '/settings', name: 'Settings', src: settingsIcon}*/
     ]
 
     return (
@@ -27,7 +27,7 @@ const Navbar = () => {
                         key={index}
                         to={nav.to}
                         activeClassName={classes.activeLink}
-                        className={index === navLinks.length - 1 ? classes.lastLink : ''}
+                        /*className={index === navLinks.length - 1 ? classes.lastLink : ''}*/
                     >
                         <img src={nav.src} alt={nav.name} className={classes.icon}/>
                         {nav.name}

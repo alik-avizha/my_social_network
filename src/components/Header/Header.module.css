@@ -1,5 +1,5 @@
 .header {
-    display: flex; /* Делаем блок .header flex-контейнером */
+    display: flex;
     align-items: center;
     grid-area: h;
     background-color: #7d93bd;
@@ -14,4 +14,9 @@
 .imgLog{
     height: 40px;
     cursor: pointer;
+}
+.loginBlock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

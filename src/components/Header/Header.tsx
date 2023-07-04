@@ -17,12 +17,13 @@ export const Header = (props: HeaderPropsType) => {
     return (
         <header className={classes.header}>
             <Settings/>
-            <div className={classes.loginBlock}>
+            <div>
                 {props.isAuth
-                    ? <div>{props.photo
-                        ? <img src={props.photo} alt="loginAvatar"/>
-                        : props.login} <img src={logoOut} alt={'logOut'} className={classes.imgLog}
-                                            onClick={props.logout}/>
+                    ? <div className={classes.loginBlock}>
+                        {props.photo
+                            ? <img src={props.photo} alt="loginAvatar"/>
+                            : props.login}
+                            <img src={logoOut} alt={'logOut'} className={classes.imgLog} onClick={props.logout}/>
                     </div>
                     : <NavLink to={'/Login'}>
                         <img src={logoIn} alt={'logIn'} className={classes.imgLog} />
