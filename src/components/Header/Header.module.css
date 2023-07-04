@@ -4,19 +4,29 @@
     grid-area: h;
     background-color: #7d93bd;
     justify-content: space-between;
-    padding: 0 20px 0 20px;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
+
 .header img {
-    width: 58px;
-    border-radius: 36px;
-    margin-left: 5px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 10px;
 }
-.imgLog{
-    height: 40px;
+
+.imgLog {
     cursor: pointer;
 }
-.loginBlock{
+
+.loginBlock {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
+

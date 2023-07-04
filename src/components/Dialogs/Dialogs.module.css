@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
     grid-gap: 20px;
+
 }
 .dialogsItems {
     padding: 20px;
@@ -9,14 +10,30 @@
     flex-direction: column;
     gap: 50px;
     background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 .messages {
     padding: 10px;
     background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    position: relative;
+    height: 90vh;
 }
 .choose {
-    height: 60vh;
-    margin-top: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+    font-size: 28px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
     text-align: center;
+    width: 80%;
+    line-height: 1.5;
 }
 

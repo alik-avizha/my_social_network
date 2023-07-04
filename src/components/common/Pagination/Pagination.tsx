@@ -28,7 +28,7 @@ export const Pagination: React.FC<UsersPropsType> = (props) => {
 
     return (
         <div className={cn(styles.paginator)}>
-            <Button name={'PREV'} callback={() => {
+            <Button name={'<'} callback={() => {
                 setPortionNumber(portionNumber - 1)
             }} disabled={portionNumber === 1}/>
             {pages
@@ -42,7 +42,7 @@ export const Pagination: React.FC<UsersPropsType> = (props) => {
                                      onPageChanged(p);
                                  }}>{p}</span>
                 })}
-            {portionCount > portionNumber && <Button name={'NEXT'} callback={() => {
+            {portionCount > portionNumber && <Button name={'>'} callback={() => {
                 setPortionNumber(portionNumber + 1)
             }} disabled={portionNumber === pagesCount}/>
             }

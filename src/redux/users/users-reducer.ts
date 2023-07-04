@@ -33,7 +33,7 @@ export type UsersActionsType =
 
 let initialState: UsersType = {
     users: [],
-    pageSize: 10,
+    pageSize: 12,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,

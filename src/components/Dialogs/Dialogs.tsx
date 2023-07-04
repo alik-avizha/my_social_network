@@ -30,7 +30,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                                                                          names={props.dialogsPage.dialogs}
                                                                          photo={props.photo}
                     />}/>
-                    <Route path="/dialogs" render={() => <div className={classes.choose}>Please select a dialog</div>}/>
+                    <Route path="/dialogs" render={() => <div className={classes.choose}><h3>Please select a dialog</h3></div>}/>
                 </Switch>
             </div>
         </div>

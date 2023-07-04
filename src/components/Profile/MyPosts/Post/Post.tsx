@@ -2,9 +2,7 @@ import React from 'react';
 import classes from './Post.module.css';
 import postImg from '../../../../assets/images/user.jpg'
 import likeIcon from '../../../../assets/images/like.svg'
-import likeActiveIcon from '../../../../assets/images/likeActive.svg'
 import dislikeIcon from '../../../../assets/images/dislike-svgrepo-com.svg'
-import dislikeActiveIcon from '../../../../assets/images/dislikeActive.svg'
 import deleteIcon from '../../../../assets/images/delete-svgrepo-com.svg'
 import {PostType} from '../../../../redux/profile/profile-reducer';
 
@@ -40,14 +38,14 @@ const Post = (props: PropsType) => {
             </div>
             <div className={classes.activities}>
                 <img src={deleteIcon} alt={'deletePost'} onClick={deletePost}/>
-                <img onClick={dislikePost} src={!props.post.isDislike ? dislikeIcon : dislikeActiveIcon} alt="dislikePost"/>
+                <img onClick={dislikePost} src={dislikeIcon} alt="dislikePost"/>
                 <span>{props.post.dislikesCount}</span>
-                <img onClick={likePost} src={!props.post.isLike ? likeIcon: likeActiveIcon} alt={'likePost'} />
+                <img onClick={likePost} src={likeIcon} alt={'likePost'} />
                 <span>{props.post.likesCount}</span>
             </div>
             <div className={classes.loginAndDate}>
-                <span>{props.userName}</span>
-                <span>{props.post.date}</span>
+                <span className={classes.userName}>{props.userName}</span>
+                <span className={classes.date}>{props.post.date}</span>
             </div>
         </div>
     )

@@ -4,22 +4,23 @@
     gap: 20px;
 }
 .item a {
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 14px;
-    color: black;
+    font-size: 16px;
+    color: #333333;
     display: flex;
+    align-items: center;
     gap: 10px;
-    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 .item a:hover{
-    color: white;
-    background-color: #7d93bd;
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 .item a.activeLink{
-    color: white;
+    color: #ffffff;
     background-color: #7d93bd;
 }
 

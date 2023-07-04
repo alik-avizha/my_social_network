@@ -6,31 +6,39 @@
     flex-direction: column;
     gap: 20px;
     width: 160px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
 }
+
 .nav a {
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
     font-size: 20px;
-    color: black;
-    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.nav a:hover{
-    color: white;
+.nav a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav a.activeLink {
+    color: #ffffff;
     background-color: #7d93bd;
 }
+
+.icon {
+    height: 20px;
+}
+
+
 
 .lastLink{
     margin-top: 40px;
-}
-
-.nav a.activeLink{
-    color: white;
-    background-color: #7d93bd;
-}
-.icon{
-    height: 20px;
-    margin-right: 5px;
 }

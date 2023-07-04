@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
+import classes from './Status.module.css'
 
 type ProfileStatusType = {
     status: string
@@ -28,9 +29,9 @@ export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = (props) => {
 
     return (
         !editMode
-            ? <span onDoubleClick={activateEditMode}>{props.status || 'no status'}</span>
+            ? <span className={classes.status}  onDoubleClick={activateEditMode}>{props.status || 'no status'}</span>
 
-            : <input autoFocus onBlur={deactivateEditMode} value={title} onChange={onStatusChange}/>
+            : <input className={classes.editModeStatus} autoFocus onBlur={deactivateEditMode} value={title} onChange={onStatusChange}/>
 
     )
 }

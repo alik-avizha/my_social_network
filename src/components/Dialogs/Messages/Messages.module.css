@@ -3,9 +3,8 @@
 }
 
 .messages {
-    height: 60vh;
+    height: 70vh;
     overflow-y: auto;
-    border-bottom: 5px solid #f4f2f2;
     padding-right: 10px;
 }
 /* Настройки скроллбара для браузеров на движке WebKit */

@@ -64,7 +64,6 @@ const AppContainer = compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeApp: initializeAppThunkCreator}))(App)
 
-
 export const SamuraiApp = () => {
     return (
         <HashRouter>

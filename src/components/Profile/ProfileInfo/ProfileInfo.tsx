@@ -31,11 +31,23 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
         <div className={classes.profileInfoWrapper}>
             <div className={classes.descriptionBlock}>
                 <div className={classes.avatarAndStatusBlock}>
-                    <img
-                        src={props.profile.photos.large || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'}
-                        alt={'avatar'} className={classes.mainPhoto}
-                    />
-                    {props.isOwner && <input type={'file'} onChange={mainPhotoSelected}/>}
+                    <label htmlFor="mainPhotoInput">
+                        <img
+                            src={props.profile.photos.large || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'}
+                            alt={'avatar'}
+                            className={classes.mainPhoto}
+                        />
+                    </label>
+                    {props.isOwner && (
+                        <div className={classes.inputContainer}>
+                            <input
+                                type={'file'}
+                                id="mainPhotoInput"
+                                onChange={mainPhotoSelected}
+                                className={classes.mainPhotoInput}
+                            />
+                        </div>
+                    )}
                     <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 </div>
                 <Description profile={profile}/>
