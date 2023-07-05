@@ -11,21 +11,12 @@
 .description {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
     max-width: 600px;
     width: 100%;
-}
-
-.description span {
-    display: flex;
-    align-items: center;
     gap: 10px;
-    font-size: 18px;
-    color: #333333;
-    width: 100%;
 }
 
-.description span strong {
-    font-weight: 600;
+
+.contacts{
+    border-bottom: 1px solid grey;
 }

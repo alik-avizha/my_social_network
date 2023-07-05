@@ -1,25 +1,31 @@
 import React from 'react';
 import classes from './Description.module.css'
 import {ProfileType} from '../../../../redux/profile/profile-reducer';
+import {Contact} from './ContactsDesc/ContactsDesc';
+import {MainData} from './MainDesc/MainData';
 
 type DescriptionPropsType = {
     profile: ProfileType
+    isOwner: boolean
+    toEditMode: () => void
 }
 
 export const Description = (props: DescriptionPropsType) => {
     return (
         <div className={classes.descriptionWrapper}>
+            {props.isOwner && <div>
+                <button onClick={props.toEditMode}>edit</button>
+            </div>}
             <div className={classes.description}>
-                <span><strong>Name: </strong>{props.profile.fullName}</span>
-                <span><strong>About me: </strong>{props.profile.aboutMe ? props.profile.aboutMe : 'нету информации'}</span>
-                <span><strong>Job: </strong>{props.profile.lookingForAJob ? props.profile.lookingForAJob : 'без работы'}</span>
-                <span><strong>VK: </strong>{props.profile.contacts.vk ? props.profile.contacts.vk : 'vk.com'}</span>
-                <span><strong>Github: </strong>{props.profile.contacts.github ? props.profile.contacts.github : 'github.com'}</span>
-                <span><strong>Instagram: </strong>{props.profile.contacts.instagram ? props.profile.contacts.instagram : 'instagram.com'}</span>
-                <span><strong>Twitter: </strong>{props.profile.contacts.twitter ? props.profile.contacts.twitter : 'twitter.com'}</span>
-                <span><strong>Facebook: </strong>{props.profile.contacts.facebook ? props.profile.contacts.facebook : 'facebook.com'}</span>
-                <span><strong>Youtube: </strong>{props.profile.contacts.youtube ? props.profile.contacts.youtube : 'youtube.com'}</span>
+                <MainData profile={props.profile}/>
+                <div>
+                    <span><b>Contacts :</b></span>
+                    {Object.entries(props.profile.contacts).map((el, index) => {
+                        return <Contact key={index} title={el[0]} value={el[1]}/>
+                    })}
+                </div>
             </div>
         </div>
     );
 };
+

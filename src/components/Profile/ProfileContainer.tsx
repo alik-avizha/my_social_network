@@ -5,12 +5,13 @@ import {AppStateType} from '../../redux/redux-store';
 import {
     getStatusThunkCreator,
     getUserProfileThunkCreator,
-    ProfileType, savePhotoThunkCreator,
+    ProfileType, savePhotoThunkCreator, saveProfileThunkCreator,
     updateStatusThunkCreator
 } from '../../redux/profile/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {ProfileDataFormPropsType} from './ProfileInfo/ProfileDataForm';
 
 type PathParamsType = {
     userId: string
@@ -26,6 +27,7 @@ type MapDispatchTopPropsType = {
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
     savePhoto: (value: File) => void
+    saveProfile: (data: ProfileDataFormPropsType) => Promise<void | string>
 }
 type ProfileContainerPropsType = MapStateToPropsType & MapDispatchTopPropsType
 type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType
@@ -65,6 +67,7 @@ class ProfileContainerSecond extends React.Component<PropsType> {
                     status={this.props.status}
                     updateStatus={this.props.updateStatus}
                     savePhoto={this.props.savePhoto}
+                    saveProfile={this.props.saveProfile}
                 />
             </div>
         )
@@ -83,7 +86,8 @@ const ProfileContainer = compose<React.ComponentType>(
         getUserProfile: getUserProfileThunkCreator,
         getStatus: getStatusThunkCreator,
         updateStatus: updateStatusThunkCreator,
-        savePhoto: savePhotoThunkCreator
+        savePhoto: savePhotoThunkCreator,
+        saveProfile: saveProfileThunkCreator
     }),
     withRouter,
     withAuthRedirect

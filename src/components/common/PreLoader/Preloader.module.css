@@ -6,5 +6,7 @@
     height: 100px;
     animation: loading-rotate 1s linear infinite;
     position: absolute;
-    margin: 100px 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -1,9 +1,10 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import classes from './ProfileInfo.module.css';
 import {ProfileType} from '../../../redux/profile/profile-reducer';
 import {Preloader} from '../../common/PreLoader/Preloader';
 import {Description} from './ProfileDescription/Description';
 import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks';
+import {ProfileDataFormPropsType, ProfileDataFormReduxForm} from './ProfileDataForm';
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -11,16 +12,23 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (value: File) => void
+    saveProfile: (formData: ProfileDataFormPropsType) => Promise<void | string>
 }
 
 const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
-
     const {profile, status, updateStatus, savePhoto} = props
+    const [editMode, setEditMode] = useState(false)
 
     const mainPhotoSelected = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length) {
             savePhoto(event.target.files[0])
         }
+    }
+
+    const onSubmit = (formData: ProfileDataFormPropsType) => {
+        props.saveProfile(formData).then(()=>{
+            setEditMode(false)
+        })
     }
 
     if (!profile) {
@@ -50,9 +58,14 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                     )}
                     <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 </div>
-                <Description profile={profile}/>
+                {editMode
+                    ? <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/>
+                    : <Description toEditMode={() => {
+                        setEditMode(true)
+                    }} profile={profile} isOwner={props.isOwner}/>}
             </div>
         </div>
     )
 }
+
 export default ProfileInfo

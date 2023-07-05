@@ -1,6 +1,8 @@
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
 import {profileApi} from '../../api/api';
+import {AppStateType, AppThunk} from '../redux-store';
+import {stopSubmit} from 'redux-form';
 
 export type PostType = {
     id: string
@@ -16,7 +18,7 @@ export type ProfilePageType = {
     profile: ProfileType
     status: string
 }
-type ContactsType = {
+export type ContactsType = {
     facebook: string
     website: string
     vk: string
@@ -46,6 +48,7 @@ export type ProfileActionsType =
     | ReturnType<typeof removePostActionCreator>
     | ReturnType<typeof savePhotoSuccessActionCreator>
     | ReturnType<typeof clickLikeAC>
+
 
 let initialState: ProfilePageType = {
     posts: [
@@ -90,7 +93,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
                 date: `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear().toString()}`
             }
             return {...state, posts: [newPost, ...state.posts]}
-        case 'CLICK_LIKE':
+        case 'CLICK-LIKE':
             if (action.name === "like") {
                 return {
                     ...state,
@@ -140,16 +143,16 @@ export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'SE
 export const setStatusActionCreator = (status: string) => ({type: 'SET-STATUS', status}) as const
 export const removePostActionCreator = (postId: string) => ({type: 'REMOVE-POST', postId}) as const
 export const savePhotoSuccessActionCreator = (photos: PhotosType) => ({type: 'SAVE-PHOTOS-SUCCESS', photos}) as const
-export const clickLikeAC = (id: string, name: string) =>({type: 'CLICK_LIKE',id,name} as const)
+export const clickLikeAC = (id: string, name: string) =>({type: 'CLICK-LIKE',id,name} as const)
 
 //ThunkCreators
-export const getUserProfileThunkCreator = (userId: string) => {
+export const getUserProfileThunkCreator = (userId: number) => {
     return async (dispatch: Dispatch) => {
         let response = await profileApi.getProfile(userId)
         dispatch(setUserProfileActionCreator(response.data))
     }
 }
-export const getStatusThunkCreator = (userId: string) => {
+export const getStatusThunkCreator = (userId: number) => {
     return async (dispatch: Dispatch) => {
         let response = await profileApi.getStatus(userId)
         dispatch(setStatusActionCreator(response.data))
@@ -168,6 +171,20 @@ export const savePhotoThunkCreator = (file: File) => {
         let response = await profileApi.savePhoto(file)
         if (response.data.resultCode === 0) {
             dispatch(savePhotoSuccessActionCreator(response.data.data.photos))
+        }
+    }
+}
+export const saveProfileThunkCreator = (profile: ProfileType): AppThunk => {
+    return async (dispatch, getState: ()=> AppStateType) => {
+        const userId = getState().auth.userId
+        let response = await profileApi.saveProfile(profile)
+        if (response.data.resultCode === 0) {
+            if (userId) {
+                await dispatch(getUserProfileThunkCreator(userId))
+            }
+        } else {
+            dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}))
+            return Promise.reject(response.data.messages[0])
         }
     }
 }

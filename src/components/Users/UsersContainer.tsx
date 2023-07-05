@@ -36,11 +36,15 @@ export class UsersContainerSecond extends React.Component<UsersPropsType> {
         const {currentPage, pageSize} = this.props
         this.props.getUsers(currentPage, pageSize)
     }
+    componentWillUnmount() {
+        this.props.getUsers(1, this.props.pageSize)
+    }
 
     onPageChanged = (pageNumber: number) => {
         const {pageSize} = this.props
         this.props.getUsers(pageNumber, pageSize)
     }
+
 
     render() {
         return (
