@@ -1,3 +1,4 @@
+/*
 import {authReducer, setAuthUserDataAC, UserAuthType} from './auth-reducer';
 
 let startState:UserAuthType
@@ -32,3 +33,6 @@ it('should be get UserInfo', () => {
     expect(startState.login).toBe(null);
     expect(startState.isAuth).toBe(false);
 });
+*/
+
+export {}

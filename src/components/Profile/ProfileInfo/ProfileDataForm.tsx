@@ -3,6 +3,7 @@ import {createField, Input, Textarea} from '../../common/FormsControls/FormsCont
 import {InjectedFormProps, reduxForm} from 'redux-form';
 import {ContactsType} from '../../../redux/profile/profile-reducer';
 import classes from '../../login/loginForm/loginForm.module.css';
+import {Button} from '../../common/Button/Button';
 
 export type ProfileDataFormPropsType = {
     lookingForAJob: boolean;
@@ -16,7 +17,7 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = (
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <button>Save Changes</button>
+                <Button name={'Change Description'}/>
             </div>
             {error && <div className={classes.formSummaryError}>{error}</div>}
             <div>

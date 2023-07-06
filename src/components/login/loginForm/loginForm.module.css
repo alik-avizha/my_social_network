@@ -1,7 +1,7 @@
 .formControl{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
 }
 .formControl input{
     width: 100%;

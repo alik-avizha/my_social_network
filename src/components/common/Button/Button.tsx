@@ -4,7 +4,7 @@ import classes from './Button.module.css'
 
 type ButtonPropsType = {
     name: string
-    callback: () => void
+    callback?: () => void
     disabled?: boolean
 
 }

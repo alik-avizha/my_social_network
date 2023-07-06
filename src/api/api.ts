@@ -58,9 +58,9 @@ export const authAPI = {
         return instance.get<ResponseType<AuthResponseData>>(`auth/me`)
             .then(response => response.data)
     },
-    logIn(email: string, password: string, rememberMe: boolean = false) {
+    logIn(email: string, password: string, rememberMe: boolean = false, captcha: null | string = null) {
         return instance.post<ResponseType<{ userId: number }>>(`auth/login`, {
-            email, password, rememberMe
+            email, password, rememberMe, captcha
         })
             .then(res => res.data)
     },
@@ -68,6 +68,12 @@ export const authAPI = {
         return instance.delete<ResponseType>(`auth/login`)
             .then(res => res.data)
     }
+}
+export const securityAuthAPI = {
+    getCaptchaUrl() {
+        return instance.get<{url: string}>(`/security/get-captcha-url`)
+    },
+
 }
 
 type UsersResponseDataType = {
@@ -78,6 +84,7 @@ type UsersResponseDataType = {
 export type ResponseType<T = {}> = {
     resultCode: number
     messages: string[]
+    fieldsErrors: Array<string>
     data: T
 }
 

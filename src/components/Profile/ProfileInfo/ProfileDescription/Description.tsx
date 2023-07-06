@@ -3,6 +3,7 @@ import classes from './Description.module.css'
 import {ProfileType} from '../../../../redux/profile/profile-reducer';
 import {Contact} from './ContactsDesc/ContactsDesc';
 import {MainData} from './MainDesc/MainData';
+import {Button} from '../../../common/Button/Button';
 
 type DescriptionPropsType = {
     profile: ProfileType
@@ -14,7 +15,7 @@ export const Description = (props: DescriptionPropsType) => {
     return (
         <div className={classes.descriptionWrapper}>
             {props.isOwner && <div>
-                <button onClick={props.toEditMode}>edit</button>
+                <Button name={'edit'} callback={props.toEditMode}/>
             </div>}
             <div className={classes.description}>
                 <MainData profile={props.profile}/>
