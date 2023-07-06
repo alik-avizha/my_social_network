@@ -47,8 +47,7 @@ class App extends React.Component<AppContainerPropsType> {
                     <Route path="/login" render={withSuspense(Login)}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
-                    {/*<Route path="/settings" render={() => <Settings/>}/>*/}
-                    <Route exact path="/" render={() => <Redirect to="/profile" />} />
+                    <Route exact path="/" render={() => <Redirect to="/profile"/>}/>
                 </div>
                 <Sidebar/>
             </div>
