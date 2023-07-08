@@ -105,7 +105,7 @@ let initialState: ProfilePageType = {
 }
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionsType): ProfilePageType => {
     switch (action.type) {
-        case 'ADD-POST':
+        case 'PROFILE-PAGE/ADD-POST':
             const date = new Date();
             let newPost = {
                 id: v1(),
@@ -117,7 +117,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
                 date: `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear().toString()}`
             }
             return {...state, posts: [newPost, ...state.posts]}
-        case 'CLICK-LIKE':
+        case 'PROFILE-PAGE/CLICK-LIKE':
             if (action.name === 'like') {
                 return {
                     ...state,
@@ -149,25 +149,25 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
                     ),
                 }
             }
-        case 'SET-USER-PROFILE':
+        case 'PROFILE-PAGE/SET-USER-PROFILE':
             return {...state, profile: action.profile}
-        case 'SET-STATUS':
+        case 'PROFILE-PAGE/SET-STATUS':
             return {...state, status: action.status}
-        case 'REMOVE-POST':
+        case 'PROFILE-PAGE/REMOVE-POST':
             return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
-        case 'SAVE-PHOTOS-SUCCESS':
+        case 'PROFILE-PAGE/SAVE-PHOTOS-SUCCESS':
             return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state
     }
 }
 //ActionCreators
-export const addPostActionCreator = (newPost: string) => ({type: 'ADD-POST', newPost}) as const
-export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'SET-USER-PROFILE', profile}) as const
-export const setStatusActionCreator = (status: string) => ({type: 'SET-STATUS', status}) as const
-export const removePostActionCreator = (postId: string) => ({type: 'REMOVE-POST', postId}) as const
-export const savePhotoSuccessActionCreator = (photos: PhotosType) => ({type: 'SAVE-PHOTOS-SUCCESS', photos}) as const
-export const clickLikeAC = (id: string, name: string) => ({type: 'CLICK-LIKE', id, name} as const)
+export const addPostActionCreator = (newPost: string) => ({type: 'PROFILE-PAGE/ADD-POST', newPost}) as const
+export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'PROFILE-PAGE/SET-USER-PROFILE', profile}) as const
+export const setStatusActionCreator = (status: string) => ({type: 'PROFILE-PAGE/SET-STATUS', status}) as const
+export const removePostActionCreator = (postId: string) => ({type: 'PROFILE-PAGE/REMOVE-POST', postId}) as const
+export const savePhotoSuccessActionCreator = (photos: PhotosType) => ({type: 'PROFILE-PAGE/SAVE-PHOTOS-SUCCESS', photos}) as const
+export const clickLikeAC = (id: string, name: string) => ({type: 'PROFILE-PAGE/CLICK-LIKE', id, name} as const)
 
 //ThunkCreators
 export const getUserProfileThunkCreator = (userId: number) => {

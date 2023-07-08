@@ -47,7 +47,6 @@ export const getCaptchaUrlSuccessAC = (url: string | null) => ({
     }
 ) as const
 
-
 //ThunkCreators
 export const getAuthUserDataThunkCreator = (): AppThunk => async (dispatch) => {
     let response = await authAPI.auth()

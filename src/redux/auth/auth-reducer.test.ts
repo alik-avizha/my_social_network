@@ -1,5 +1,4 @@
-/*
-import {authReducer, setAuthUserDataAC, UserAuthType} from './auth-reducer';
+import {authReducer, getCaptchaUrlSuccessAC, setAuthUserDataAC, UserAuthType} from './auth-reducer';
 
 let startState:UserAuthType
 
@@ -9,7 +8,8 @@ beforeEach(() => {
         userId: null,
         email: null,
         login: null,
-        isAuth: false
+        isAuth: false,
+        captcha: null
     }
 })
 
@@ -33,6 +33,14 @@ it('should be get UserInfo', () => {
     expect(startState.login).toBe(null);
     expect(startState.isAuth).toBe(false);
 });
-*/
 
-export {}
+it('should be get Captcha', () => {
+    const captcha = 'captcha.url'
+
+    const endState = authReducer(startState, getCaptchaUrlSuccessAC(captcha))
+
+    expect(endState.captcha).toBe(captcha);
+
+    expect(startState.captcha).toBe(null);
+});
+

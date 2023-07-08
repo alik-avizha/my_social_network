@@ -38,7 +38,7 @@ let initialState: DialogsPageType = {
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionsType): DialogsPageType => {
     switch (action.type) {
-        case 'ADD-MESSAGE':
+        case 'DIALOGS-PAGE/ADD-MESSAGE':
             let newMessage = {
                 id: 0,
                 message: action.newMessageText,
@@ -53,4 +53,4 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Di
     }
 }
 //ActionCreators
-export const addMessageActionCreator = (dialogsId: string, newMessageText: string) => ({type: 'ADD-MESSAGE', newMessageText, dialogsId}) as const
+export const addMessageActionCreator = (dialogsId: string, newMessageText: string) => ({type: 'DIALOGS-PAGE/ADD-MESSAGE', newMessageText, dialogsId}) as const

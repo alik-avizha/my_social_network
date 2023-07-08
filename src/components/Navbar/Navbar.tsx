@@ -16,7 +16,7 @@ const Navbar = () => {
         {to: '/users', name: 'Users', src: usersIcon},
         {to: '/news', name: 'News', src: newsIcon},
         {to: '/music', name: 'Music', src: musicIcon},
-        /*{to: '/settings', name: 'Settings', src: settingsIcon}*/
+        /*{to: '/settingsReducer', name: 'Settings', src: settingsIcon}*/
     ]
 
     return (

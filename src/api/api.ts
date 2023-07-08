@@ -87,7 +87,6 @@ export type ResponseType<T = {}> = {
     fieldsErrors: Array<string>
     data: T
 }
-
 type AuthResponseData = {
     id: number
     email: string

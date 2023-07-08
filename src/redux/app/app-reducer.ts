@@ -12,7 +12,7 @@ let initialState: AppInitialType = {
 
 export const appReducer = (state: AppInitialType = initialState, action: AppActionsType): AppInitialType => {
     switch (action.type) {
-        case 'SET-INITIALIZED-SUCCESS':
+        case 'APP/SET-INITIALIZED-SUCCESS':
             return {...state, initialised: true}
         default:
             return state
@@ -21,7 +21,7 @@ export const appReducer = (state: AppInitialType = initialState, action: AppActi
 
 //ActionCreators
 export const setInitializedSuccess = () => ({
-        type: 'SET-INITIALIZED-SUCCESS'
+        type: 'APP/SET-INITIALIZED-SUCCESS'
     }
 ) as const
 

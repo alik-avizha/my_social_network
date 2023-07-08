@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {AppStateType} from '../../redux/redux-store';
 import {useDispatch, useSelector} from 'react-redux';
-import {changeThemeTC, getThemeTC} from '../../redux/settings/themeReducer';
+import {changeThemeTC, getThemeTC} from '../../redux/settings/settings-reducer';
 import classes from './Settings.module.css'
 import SuperSelect from '../common/SuperSelect/SuperSelect';
 

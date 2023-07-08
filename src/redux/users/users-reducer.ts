@@ -42,21 +42,21 @@ let initialState: UsersType = {
 
 export const usersReducer = (state: UsersType = initialState, action: UsersActionsType): UsersType => {
     switch (action.type) {
-        case 'FOLLOW':
+        case 'USERS/FOLLOW':
             /*return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)}*/
             return {...state, users: updateObjectInArray(state.users, action.userId, 'id', {followed: true})}
-        case 'UNFOLLOW':
+        case 'USERS/UNFOLLOW':
             /*return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)}*/
             return {...state, users: updateObjectInArray(state.users, action.userId, 'id', {followed: false})}
-        case 'SET-USERS':
+        case 'USERS/SET-USERS':
             return {...state, users: action.users}
-        case 'SET-CURRENT-PAGE':
+        case 'USERS/SET-CURRENT-PAGE':
             return {...state, currentPage: action.currentPage}
-        case 'SET-USERS-TOTAL-COUNT':
+        case 'USERS/SET-USERS-TOTAL-COUNT':
             return {...state, totalUsersCount: action.totalCount}
-        case 'TOGGLE-IS-FETCHING':
+        case 'USERS/TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.isFetching}
-        case 'TOGGLE-IS-FOLLOWING-PROGRESS':
+        case 'USERS/TOGGLE-IS-FOLLOWING-PROGRESS':
             return {
                 ...state, followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
@@ -67,14 +67,14 @@ export const usersReducer = (state: UsersType = initialState, action: UsersActio
     }
 }
 //ActionCreators
-export const followAC = (userId: number) => ({type: 'FOLLOW', userId}) as const
-export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId}) as const
-export const setUsersAC = (users: UserType[]) => ({type: 'SET-USERS', users}) as const
-export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage}) as const
-export const setUsersTotalCountAC = (totalCount: number) => ({type: 'SET-USERS-TOTAL-COUNT', totalCount}) as const
-export const toggleIsFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching}) as const
+export const followAC = (userId: number) => ({type: 'USERS/FOLLOW', userId}) as const
+export const unfollowAC = (userId: number) => ({type: 'USERS/UNFOLLOW', userId}) as const
+export const setUsersAC = (users: UserType[]) => ({type: 'USERS/SET-USERS', users}) as const
+export const setCurrentPageAC = (currentPage: number) => ({type: 'USERS/SET-CURRENT-PAGE', currentPage}) as const
+export const setUsersTotalCountAC = (totalCount: number) => ({type: 'USERS/SET-USERS-TOTAL-COUNT', totalCount}) as const
+export const toggleIsFetchingAC = (isFetching: boolean) => ({type: 'USERS/TOGGLE-IS-FETCHING', isFetching}) as const
 export const toggleIsFollowingProgressAC = (isFetching: boolean, userId: number) => ({
-    type: 'TOGGLE-IS-FOLLOWING-PROGRESS',
+    type: 'USERS/TOGGLE-IS-FOLLOWING-PROGRESS',
     isFetching,
     userId
 }) as const

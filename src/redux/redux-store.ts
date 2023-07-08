@@ -7,7 +7,7 @@ import {SidebarActionsType, sidebarReducer} from './sidebar/sidebar-reducer';
 import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {FormAction, reducer as formReducer} from 'redux-form';
 import {AppActionsType, appReducer} from './app/app-reducer';
-import {ThemeActionType, themeReducer} from './settings/themeReducer';
+import {ThemeActionType, settingsReducer} from './settings/settings-reducer';
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -17,7 +17,7 @@ let rootReducer = combineReducers({
     auth: authReducer,
     form: formReducer,
     app: appReducer,
-    theme: themeReducer
+    theme: settingsReducer
 })
 
 type RootReducerType = typeof rootReducer

@@ -16,17 +16,17 @@ let initialState: InitialState = {
 
 export const sidebarReducer = (state: InitialState = initialState, action: SidebarActionsType) => {
     switch (action.type) {
-        case 'SET-FRIENDS':
+        case 'SIDEBAR/SET-FRIENDS':
             return {...state, users: action.friends}
-        case 'CLEAR-DATA':
+        case 'SIDEBAR/CLEAR-DATA':
             return {...state, users: []}
         default:
             return state
     }
 }
 //ActionCreators
-export const setFriendsAC = (friends: UserType[]) => ({type: 'SET-FRIENDS', friends}) as const
-export const clearDataAC = () => ({type: 'CLEAR-DATA'}) as const
+export const setFriendsAC = (friends: UserType[]) => ({type: 'SIDEBAR/SET-FRIENDS', friends}) as const
+export const clearDataAC = () => ({type: 'SIDEBAR/CLEAR-DATA'}) as const
 
 //ThunkCreators
 export const getFriendsThunkCreator = () => {

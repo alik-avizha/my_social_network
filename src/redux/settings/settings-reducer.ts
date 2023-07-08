@@ -7,11 +7,11 @@ export type ThemeStateType = {
     themeId: number
 }
 
-export const themeReducer = (state = initState, action: ThemeActionType):ThemeStateType  => {
+export const settingsReducer = (state = initState, action: ThemeActionType):ThemeStateType  => {
     switch (action.type) {
-        case 'CHANGE-THEME':
+        case 'SETTINGS/CHANGE-THEME':
             return {...state, themeId: action.id}
-        case 'GET-THEME':
+        case 'SETTINGS/GET-THEME':
             return {...state, themeId: action.id}
         default:
             return state
@@ -23,8 +23,8 @@ export type ThemeActionType =
     | ReturnType<typeof getThemeAC>
 
 //ActionsCreators
-const changeThemeAC = (id: number) => ({ type: 'CHANGE-THEME', id }) as const
-const getThemeAC = (id: number) => ({ type: 'GET-THEME', id }) as const
+export const changeThemeAC = (id: number) => ({ type: 'SETTINGS/CHANGE-THEME', id }) as const
+export const getThemeAC = (id: number) => ({ type: 'SETTINGS/GET-THEME', id }) as const
 
 //thunk
 export const changeThemeTC = (themeId: number): AppThunk => (dispatch) => {
