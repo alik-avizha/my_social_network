@@ -1,7 +1,7 @@
-import {authAPI, securityAuthAPI} from '../../api/api';
 import {AppThunk} from '../redux-store';
 import {stopSubmit} from 'redux-form';
 import {clearDataAC, getFriendsThunkCreator} from '../sidebar/sidebar-reducer';
+import {authAPI, securityAuthAPI} from '../../api/auth-api';
 
 export type UserAuthType = {
     userId: null | number

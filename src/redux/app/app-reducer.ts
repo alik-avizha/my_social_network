@@ -28,6 +28,5 @@ export const setInitializedSuccess = () => ({
 //ThunkCreators
 export const initializeAppThunkCreator = (): AppThunk => async (dispatch) => {
     await dispatch(getAuthUserDataThunkCreator())
-
     dispatch(setInitializedSuccess())
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Button.module.css'
 
-
 type ButtonPropsType = {
     name: string
     callback?: () => void

@@ -6,7 +6,6 @@ import {AppStateType} from '../../redux/redux-store';
 import styles from './login.module.css'
 import {FormDataType, LoginReduxForm} from './loginForm/LoginForm';
 
-
 type MapStateToPropsType = {
     isAuth: boolean
     captcha: string | null

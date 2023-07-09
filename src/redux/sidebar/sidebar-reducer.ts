@@ -1,6 +1,6 @@
 import {UserType} from '../users/users-reducer';
 import {Dispatch} from 'redux';
-import {usersAPI} from '../../api/api';
+import {usersAPI} from '../../api/users-api';
 
 export type SidebarActionsType =
     | ReturnType<typeof setFriendsAC>

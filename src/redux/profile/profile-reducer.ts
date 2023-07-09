@@ -1,8 +1,8 @@
 import {v1} from 'uuid';
 import {Dispatch} from 'redux';
-import {profileApi} from '../../api/api';
 import {AppStateType, AppThunk} from '../redux-store';
 import {stopSubmit} from 'redux-form';
+import {profileApi} from '../../api/profile-api';
 
 export type PostType = {
     id: string

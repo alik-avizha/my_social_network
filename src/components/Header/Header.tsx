@@ -1,9 +1,9 @@
 import React from 'react';
 import classes from './Header.module.css';
 import {NavLink} from 'react-router-dom';
-import logoOut from '../../assets/images/logout-svgrepo-com.svg'
-import logoIn from '../../assets/images/login-svgrepo-com.svg'
 import Settings from '../Settings/Settings';
+import BasicMenu from '../common/Menu/Menu';
+import {Button} from '../common/Button/Button';
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -19,14 +19,10 @@ export const Header = (props: HeaderPropsType) => {
             <Settings/>
             <div>
                 {props.isAuth
-                    ? <div className={classes.loginBlock}>
-                        {props.photo
-                            ? <img src={props.photo} alt="loginAvatar"/>
-                            : props.login}
-                            <img src={logoOut} alt={'logOut'} className={classes.imgLog} onClick={props.logout}/>
-                    </div>
+                    ?  <BasicMenu photo={props.photo} logout={props.logout} isAuth={props.isAuth} login={props.login} />
+
                     : <NavLink to={'/Login'}>
-                        <img src={logoIn} alt={'logIn'} className={classes.imgLog} />
+                        <Button name={'sign in'} />
                       </NavLink>
                 }
             </div>
