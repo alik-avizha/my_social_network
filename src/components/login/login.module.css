@@ -1,6 +1,7 @@
 .loginWrapper{
+    width: 100vh;
     background-color: white;
-    height: 90vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     gap: 60px;

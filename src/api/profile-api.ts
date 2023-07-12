@@ -11,10 +11,10 @@ export const profileApi = {
     updateStatus(status: string) {
         return instance.put<ResponseType>(`profile/status`, {status})
     },
-    savePhoto(photoFile: File){
+    savePhoto: function (photoFile: File) {
         const formData = new FormData()
         formData.append('image', photoFile)
-        return instance.post<ResponseType<{ photos: PhotosType }>>(`profile/photo`, formData, {
+        return instance.put<ResponseType<{ photos: PhotosType }>>(`profile/photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

@@ -18,12 +18,12 @@ export const Header = (props: HeaderPropsType) => {
         <header className={classes.header}>
             <Settings/>
             <div>
-                {props.isAuth
-                    ?  <BasicMenu photo={props.photo} logout={props.logout} isAuth={props.isAuth} login={props.login} />
+                {props.isAuth &&
+                      <BasicMenu photo={props.photo} logout={props.logout} isAuth={props.isAuth} login={props.login} />
 
-                    : <NavLink to={'/Login'}>
+                    /*: <NavLink to={'/Login'}>
                         <Button name={'sign in'} />
-                      </NavLink>
+                      </NavLink>*/
                 }
             </div>
         </header>

@@ -23,6 +23,7 @@ type MapDispatchTopProps = {
 }
 type MapStateTopProps = {
     initialised: boolean
+    isAuth: boolean
 }
 type AppContainerPropsType = MapDispatchTopProps & MapStateTopProps
 
@@ -39,7 +40,7 @@ class App extends React.Component<AppContainerPropsType> {
         return (
             <div className="app-wrapper">
                 <HeaderContainer/>
-                <Navbar/>
+                {this.props.isAuth && <Navbar/>}
                 <div className="app-wrapper-content">
                     <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
                     <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
@@ -49,14 +50,15 @@ class App extends React.Component<AppContainerPropsType> {
                     <Route path="/music" render={() => <Music/>}/>
                     <Route exact path="/" render={() => <Redirect to="/profile"/>}/>
                 </div>
-                <Sidebar/>
+                {this.props.isAuth && <Sidebar/>}
             </div>
         );
     }
 }
 
 let mapStateToProps = (state: AppStateType): MapStateTopProps => ({
-    initialised: state.app.initialised
+    initialised: state.app.initialised,
+    isAuth: state.auth.isAuth
 })
 
 const AppContainer = compose<React.ComponentType>(
