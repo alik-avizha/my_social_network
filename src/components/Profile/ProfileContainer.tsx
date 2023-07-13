@@ -5,7 +5,9 @@ import {AppStateType} from '../../redux/redux-store';
 import {
     getStatusThunkCreator,
     getUserProfileThunkCreator,
-    ProfileType, savePhotoThunkCreator, saveProfileThunkCreator,
+    ProfileType,
+    savePhotoThunkCreator,
+    saveProfileThunkCreator,
     updateStatusThunkCreator
 } from '../../redux/profile/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
@@ -87,7 +89,7 @@ const ProfileContainer = compose<React.ComponentType>(
         getStatus: getStatusThunkCreator,
         updateStatus: updateStatusThunkCreator,
         savePhoto: savePhotoThunkCreator,
-        saveProfile: saveProfileThunkCreator
+        saveProfile: saveProfileThunkCreator,
     }),
     withRouter,
     withAuthRedirect

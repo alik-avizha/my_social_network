@@ -17,7 +17,7 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = (
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <Button name={'Change Description'}/>
+                <Button name={'Save'}/>
             </div>
             {error && <div className={classes.formSummaryError}>{error}</div>}
             <div>

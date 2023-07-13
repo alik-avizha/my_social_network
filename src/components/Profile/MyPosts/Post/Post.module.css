@@ -62,7 +62,6 @@
     height: 20px;
     margin-left: 20px;
     cursor: pointer;
-    filter: invert(25%) sepia(90%) saturate(1000%) hue-rotate(180deg);
 }
 .activities span{
     margin-left: 4px;

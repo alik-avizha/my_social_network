@@ -18,7 +18,9 @@ export const Friend = (props: FriendPropsType) => {
             </div>
             <div className={classes.contactInfo}>
                 <div className={classes.name}>
-                    <NavLink to={'/profile/' + props.id}>{props.name.length > 13 ? props.name.slice(0, 14) + '...' : props.name}</NavLink>
+                    <NavLink
+                        to={'/profile/' + props.id}>{props.name.length > 13 ? props.name.slice(0, 14) + '...' : props.name}</NavLink>
+
                 </div>
             </div>
         </div>

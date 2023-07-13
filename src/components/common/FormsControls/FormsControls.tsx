@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './FormsControls.module.css'
 import {Field} from 'redux-form';
+import Checkbox from '@mui/material/Checkbox';
 
 type FormControlProps = {
     input: {
@@ -40,6 +41,14 @@ export const Textarea: React.FC<FormControlProps> = (props) => {
     return (
         <FormControl {...props}>
             <textarea {...input} {...restProps} />
+        </FormControl>
+    );
+};
+export const CheckboxWrapper: React.FC<FormControlProps> = (props) => {
+    const {input, meta, ...restProps} = props;
+    return (
+        <FormControl {...props}>
+            <Checkbox {...input} {...restProps} />
         </FormControl>
     );
 };

@@ -15,7 +15,7 @@ export const Description = (props: DescriptionPropsType) => {
     return (
         <div className={classes.descriptionWrapper}>
             {props.isOwner && <div>
-                <Button name={'edit'} callback={props.toEditMode}/>
+                <Button name={'Settings'} callback={props.toEditMode}/>
             </div>}
             <div className={classes.description}>
                 <MainData profile={props.profile}/>
