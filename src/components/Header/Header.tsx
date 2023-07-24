@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Header.module.css';
 import {NavLink} from 'react-router-dom';
-import Settings from '../Settings/Settings';
+import Theme from '../Settings/Settings';
 import BasicMenu from '../common/Menu/Menu';
 import {Button} from '../common/Button/Button';
 
@@ -16,7 +16,7 @@ export const Header = (props: HeaderPropsType) => {
 
     return (
         <header className={classes.header}>
-            <Settings/>
+            <Theme/>
             <div>
                 {props.isAuth &&
                       <BasicMenu photo={props.photo} logout={props.logout} isAuth={props.isAuth} login={props.login} />

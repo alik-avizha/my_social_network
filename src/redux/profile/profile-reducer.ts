@@ -3,6 +3,7 @@ import {Dispatch} from 'redux';
 import {AppStateType, AppThunk} from '../redux-store';
 import {stopSubmit} from 'redux-form';
 import {profileApi} from '../../api/profile-api';
+import {ResultCodesEnum} from '../enum';
 
 export type PostType = {
     id: string
@@ -185,7 +186,7 @@ export const getStatusThunkCreator = (userId: number) => {
 export const updateStatusThunkCreator = (status: string) => {
     return async (dispatch: Dispatch) => {
         let response = await profileApi.updateStatus(status)
-        if (response.data.resultCode === 0) {
+        if (response.data.resultCode === ResultCodesEnum.Success) {
             dispatch(setStatusActionCreator(status))
         }
     }
@@ -193,7 +194,7 @@ export const updateStatusThunkCreator = (status: string) => {
 export const savePhotoThunkCreator = (file: File) => {
     return async (dispatch: Dispatch) => {
         let response = await profileApi.savePhoto(file)
-        if (response.data.resultCode === 0) {
+        if (response.data.resultCode === ResultCodesEnum.Success) {
             dispatch(savePhotoSuccessActionCreator(response.data.data.photos))
         }
     }
@@ -202,7 +203,7 @@ export const saveProfileThunkCreator = (profile: ProfileType): AppThunk => {
     return async (dispatch, getState: () => AppStateType) => {
         const userId = getState().auth.userId
         let response = await profileApi.saveProfile(profile)
-        if (response.data.resultCode === 0) {
+        if (response.data.resultCode === ResultCodesEnum.Success) {
             if (userId) {
                 await dispatch(getUserProfileThunkCreator(userId))
             }

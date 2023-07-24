@@ -4,6 +4,7 @@ import {updateObjectInArray} from '../../utils/object-helpers';
 import {getFriendsThunkCreator} from '../sidebar/sidebar-reducer';
 import {AppThunk} from '../redux-store';
 import {usersAPI} from '../../api/users-api';
+import {ResultCodesEnum} from '../enum';
 
 export type UserType = {
     id: number
@@ -96,7 +97,7 @@ const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod:
                                   actionCreator: (userId: number) => ReturnType<typeof followAC> | ReturnType<typeof unfollowAC>) => {
     dispatch(toggleIsFollowingProgressAC(true, userId))
     let data = await apiMethod(userId)
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodesEnum.Success) {
         dispatch(actionCreator(userId))
     }
     dispatch(toggleIsFollowingProgressAC(false, userId))

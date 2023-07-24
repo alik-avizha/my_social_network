@@ -2,6 +2,7 @@ import {AppThunk} from '../redux-store';
 import {stopSubmit} from 'redux-form';
 import {clearDataAC, getFriendsThunkCreator} from '../sidebar/sidebar-reducer';
 import {authAPI, securityAuthAPI} from '../../api/auth-api';
+import {ResultCodeForCapctha, ResultCodesEnum} from '../enum';
 
 export type UserAuthType = {
     userId: null | number
@@ -50,7 +51,7 @@ export const getCaptchaUrlSuccessAC = (url: string | null) => ({
 //ThunkCreators
 export const getAuthUserDataThunkCreator = (): AppThunk => async (dispatch) => {
     let response = await authAPI.auth()
-    if (response.resultCode === 0) {
+    if (response.resultCode === ResultCodesEnum.Success) {
         let {id, login, email} = response.data
         dispatch(setAuthUserDataAC(id, login, email, true))
     }
@@ -58,11 +59,11 @@ export const getAuthUserDataThunkCreator = (): AppThunk => async (dispatch) => {
 
 export const loginThunkCreator = (email: string, password: string, rememberMe: boolean, captcha: string | null): AppThunk => async (dispatch) => {
     let data = await authAPI.logIn(email, password, rememberMe, captcha)
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodesEnum.Success) {
         dispatch(getAuthUserDataThunkCreator())
         await dispatch(getFriendsThunkCreator())
     } else {
-        if (data.resultCode === 10) {
+        if (data.resultCode === ResultCodeForCapctha.CaptchaIsRequired) {
             dispatch(getCaptchaUrlThunkCreator())
         }
         let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
@@ -72,7 +73,7 @@ export const loginThunkCreator = (email: string, password: string, rememberMe: b
 
 export const logoutThunkCreator = (): AppThunk => async (dispatch) => {
     let data = await authAPI.logOut()
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodesEnum.Success) {
         dispatch(setAuthUserDataAC(null, null, null, false))
         dispatch(clearDataAC())
     }

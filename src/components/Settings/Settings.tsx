@@ -11,7 +11,7 @@ const themes = [
     {id: 3, value: 'dark'},
 ]
 
-const Settings = () => {
+const Theme = () => {
 
     const themeId =  useSelector<AppStateType, number>(state => state.theme.themeId)
     const dispatch = useDispatch()
@@ -41,4 +41,4 @@ const Settings = () => {
     );
 };
 
-export default Settings;
+export default Theme;

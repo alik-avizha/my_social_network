@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {ResultCodeForCapctha, ResultCodesEnum} from '../redux/enum';
 
 export const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -9,7 +10,7 @@ export const instance = axios.create({
 });
 
 export type ResponseType<T = {}> = {
-    resultCode: number
+    resultCode: ResultCodesEnum | ResultCodeForCapctha
     messages: string[]
     fieldsErrors: Array<string>
     data: T
