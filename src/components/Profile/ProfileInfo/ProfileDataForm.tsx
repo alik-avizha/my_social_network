@@ -12,7 +12,7 @@ export type ProfileDataFormPropsType = {
     aboutMe: string;
     contacts: ContactsType;
 }
-
+type ProfileDataKeyValuesType = keyof ProfileDataFormPropsType
 const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = ({handleSubmit, initialValues,  error}) => {
     return (
         <form onSubmit={handleSubmit}>
@@ -21,16 +21,16 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = (
             </div>
             {error && <div className={classes.formSummaryError}>{error}</div>}
             <div>
-                <span><b>Full Name: </b>{createField('Full Name', 'fullName', [], Input)}</span>
+                <span><b>Full Name: </b>{createField<ProfileDataKeyValuesType>('Full Name', 'fullName', [], Input)}</span>
             </div>
             <div>
-                <span><b>About me: </b>{createField('About me', 'aboutMe', [], Input)}</span>
+                <span><b>About me: </b>{createField<ProfileDataKeyValuesType>('About me', 'aboutMe', [], Input)}</span>
             </div>
             <div>
-                <span style={{display: 'flex'}}><b>Looking for a job: </b>{createField('Looking for a job', 'lookingForAJob', [], Input, {type: 'checkbox'})}</span>
+                <span style={{display: 'flex'}}><b>Looking for a job: </b>{createField<ProfileDataKeyValuesType>('Looking for a job', 'lookingForAJob', [], Input, {type: 'checkbox'})}</span>
             </div>
             <div>
-                <span><b>My professional skills: </b>{createField('My professional skills', 'lookingForAJobDescription', [], Textarea)}</span>
+                <span><b>My professional skills: </b>{createField<ProfileDataKeyValuesType>('My professional skills', 'lookingForAJobDescription', [], Textarea)}</span>
             </div>
             <div>
                 <span><b>Contacts :</b></span>

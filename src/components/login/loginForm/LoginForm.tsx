@@ -12,11 +12,11 @@ export type FormDataType = {
     rememberMy: boolean
     captcha: string
 }
-type LoginFormOwnProp = {
+type LoginFormOwnProps = {
     captcha: string | null
 }
-
-const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProp> & LoginFormOwnProp> = ({
+type LoginFormKeyValuesType = keyof FormDataType
+const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & LoginFormOwnProps> = ({
                                                                                                        handleSubmit,
                                                                                                        error,
                                                                                                        captcha
@@ -38,19 +38,19 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProp> & Lo
                 </p>
             </FormLabel>
             <div className={classes.email}>
-                {createField('Email', 'email', [required], Input)}
+                {createField<LoginFormKeyValuesType>('Email', 'email', [required], Input)}
             </div>
             <div className={classes.password}>
-                {createField('Password', 'password', [required], Input, {type: 'password'})}
+                {createField<LoginFormKeyValuesType>('Password', 'password', [required], Input, {type: 'password'})}
             </div>
             <div className={classes.rememberMy}>
-                {createField('', 'rememberMy', [], CheckboxWrapper, {type: 'checkbox'}, 'remember my')}
+                {createField<LoginFormKeyValuesType>('', 'rememberMy', [], CheckboxWrapper, {type: 'checkbox'}, 'remember my')}
             </div>
             {captcha && <img className={classes.captcha} src={captcha} alt={'captcha'}/>}
-            {captcha && createField('Symbols from image', 'captcha', [required], Input)}
+            {captcha && createField<LoginFormKeyValuesType>('Symbols from image', 'captcha', [required], Input)}
             {error && <div className={classes.formSummaryError}>{error}</div>}
             <button className={classes.btn}>Login</button>
         </form>
     );
 };
-export const LoginReduxForm = reduxForm<FormDataType, LoginFormOwnProp>({form: 'login'})(LoginForm)
+export const LoginReduxForm = reduxForm<FormDataType, LoginFormOwnProps>({form: 'login'})(LoginForm)
