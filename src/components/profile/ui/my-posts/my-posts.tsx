@@ -4,7 +4,7 @@ import Post from './post/post';
 import {AddItemForm} from 'common/components';
 import {PostType} from '../../model/profile-reducer';
 
-type MyPostsType = {
+type PropsType = {
     posts: PostType[]
     addPost: (value: string) => void
     deletePost: (postId: string) => void
@@ -12,8 +12,7 @@ type MyPostsType = {
     userName: string
     changeLikesAndDislikes: (postId: string, name: string) => void
 }
-
-export const MyPosts = React.memo((props: MyPostsType) => {
+export const MyPosts = React.memo((props: PropsType) => {
 
     let postsElements = props.posts.map((p) => <Post
         post={p}

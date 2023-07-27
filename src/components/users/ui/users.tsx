@@ -4,7 +4,7 @@ import styles from './users.module.css'
 import {User} from './user/user';
 import Pagination from '@mui/material/Pagination';
 
-type UsersPropsType = {
+type PropsType = {
     users: UserType[]
     pageSize: number
     totalUsersCount: number
@@ -14,8 +14,7 @@ type UsersPropsType = {
     onPageChanged: (pageNumber: number) => void
     followingInProgress: Array<number>
 }
-
-export const Users: React.FC<UsersPropsType> = (props) => {
+export const Users: React.FC<PropsType> = (props) => {
     const {users, pageSize, totalUsersCount, currentPage, follow, unfollow, onPageChanged, followingInProgress} = props
 
     return (

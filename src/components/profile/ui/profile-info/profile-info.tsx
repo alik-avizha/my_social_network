@@ -2,8 +2,8 @@ import React, {ChangeEvent, useState} from 'react';
 import classes from './profile-info.module.css';
 import {ProfileType} from '../../model/profile-reducer';
 import {Preloader} from 'common/components';
-import {Description} from './profile-description/description';
-import {ProfileStatusWithHooks} from './profile-status/profile-status-with-hooks';
+import {Description} from './description/description';
+import {StatusWithHooks} from 'components/profile/ui/profile-info/status/status-with-hooks';
 import {ProfileDataFormPropsType, ProfileDataFormReduxForm} from './profile-data-form';
 
 type ProfileInfoPropsType = {
@@ -56,7 +56,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                             />
                         </div>
                     )}
-                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                    <StatusWithHooks status={status} updateStatus={updateStatus}/>
                 </div>
                 {editMode
                     ? <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/>

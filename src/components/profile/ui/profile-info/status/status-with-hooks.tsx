@@ -1,12 +1,12 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import classes from './status.module.css'
 
-type ProfileStatusType = {
+type PropsType = {
     status: string
     updateStatus: (status: string) => void
 }
 
-export const ProfileStatusWithHooks: React.FC<ProfileStatusType> = (props) => {
+export const StatusWithHooks: React.FC<PropsType> = (props) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [title, setNewTitle] = useState<string>(props.status)

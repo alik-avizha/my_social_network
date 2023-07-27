@@ -26,7 +26,7 @@ export type ThemeActionType =
 export const changeThemeAC = (id: number) => ({ type: 'SETTINGS/CHANGE-THEME', id }) as const
 export const getThemeAC = (id: number) => ({ type: 'SETTINGS/GET-THEME', id }) as const
 
-//thunk
+//ThunkCreators
 export const changeThemeTC = (themeId: number): AppThunk => (dispatch) => {
     localStorage.setItem('theme', JSON.stringify(themeId))
     dispatch(changeThemeAC(themeId))

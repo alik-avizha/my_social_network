@@ -9,7 +9,7 @@ type LocalStateType = {
     status: string
 }
 
-export class ProfileStatus extends React.Component<ProfileStatusType> {
+export class Status extends React.Component<ProfileStatusType> {
 
     state: LocalStateType = {
         editMode: false,

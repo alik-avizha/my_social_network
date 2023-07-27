@@ -13,9 +13,9 @@ type MapDispatchTopProps = {
     logout: () => void
 }
 
-type HeaderContainerPropsType = MapDispatchTopProps & MapStateToProps
+type PropsType = MapDispatchTopProps & MapStateToProps
 
-export class HeaderContainerSecond extends React.Component<HeaderContainerPropsType> {
+export class HeaderContainerSecond extends React.Component<PropsType> {
 
 
     render() {

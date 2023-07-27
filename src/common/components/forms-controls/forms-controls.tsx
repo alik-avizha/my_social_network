@@ -4,14 +4,11 @@ import {Field, WrappedFieldMetaProps, WrappedFieldProps} from 'redux-form';
 import Checkbox from '@mui/material/Checkbox';
 import {FieldValidatorType} from 'common/utils';
 
-type FormControlProps = {
-    /*input: {
-        name: string;
-    };*/
+type PropsType = {
     meta: WrappedFieldMetaProps
 };
 
-export const FormControl: React.FC<FormControlProps> = (props) => {
+export const FormControl: React.FC<PropsType> = (props) => {
 
     const {meta: {touched, error}, children} = props
 

@@ -29,9 +29,9 @@ type MapDispatchTopProps = {
     getUsers: (currentPage: number, pageSize: number) => void
 }
 
-type UsersPropsType = MapStateToProps & MapDispatchTopProps
+type PropsType = MapStateToProps & MapDispatchTopProps
 
-export class UsersContainerSecond extends React.Component<UsersPropsType> {
+export class UsersContainerSecond extends React.Component<PropsType> {
     componentDidMount() {
         const {currentPage, pageSize} = this.props
         this.props.getUsers(currentPage, pageSize)

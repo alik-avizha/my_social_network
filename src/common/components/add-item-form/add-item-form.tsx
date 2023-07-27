@@ -2,12 +2,12 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import classes from './add-item-form.module.css';
 import {Button} from '../button/button';
 
-type PostFormSenderPropsType = {
+type PropsType = {
     callback: (newMessage: string) => void
     placeholder: string
 }
 
-export const AddItemForm = (props: PostFormSenderPropsType) => {
+export const AddItemForm = (props: PropsType) => {
 
     const [value, setValue] = useState('')
 

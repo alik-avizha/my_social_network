@@ -13,9 +13,9 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     login: (email: string, password: string, rememberMe: boolean, captchaUrl: string) => void
 }
-type LoginPropsType = MapDispatchToPropsType & MapStateToPropsType
+type PropsType = MapDispatchToPropsType & MapStateToPropsType
 
-const Login = (props: LoginPropsType) => {
+const Login = (props: PropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMy, formData.captcha)
     }

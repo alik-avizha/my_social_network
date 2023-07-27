@@ -1,11 +1,10 @@
 import React from 'react';
-import classes from './profile-avatar.module.css';
+import classes from 'components/profile/ui/profile-info/avatar/avatar.module.css';
 
-type ProfileAvatarPropsType = {
+type PropsType = {
     avatar: string
 }
-
-export const ProfileAvatar = (props: ProfileAvatarPropsType) => {
+export const Avatar = (props: PropsType) => {
     return (
         <div>
             <img

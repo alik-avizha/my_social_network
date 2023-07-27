@@ -5,14 +5,13 @@ import {DialogsPageType} from '../model/dialogs-reducer';
 import {Route, Switch} from 'react-router-dom';
 import {Messages} from './messages/messages';
 
-type DialogsPropsType = {
+type PropsType = {
     dialogsPage: DialogsPageType
     addMessage: (id: string, newMessageText: string) => void
     login: string | null
     photo: string
 }
-
-export const Dialogs = (props: DialogsPropsType) => {
+export const Dialogs = (props: PropsType) => {
 
     let dialogsElements = props.dialogsPage.dialogs
         .map((d, index) => <DialogItem name={d.name} id={d.id} key={index}/>)

@@ -8,20 +8,20 @@ import s from './super-select.module.css'
 type DefaultSelectPropsType = DetailedHTMLProps<
     SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
-    >
+>
 
-type SuperSelectPropsType = DefaultSelectPropsType & {
+type PropsType = DefaultSelectPropsType & {
     options?: any[]
     onChangeOption?: (option: any) => void
 }
 
-const SuperSelect: React.FC<SuperSelectPropsType> = ({
-                                                         options,
-                                                         className,
-                                                         onChange,
-                                                         onChangeOption,
-                                                         ...restProps
-                                                     }) => {
+const SuperSelect: React.FC<PropsType> = ({
+                                              options,
+                                              className,
+                                              onChange,
+                                              onChangeOption,
+                                              ...restProps
+                                          }) => {
     const mappedOptions: any[] = options
         ? options.map((o) => (
             <option

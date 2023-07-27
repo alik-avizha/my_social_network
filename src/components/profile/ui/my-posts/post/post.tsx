@@ -13,7 +13,6 @@ type PropsType = {
     deletePost: (postId: string) => void
     changeLikesAndDislikes: (postId:string, name: string) => void
 }
-
 const Post = (props: PropsType) => {
 
     const deletePost = () => {

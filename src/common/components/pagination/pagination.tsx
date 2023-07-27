@@ -3,15 +3,14 @@ import styles from './pagination.module.css'
 import cn from 'classnames'
 import {Button} from '../button/button';
 
-type UsersPropsType = {
+type PropsType = {
     totalItemsCount: number
     pageSize: number
     onPageChanged: (pageNumber: number) => void
     currentPage?: number
     portionSize?: number
 }
-
-export const Pagination: React.FC<UsersPropsType> = (props) => {
+export const Pagination: React.FC<PropsType> = (props) => {
     const {totalItemsCount, pageSize, onPageChanged, currentPage, portionSize = 10} = props
 
     let pagesCount = Math.ceil(totalItemsCount / pageSize)

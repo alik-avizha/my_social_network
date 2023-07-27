@@ -5,7 +5,7 @@ import {ProfileType} from '../model/profile-reducer';
 import classes from './profile.module.css';
 import {ProfileDataFormPropsType} from './profile-info/profile-data-form';
 
-type ProfilePropsType = {
+type PropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
@@ -13,8 +13,7 @@ type ProfilePropsType = {
     savePhoto: (value: File) => void
     saveProfile: (data: ProfileDataFormPropsType) => Promise<void | string>
 }
-
-const Profile = (props: ProfilePropsType) => {
+const Profile = (props: PropsType) => {
     return (
         <div className={classes.profileWrapper}>
             <ProfileInfo

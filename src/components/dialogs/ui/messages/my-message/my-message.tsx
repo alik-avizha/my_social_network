@@ -2,15 +2,13 @@ import React from 'react';
 import classes from './my-message.module.css';
 import messageAva from '../../../../../assets/images/dialogsUser.png';
 
-
-type MainMessagePropsType = {
+type PropsType = {
     message: string
     name: string | null
     time: string
     photo: string
 }
-
-export const MyMessage = (props: MainMessagePropsType) => {
+export const MyMessage = (props: PropsType) => {
     return (
         <div className={classes.myMessage}>
             <div className={classes.myImageAndText}>

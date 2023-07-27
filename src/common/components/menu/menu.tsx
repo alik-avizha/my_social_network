@@ -3,14 +3,13 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-type BasicMenuPropsType = {
+type PropsType = {
     isAuth: boolean
     login: string | null
     photo: string
     logout: () => void
 }
-
-export default function BasicMenu(props: BasicMenuPropsType) {
+export default function BasicMenu(props: PropsType) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

@@ -1,12 +1,11 @@
 import React from 'react';
-import classes from './contacts-data.module.css'
+import classes from 'components/profile/ui/profile-info/description/contacts-info/contacts-info.module.css'
 
-type ContactPropsType = {
+type PropsType = {
     title: string
     value: string
 }
-
-export const Contact = (props: ContactPropsType) => {
+export const ContactInfo = (props: PropsType) => {
     return (
         <div className={classes.contactsItem}>
             <span><b>{props.title}: </b>{props.value}</span>

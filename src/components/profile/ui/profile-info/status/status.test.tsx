@@ -1,10 +1,10 @@
 import React from 'react'
 import {create, ReactTestInstance} from 'react-test-renderer';
-import {ProfileStatus} from './profile-status';
+import {Status} from 'components/profile/ui/profile-info/status/status';
 
-describe('profile-status component', () => {
+describe('status component', () => {
     test('status from props should be in the state', () => {
-        const component = create(<ProfileStatus status={'New Status'} updateStatus={() => {
+        const component = create(<Status status={'New Status'} updateStatus={() => {
         }}/>);
         const instance = component.getInstance()
         if (instance) {
@@ -12,14 +12,14 @@ describe('profile-status component', () => {
         }
     })
     test('after creation <span> should be displayed', () => {
-        const component = create(<ProfileStatus status={'New Status'} updateStatus={() => {
+        const component = create(<Status status={'New Status'} updateStatus={() => {
         }}/>);
         const root = component.root
         let span = root.findByType('span')
         expect(span).not.toBe(null)
     })
     test('after creation <input> shouldn\'t be displayed', () => {
-        const component = create(<ProfileStatus status={'New Status'} updateStatus={() => {
+        const component = create(<Status status={'New Status'} updateStatus={() => {
         }}/>);
         const root = component.root
         expect(() => {
@@ -27,7 +27,7 @@ describe('profile-status component', () => {
         }).toThrow()
     })
     test('after creation <span>should contains correct status', () => {
-        const component = create(<ProfileStatus status={'New Status'} updateStatus={() => {
+        const component = create(<Status status={'New Status'} updateStatus={() => {
         }}/>);
         const root = component.root
         let span = root.findByType('span')
@@ -35,7 +35,7 @@ describe('profile-status component', () => {
     })
 
     test('input should be displayed in editMode instead of span', () => {
-        const component = create(<ProfileStatus status={'New Status'} updateStatus={() => {
+        const component = create(<Status status={'New Status'} updateStatus={() => {
         }}/>);
         const root = component.root
         let span = root.findByType('span')
@@ -45,7 +45,7 @@ describe('profile-status component', () => {
     })
     test('callback should be called', () => {
         const fakeCallback = jest.fn()
-        const component = create(<ProfileStatus status={'New Status'} updateStatus={fakeCallback}/>);
+        const component = create(<Status status={'New Status'} updateStatus={fakeCallback}/>);
         const instance  = component.getInstance() as ProfileStatusInstance
         if (instance) {
             instance.deactivateEditMode()

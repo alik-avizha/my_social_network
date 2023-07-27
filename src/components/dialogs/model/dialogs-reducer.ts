@@ -1,5 +1,15 @@
-import {DialogItemType} from '../ui/dialog-item/dialog-item';
-import {MessagesType} from '../ui/messages/messages';
+export type DialogItemType = {
+    name: string,
+    id: number
+}
+type MessageItemType = {
+    id: number
+    message: string
+    time: string
+}
+export type MessagesType = {
+    [key: string]: MessageItemType[]
+}
 
 export type DialogsPageType = {
     dialogs: DialogItemType[]
