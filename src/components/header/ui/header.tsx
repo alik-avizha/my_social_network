@@ -8,6 +8,8 @@ type PropsType = {
     login: string | null
     logout: () => void
     photo: string
+    authUserId: number | null
+    profileUserId: number
 }
 export const Header = (props: PropsType) => {
 
@@ -16,7 +18,8 @@ export const Header = (props: PropsType) => {
             <Theme/>
             <div>
                 {props.isAuth &&
-                    <BasicMenu photo={props.photo} logout={props.logout} isAuth={props.isAuth} login={props.login}/>
+                    <BasicMenu photo={props.photo} authUserId={props.authUserId} profileUserId={props.profileUserId}
+                               logout={props.logout} isAuth={props.isAuth} login={props.login}/>
                 }
             </div>
         </header>

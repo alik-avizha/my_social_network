@@ -8,6 +8,8 @@ type PropsType = {
     login: string | null
     photo: string
     logout: () => void
+    authUserId: number | null
+    profileUserId: number
 }
 export default function BasicMenu(props: PropsType) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -28,7 +30,7 @@ export default function BasicMenu(props: PropsType) {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                {props.photo
+                {props.authUserId === props.profileUserId && props.photo
                     ? <img src={props.photo} alt="loginAvatar"/>
                     : props.login}
             </Button>

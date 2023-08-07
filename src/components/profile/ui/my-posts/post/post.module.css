@@ -62,6 +62,10 @@
     height: 20px;
     margin-left: 20px;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+.activities img:hover {
+    transform: scale(1.1);
 }
 .activities span{
     margin-left: 4px;
