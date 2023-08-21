@@ -1,13 +1,29 @@
 import {
     followAC,
+    followThunkCreator,
     setCurrentPageAC,
-    setUsersAC, setUsersTotalCountAC,
+    setUsersAC,
+    setUsersTotalCountAC,
     toggleIsFetchingAC,
+    toggleIsFollowingProgressAC,
     unfollowAC,
+    unfollowThunkCreator,
     usersReducer,
     UsersType
 } from './users-reducer';
+import {usersAPI} from '../api/users-api';
+import {ResponseType} from "common/api/settings-api";
+import {ResultCodesEnum} from "common/enums";
 
+jest.mock('../api/users-api')
+const userApiMock = usersAPI as jest.Mocked<typeof usersAPI>
+
+const result:ResponseType = {
+    resultCode: ResultCodesEnum.Success,
+    messages: [],
+    data: {},
+    fieldsErrors: []
+}
 
 let startState: UsersType
 
@@ -100,3 +116,35 @@ test('should toggle isFetching', () => {
 
     expect(newState.isFetching).toBe(isFetching);
 });
+
+//thunk tests
+test('success follow thunk', async () => {
+    userApiMock.followToUser.mockReturnValue(Promise.resolve(result))
+    const thunk = followThunkCreator(1)
+    const dispatchMock = jest.fn()
+    const getStateMock = jest.fn()
+
+    await thunk(dispatchMock, getStateMock, {})
+
+    expect(dispatchMock).toBeCalledTimes(4)
+    expect(dispatchMock).toHaveBeenNthCalledWith(1, toggleIsFollowingProgressAC(true, 1));
+    expect(dispatchMock).toHaveBeenNthCalledWith(2, followAC(1));
+    expect(dispatchMock).toHaveBeenNthCalledWith(3, toggleIsFollowingProgressAC(false, 1));
+
+
+})
+
+test('success unfollow thunk', async () => {
+    userApiMock.unfollowFromUser.mockReturnValue(Promise.resolve(result))
+    const thunk = unfollowThunkCreator(2)
+    const dispatchMock = jest.fn()
+    const getStateMock = jest.fn()
+
+    await thunk(dispatchMock, getStateMock, {})
+
+    expect(dispatchMock).toBeCalledTimes(4)
+    expect(dispatchMock).toHaveBeenNthCalledWith(1, toggleIsFollowingProgressAC(true, 2));
+    expect(dispatchMock).toHaveBeenNthCalledWith(2, unfollowAC(2));
+
+    expect(dispatchMock).toHaveBeenNthCalledWith(3, toggleIsFollowingProgressAC(false, 2));
+})

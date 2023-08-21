@@ -20,7 +20,7 @@ export const usersAPI = {
     },
 }
 
-type UsersResponseDataType = {
+export type UsersResponseDataType = {
     items: UserType[]
     totalCount: number
     error: string

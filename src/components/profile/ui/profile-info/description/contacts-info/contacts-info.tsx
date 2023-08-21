@@ -8,7 +8,9 @@ type PropsType = {
 export const ContactInfo = (props: PropsType) => {
     return (
         <div className={classes.contactsItem}>
-            <span><b>{props.title}: </b>{props.value}</span>
+            <span><b>{props.title}: </b>
+                <a target="_blank" rel="noreferrer" href={props.value}>{props.value}</a>
+            </span>
         </div>
     )
 }
