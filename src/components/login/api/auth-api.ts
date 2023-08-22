@@ -23,7 +23,7 @@ export const securityAuthAPI = {
 
 }
 
-type AuthResponseData = {
+export type AuthResponseData = {
     id: number
     email: string
     login: string

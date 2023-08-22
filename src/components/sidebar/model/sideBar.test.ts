@@ -1,7 +1,17 @@
-import {clearDataAC, InitialState, setFriendsAC, sidebarReducer} from './sidebar-reducer';
+import {clearDataAC, getFriendsThunkCreator, InitialState, setFriendsAC, sidebarReducer} from './sidebar-reducer';
 import {UserType} from '../../users/model/users-reducer';
+import {usersAPI, UsersResponseDataType} from "components/users/api/users-api";
+
+jest.mock('../../users/api/users-api')
+const userApiMock = usersAPI as jest.Mocked<typeof usersAPI>
 
 let initialState: InitialState;
+
+const result: UsersResponseDataType = {
+    items: [],
+    totalCount: 1,
+    error: ''
+}
 
 beforeEach(() => {
     initialState = {
@@ -61,3 +71,15 @@ it('should return the same state for unknown action types', () => {
 
     expect(newState).toEqual(initialState);
 });
+
+//thunk tests
+test('success getFriends thunk', async () => {
+    userApiMock.getFriends.mockReturnValue(Promise.resolve(result))
+    const thunk = getFriendsThunkCreator()
+    const dispatchMock = jest.fn()
+
+    await thunk(dispatchMock)
+
+    expect(dispatchMock).toBeCalledTimes(1)
+    expect(dispatchMock).toHaveBeenNthCalledWith(1, setFriendsAC(result.items));
+})

@@ -1,6 +1,7 @@
 import {PhotosType, ProfileType} from '../model/profile-reducer';
 import {instance, ResponseType} from 'common/api/settings-api';
 
+
 export const profileApi = {
     getProfile(userId: number) {
         return instance.get<ProfileType>(`profile/${userId}`)

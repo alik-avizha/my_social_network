@@ -1,7 +1,9 @@
 import {
-    addPostActionCreator, clickLikeAC,
+    addPostActionCreator,
+    clickLikeAC,
     ProfilePageType,
-    profileReducer, removePostActionCreator,
+    profileReducer,
+    removePostActionCreator,
     setStatusActionCreator,
     setUserProfileActionCreator
 } from './profile-reducer';
@@ -19,7 +21,8 @@ beforeEach(() => {
                 date: '20.01.2023',
                 dislikesCount: 4,
                 isDislike: false,
-                isLike: false},
+                isLike: false
+            },
             {
                 id: '2',
                 message: 'My name is Alex',
@@ -27,7 +30,8 @@ beforeEach(() => {
                 date: '20.01.2023',
                 dislikesCount: 4,
                 isDislike: false,
-                isLike: false},
+                isLike: false
+            },
             {
                 id: '3',
                 message: 'How are you?',
@@ -35,7 +39,8 @@ beforeEach(() => {
                 date: '20.01.2023',
                 dislikesCount: 4,
                 isDislike: false,
-                isLike: false}
+                isLike: false
+            }
         ],
         profile: {
             aboutMe: 'I am front-end developer',
@@ -145,3 +150,4 @@ it('should increase dislikes count and set isDislike to true when clicking disli
     expect(newState.posts[0].dislikesCount).toBe(5);
     expect(newState.posts[0].isDislike).toBe(true);
 });
+

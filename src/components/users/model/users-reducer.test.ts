@@ -1,6 +1,6 @@
 import {
     followAC,
-    followThunkCreator,
+    followThunkCreator, getUsersThunkCreator,
     setCurrentPageAC,
     setUsersAC,
     setUsersTotalCountAC,
@@ -11,17 +11,32 @@ import {
     usersReducer,
     UsersType
 } from './users-reducer';
-import {usersAPI} from '../api/users-api';
+import {usersAPI, UsersResponseDataType} from '../api/users-api';
 import {ResponseType} from "common/api/settings-api";
 import {ResultCodesEnum} from "common/enums";
 
 jest.mock('../api/users-api')
 const userApiMock = usersAPI as jest.Mocked<typeof usersAPI>
 
-const result:ResponseType = {
+const result: ResponseType<UsersResponseDataType> = {
     resultCode: ResultCodesEnum.Success,
     messages: [],
-    data: {},
+    data: {
+        items: [
+            {
+                id: 1,
+                name: 'string',
+                status: 'string',
+                photos: {
+                    small: 'string',
+                    large: 'string',
+                },
+                followed: true,
+            }
+        ],
+        error: '',
+        totalCount: 3
+    },
     fieldsErrors: []
 }
 
@@ -34,14 +49,14 @@ beforeEach(() => {
                 id: 1,
                 name: 'John',
                 status: 'Online',
-                photos: { small: '', large: '' },
+                photos: {small: '', large: ''},
                 followed: false,
             },
             {
                 id: 2,
                 name: 'Jane',
                 status: 'Offline',
-                photos: { small: '', large: '' },
+                photos: {small: '', large: ''},
                 followed: true,
             },
         ],
@@ -81,7 +96,7 @@ test('should set users', () => {
             id: 3,
             name: 'Bob',
             status: 'Online',
-            photos: { small: '', large: '' },
+            photos: {small: '', large: ''},
             followed: false,
         },
     ];
@@ -147,4 +162,20 @@ test('success unfollow thunk', async () => {
     expect(dispatchMock).toHaveBeenNthCalledWith(2, unfollowAC(2));
 
     expect(dispatchMock).toHaveBeenNthCalledWith(3, toggleIsFollowingProgressAC(false, 2));
+})
+
+test('success getUsers thunk', async () => {
+    userApiMock.getUsers.mockReturnValue(Promise.resolve(result.data))
+    const thunk = getUsersThunkCreator(1, 3)
+    const dispatchMock = jest.fn()
+
+    await thunk(dispatchMock)
+
+    expect(dispatchMock).toBeCalledTimes(5)
+    expect(dispatchMock).toHaveBeenNthCalledWith(1, toggleIsFetchingAC(true));
+    expect(dispatchMock).toHaveBeenNthCalledWith(2, setCurrentPageAC(1));
+    expect(dispatchMock).toHaveBeenNthCalledWith(3, toggleIsFetchingAC(false));
+
+    expect(dispatchMock).toHaveBeenNthCalledWith(4, setUsersAC(result.data.items));
+    expect(dispatchMock).toHaveBeenNthCalledWith(5, setUsersTotalCountAC(result.data.totalCount));
 })
