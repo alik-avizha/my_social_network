@@ -1,0 +1,13 @@
+export * from './delete-svgrepo-com.svg'
+export * from './dialogsUser.png'
+export * from './dislike-svgrepo-com.svg'
+export * from './like.svg'
+export * from './messages.svg'
+export * from './musicIcon.svg'
+export * from './newsIcon.svg'
+export * from './profileIcon.svg'
+export * from './settingsIcon.svg'
+export * from './user.jpg'
+export * from './usersIcon.svg'
+export * from './work.svg'
+

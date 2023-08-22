@@ -11,7 +11,7 @@ type PropsType = {
     userName: string
     photo: string
     deletePost: (postId: string) => void
-    changeLikesAndDislikes: (postId:string, name: string) => void
+    changeLikesAndDislikes: (postId: string, name: string) => void
 }
 const Post = (props: PropsType) => {
 
@@ -19,19 +19,20 @@ const Post = (props: PropsType) => {
         props.deletePost(props.post.id)
     }
     const likePost = () => {
-        if (!props.post.isLike){
+        if (!props.post.isLike) {
             props.changeLikesAndDislikes(props.post.id, 'like')
         }
     }
     const dislikePost = () => {
-        if (!props.post.isDislike)  {
+        if (!props.post.isDislike) {
             props.changeLikesAndDislikes(props.post.id, 'dislike')
         }
     }
 
     return (
         <div className={classes.item}>
-            {props.photo ? <img className={classes.userPhoto} src={props.photo} alt="avatar"/> : <img className={classes.userPhoto} src={postImg} alt="avatar"/>}
+            {props.photo ? <img className={classes.userPhoto} src={props.photo} alt="avatar"/> :
+                <img className={classes.userPhoto} src={postImg} alt="avatar"/>}
             <div className={classes.postMessage}>
                 <span className={classes.message}>{props.post.message}</span>
             </div>
@@ -39,7 +40,7 @@ const Post = (props: PropsType) => {
                 <img src={deleteIcon} alt={'deletePost'} onClick={deletePost}/>
                 <img onClick={dislikePost} src={dislikeIcon} alt="dislikePost"/>
                 <span>{props.post.dislikesCount}</span>
-                <img onClick={likePost} src={likeIcon} alt={'likePost'} />
+                <img onClick={likePost} src={likeIcon} alt={'likePost'}/>
                 <span>{props.post.likesCount}</span>
             </div>
             <div className={classes.loginAndDate}>

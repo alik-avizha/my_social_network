@@ -31,7 +31,7 @@ export default function BasicMenu(props: PropsType) {
                 onClick={handleClick}
             >
                 {props.authUserId === props.profileUserId && props.photo
-                    ? <img src={props.photo} alt="loginAvatar"/>
+                    ? <img src={props.photo} style={{width: '50px', height: '50px'}} alt="loginAvatar"/>
                     : props.login}
             </Button>
             <Menu
