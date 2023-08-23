@@ -1,32 +1,34 @@
-# Привет, Друг! 
+# Social-network
 
-В этом стартовом проекте установлены следующие библиотеки
+### The project is under development. Some features may be unavailable.
 
-- **antd** 
-- **axios** 
-- **classnames**
-- **formik**
-- **gh-pages**
-- **jest**
-- **react** and **@types/react**
-- **react-dom** and **@types/react-dom**
-- **react-redux** and **@types/react-redux**
-- **react-router-dom** and **@types/react-router-dom**
-- **react-scripts** 
-- **react-test-renderer** and **@types/react-test-renderer**
-- **redux**
-- **redux-form** and **@types/redux-form**
-- **redux-thunk**
-- **reselect**
-- **typescript** 
-- **uuid** and **@types/uuid**
+https://alik-avizha.github.io/my_social_network/
 
-После git clone 'link' установите все зависимости из package.json:
-### `yarn`
+An online platform that is used for communication, dating, creating social relationships between people who have similar interests or offline connections
+![](src/assets/images/loginPage.png)
 
-а потом запустите проект:
-### `yarn start`
+There are several sections in the social network, the first one is 'Profile'. Here you will see information about users,
+and you can also change yours. There is also a feed of posts that the user can create.
+![](src/assets/images/mainPage.png)
+![](src/assets/images/dialogsPage.png)
 
+More than 24,000 users have already registered on the social network. You can see their entire list in the "Users"
+section. From there, you can go to their "Profile" and view their information.
+![](src/assets/images/usersPage.png)
 
-<hr>
-To learn React, check out the [React documentation](https://reactjs.org/).
+The project is under development. Some features may be unavailable.
+If you have questions or want to know something, you can write to [me](https://www.linkedin.com/in/aleksandr-avizha/).
+
+---
+
+### Technologies:
+
+- React (class components)
+- TypeScript
+- Redux
+- React-Redux
+- React-Router-Dom
+- Redux-Thunk
+- Redux-Form
+- Axios
+- Material UI
