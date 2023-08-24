@@ -1,11 +1,9 @@
 .item {
-    background: linear-gradient(to bottom, #ffffff, #f7f7f7);
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.3);
     padding: 40px;
     position: relative;
     min-height: 100px;
-    color: #333333;
 }
 .userPhoto {
     position: absolute;
@@ -45,7 +43,6 @@
     font-size: 20px;
     line-height: 1.5;
     word-break: break-word;
-    color: #333333;
 
 }
 .activities {

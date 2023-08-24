@@ -1,27 +1,16 @@
-.editBlock{
-    position: relative;
-}
-.edit{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-
 .status{
-    display: flex;
-    align-items: center;
     font-size: 16px;
     font-weight: 500;
     color: #333333;
     background-color: #f5f5f5;
     padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+    width: 150px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 .editModeStatus {
-    display: flex;
-    align-items: center;
     font-size: 16px;
     font-weight: 500;
     color: #333333;

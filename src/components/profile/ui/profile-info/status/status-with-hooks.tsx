@@ -1,10 +1,11 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import classes from './status.module.css'
-import {EditIcon} from "components/profile/ui/profile-info/status/edit";
 
 type PropsType = {
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
+    className?: string
 }
 
 export const StatusWithHooks: React.FC<PropsType> = (props) => {
@@ -29,14 +30,10 @@ export const StatusWithHooks: React.FC<PropsType> = (props) => {
     }
 
     return (
-        !editMode
-            ?
-            <div className={classes.editBlock}>
-                <span className={classes.status} onDoubleClick={activateEditMode}>{props.status || 'no status'}</span>
-                <EditIcon className={classes.edit}/>
-            </div>
+        !(props.isOwner && editMode)
+            ? <span className={`${classes.status} ${props.className}`} onDoubleClick={activateEditMode}>{props.status || 'no status'}</span>
 
-            : <input className={classes.editModeStatus} autoFocus onBlur={deactivateEditMode} value={title}
+            : <input className={`${classes.editModeStatus} ${props.className}`} autoFocus onBlur={deactivateEditMode} value={title}
                      onChange={onStatusChange}/>
 
     )

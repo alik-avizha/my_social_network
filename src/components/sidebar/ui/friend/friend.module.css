@@ -2,7 +2,6 @@
     display: flex;
     justify-content: start;
     margin-bottom: 20px;
-    color: #333333;
     align-items: center;
     padding: 10px;
 }
@@ -23,12 +22,7 @@
 
 .name a {
     text-decoration: none;
-    color: #333333;
     transition: color 0.2s;
-}
-
-.name a:hover {
-    color: #7d93bd;
 }
 
 .email {

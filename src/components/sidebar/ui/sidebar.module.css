@@ -1,7 +1,6 @@
 .sidebarWrapper{
     grid-area: s;
     width: 240px;
-    background-color: #ffffff;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -9,7 +8,6 @@
 
 .title {
     margin-bottom: 30px;
-    color: #ffffff;
     padding: 10px;
     text-align: center;
     font-size: 24px;
@@ -28,7 +26,6 @@
     border: none;
     border-radius: 10px;
     padding: 10px;
-    background-color: #f5f5f5;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 

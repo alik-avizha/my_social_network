@@ -1,9 +1,9 @@
 import React from 'react';
-import {createField, Input, Textarea} from 'common/components';
+import {Button, createField, Input} from 'common/components';
 import {InjectedFormProps, reduxForm} from 'redux-form';
 import {ContactsType} from '../../model/profile-reducer';
 import classes from '../../../login/ui/login-form/login-form.module.css';
-import {Button} from 'common/components';
+import s from './profile-data.module.css'
 
 export type ProfileDataFormPropsType = {
     lookingForAJob: boolean;
@@ -13,31 +13,40 @@ export type ProfileDataFormPropsType = {
     contacts: ContactsType;
 }
 type ProfileDataKeyValuesType = keyof ProfileDataFormPropsType
-const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = ({handleSubmit, initialValues,  error}) => {
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = ({
+                                                                                    handleSubmit,
+                                                                                    initialValues,
+                                                                                    error
+                                                                                }) => {
     return (
+
         <form onSubmit={handleSubmit}>
-            <div>
-                <Button name={'Save'}/>
-            </div>
-            {error && <div className={classes.formSummaryError}>{error}</div>}
-            <div>
-                <span><b>Full Name: </b>{createField<ProfileDataKeyValuesType>('Full Name', 'fullName', [], Input)}</span>
-            </div>
-            <div>
-                <span><b>About me: </b>{createField<ProfileDataKeyValuesType>('About me', 'aboutMe', [], Input)}</span>
-            </div>
-            <div>
-                <span style={{display: 'flex'}}><b>Looking for a job: </b>{createField<ProfileDataKeyValuesType>('Looking for a job', 'lookingForAJob', [], Input, {type: 'checkbox'})}</span>
-            </div>
-            <div>
-                <span><b>My professional skills: </b>{createField<ProfileDataKeyValuesType>('My professional skills', 'lookingForAJobDescription', [], Textarea)}</span>
-            </div>
-            <div>
-                <span><b>Contacts :</b></span>
+            <div className={s.profileDataWrapper}>
+                <div className={s.saveProfile}>
+                    <Button style={{width: '70%'}} name={'Save'}/>
+                </div>
+                {error && <div className={classes.formSummaryError}>{error}</div>}
+                <div className={s.item}>
+                    <span><b>Full Name: </b></span>
+                    {createField<ProfileDataKeyValuesType>('Full Name', 'fullName', [], Input)}
+                </div>
+                <div className={s.item}>
+                    <span><b>About me: </b></span>
+                    {createField<ProfileDataKeyValuesType>('About me', 'aboutMe', [], Input)}
+                </div>
+                <div className={s.lookForAJob}>
+                    <span><b>Looking for a job: </b></span>
+                    {createField<ProfileDataKeyValuesType>('Looking for a job', 'lookingForAJob', [], Input, {type: 'checkbox'})}
+                </div>
+                <div className={s.item}>
+                    <span><b>My professional skills: </b></span>
+                    {createField<ProfileDataKeyValuesType>('My professional skills', 'lookingForAJobDescription', [], Input)}
+                </div>
                 {initialValues.contacts && Object.keys(initialValues.contacts).map((el, index) => {
                     return (
-                        <div key={index}>
-                            <span><b>{el}: </b>{createField(el, 'contacts.' + el, [], Input)}</span>
+                        <div key={index} className={s.item}>
+                            <span><b>{el}: </b></span>
+                            {createField(el, 'contacts.' + el, [], Input)}
                         </div>
                     )
                 })}

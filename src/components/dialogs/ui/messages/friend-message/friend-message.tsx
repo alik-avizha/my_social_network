@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './friend-message.module.css';
-import messageAva from '../../../../../assets/images/dialogsUser.png';
+import messageAva from 'assets/images/dialogsUser.png';
 
 type PropsType = {
     message: string

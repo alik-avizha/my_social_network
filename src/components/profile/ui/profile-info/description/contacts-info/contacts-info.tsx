@@ -1,16 +1,15 @@
 import React from 'react';
 import classes from 'components/profile/ui/profile-info/description/contacts-info/contacts-info.module.css'
+import {ContactsType, SvgSelectorContacts} from "assets/images/contacts/svgSelector";
 
 type PropsType = {
-    title: string
+    title: ContactsType
     value: string
 }
 export const ContactInfo = (props: PropsType) => {
     return (
-        <div className={classes.contactsItem}>
-            <span><b>{props.title}: </b>
-                <a target="_blank" rel="noreferrer" href={props.value}>{props.value}</a>
-            </span>
-        </div>
+        <a target="_blank" rel="noreferrer" href={props.value} className={classes.contactItem}>
+            <SvgSelectorContacts svgName={props.title}/>
+        </a>
     )
 }

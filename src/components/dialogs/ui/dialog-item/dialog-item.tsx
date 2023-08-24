@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './dialog-item.module.css'
 import {NavLink} from 'react-router-dom';
-import dialogAva from '../../../../assets/images/dialogsUser.png'
+import dialogAva from 'assets/images/dialogsUser.png'
 
 export type PropsType = {
     name: string,

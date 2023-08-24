@@ -1,10 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
 import classes from './profile-info.module.css';
 import {ProfileType} from '../../model/profile-reducer';
-import {Preloader} from 'common/components';
+import {Button, Preloader} from 'common/components';
 import {Description} from './description/description';
 import {StatusWithHooks} from 'components/profile/ui/profile-info/status/status-with-hooks';
 import {ProfileDataFormPropsType, ProfileDataFormReduxForm} from './profile-data-form';
+import {ContactInfo} from "components/profile/ui/profile-info/description/contacts-info/contacts-info";
+import {ContactsType} from "assets/images/contacts/svgSelector";
+import edit from '../../../../assets/images/edit-svgrepo-com.svg'
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -26,7 +29,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     }
 
     const onSubmit = (formData: ProfileDataFormPropsType) => {
-        props.saveProfile(formData).then(()=>{
+        props.saveProfile(formData).then(() => {
             setEditMode(false)
         })
     }
@@ -37,8 +40,15 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
     return (
         <div className={classes.profileInfoWrapper}>
+            {props.isOwner && !editMode && <div className={classes.editProfileInfo}>
+                <Button style={{borderTopLeftRadius: '20px', padding: '8px'}} callback={() => {
+                    setEditMode(true)
+                }}>
+                    <img className={classes.edit} src={edit} alt={'edit'}/>
+                </Button>
+            </div>}
             <div className={classes.descriptionBlock}>
-                <div className={classes.avatarAndStatusBlock}>
+                <div className={classes.avatarBlock}>
                     <label htmlFor="mainPhotoInput">
                         <img
                             src={props.profile.photos.large || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'}
@@ -47,23 +57,25 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                         />
                     </label>
                     {props.isOwner && (
-                        <div className={classes.inputContainer}>
-                            <input
-                                type={'file'}
-                                id="mainPhotoInput"
-                                onChange={mainPhotoSelected}
-                                className={classes.mainPhotoInput}
-                            />
-                        </div>
+                            <div className={classes.inputContainer}>
+                                <input
+                                    type={'file'}
+                                    id="mainPhotoInput"
+                                    onChange={mainPhotoSelected}
+                                    className={classes.mainPhotoInput}
+                                />
+                            </div>
                     )}
-                    <StatusWithHooks status={status} updateStatus={updateStatus}/>
+                    <StatusWithHooks className={classes.status} status={status} updateStatus={updateStatus} isOwner={props.isOwner}/>
                 </div>
-                {editMode
-                    ? <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/>
-                    : <Description toEditMode={() => {
-                        setEditMode(true)
-                    }} profile={profile} isOwner={props.isOwner}/>}
+                {!editMode && <Description profile={profile}/>}
             </div>
+            {!editMode && <div className={classes.contacts}>
+                {Object.entries(props.profile.contacts).map((el, index) => {
+                    return <ContactInfo key={index} title={el[0] as ContactsType} value={el[1]}/>
+                })}
+            </div>}
+            {editMode && <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/>}
         </div>
     )
 }
