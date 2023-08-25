@@ -4,6 +4,7 @@ import DialogItem from './dialog-item/dialog-item';
 import {DialogsPageType} from '../model/dialogs-reducer';
 import {Route, Switch} from 'react-router-dom';
 import {Messages} from './messages/messages';
+import messageIcon from '../../../assets/images/dialog.gif'
 
 type PropsType = {
     dialogsPage: DialogsPageType
@@ -29,7 +30,10 @@ export const Dialogs = (props: PropsType) => {
                                                                          names={props.dialogsPage.dialogs}
                                                                          photo={props.photo}
                     />}/>
-                    <Route path="/dialogs" render={() => <div className={classes.choose}><h3>Please select a dialog</h3></div>}/>
+                    <Route path="/dialogs" render={() => <div className={classes.choose}>
+                        <img src={messageIcon} alt="message"/>
+                        Choose a dialog...
+                    </div>}/>
                 </Switch>
             </div>
         </div>
