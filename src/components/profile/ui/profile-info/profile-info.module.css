@@ -15,14 +15,12 @@
 .avatarBlock{
     position: relative;
 }
-
 .status{
     position: absolute;
     bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
 }
-
 .inputContainer {
     position: relative;
 }
@@ -48,7 +46,6 @@
     transform: scale(1.1);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
 .contacts{
     display: flex;
     justify-content: space-between;
@@ -58,13 +55,13 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
     gap: 10px;
 }
-
 .editProfileInfo{
     position: absolute;
     top: 5px;
     left: 5px;
 }
 .edit{
+    transform: rotate(45deg);
     width: 18px;
 }
 

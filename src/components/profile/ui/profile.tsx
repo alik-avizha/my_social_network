@@ -2,8 +2,7 @@ import React from 'react';
 import ProfileInfo from './profile-info/profile-info';
 import MyPostsContainer from './my-posts/my-posts-container';
 import {ProfileType} from '../model/profile-reducer';
-import classes from './profile.module.css';
-import {ProfileDataFormPropsType} from './profile-info/profile-data-form';
+import {ProfileDataFormPropsType} from 'components/profile/ui/profile-info/profile-data-form/profile-data-form';
 
 type PropsType = {
     profile: ProfileType
@@ -15,7 +14,7 @@ type PropsType = {
 }
 const Profile = (props: PropsType) => {
     return (
-        <div className={classes.profileWrapper}>
+        <>
             <ProfileInfo
                 profile={props.profile}
                 status={props.status}
@@ -25,7 +24,7 @@ const Profile = (props: PropsType) => {
                 saveProfile={props.saveProfile}
             />
             <MyPostsContainer />
-        </div>
+        </>
     )
 }
 export default Profile

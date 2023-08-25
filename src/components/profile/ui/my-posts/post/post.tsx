@@ -1,10 +1,8 @@
 import React from 'react';
 import classes from './post.module.css';
 import postImg from '../../../../../assets/images/user.jpg'
-import likeIcon from '../../../../../assets/images/like.svg'
-import dislikeIcon from '../../../../../assets/images/dislike-svgrepo-com.svg'
-import deleteIcon from '../../../../../assets/images/delete-svgrepo-com.svg'
 import {PostType} from '../../../model/profile-reducer';
+import {SvgSelectorContacts} from "common/components/svg-selectors/profile/svgSelectorProfile";
 
 type PropsType = {
     post: PostType
@@ -37,10 +35,16 @@ const Post = (props: PropsType) => {
                 <span className={classes.message}>{props.post.message}</span>
             </div>
             <div className={classes.activities}>
-                <img src={deleteIcon} alt={'deletePost'} onClick={deletePost}/>
-                <img onClick={dislikePost} src={dislikeIcon} alt="dislikePost"/>
+                <button onClick={deletePost}>
+                    <SvgSelectorContacts svgName={'deletePost'}/>
+                </button>
+                <button onClick={dislikePost}>
+                    <SvgSelectorContacts svgName={'dislikePost'}/>
+                </button>
                 <span>{props.post.dislikesCount}</span>
-                <img onClick={likePost} src={likeIcon} alt={'likePost'}/>
+                <button onClick={likePost}>
+                    <SvgSelectorContacts svgName={'likePost'}/>
+                </button>
                 <span>{props.post.likesCount}</span>
             </div>
             <div className={classes.loginAndDate}>

@@ -7,14 +7,12 @@
     flex-direction: column;
     gap: 20px;
 }
-
 .saveProfile{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 25px;
 }
-
 .item{
     display: flex;
     flex-wrap: wrap;
@@ -27,7 +25,6 @@
     border-radius: 0.2rem;
     font-size: 1.2rem;
 }
-
 .item input{
     width: 250px;
     padding: 0.5rem;
@@ -35,12 +32,10 @@
     border-radius: 0.2rem;
     font-size: 1.2rem;
 }
-
 .lookForAJob{
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
-
 }
 .lookForAJob input{
     width: 25px;

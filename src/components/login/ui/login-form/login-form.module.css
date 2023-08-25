@@ -4,11 +4,9 @@
     gap: 14px;
     text-align: center;
 }
-
 .formLabel p{
     margin: 0;
 }
-
 .formControl input{
     width: 250px;
     padding: 0.5rem;
@@ -20,12 +18,10 @@
     display: flex;
     justify-content: start;
 }
-
 .captcha{
     width: 120px;
     height: 50px;
 }
-
 .btn{
     margin: 20px auto 0 auto;
     background: #06C;
@@ -40,7 +36,6 @@
 .btn:hover{
     background: #0080FF;
 }
-
 .btn:active{
     background: #0059B3;
 }

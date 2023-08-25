@@ -1,9 +1,9 @@
 import React from 'react';
 import {Button, createField, Input} from 'common/components';
 import {InjectedFormProps, reduxForm} from 'redux-form';
-import {ContactsType} from '../../model/profile-reducer';
-import classes from '../../../login/ui/login-form/login-form.module.css';
-import s from './profile-data.module.css'
+import {ContactsType} from 'components/profile/model/profile-reducer';
+import classes from 'components/login/ui/login-form/login-form.module.css';
+import s from 'components/profile/ui/profile-info/profile-data-form/profile-data-form.module.css'
 
 export type ProfileDataFormPropsType = {
     lookingForAJob: boolean;
@@ -19,7 +19,6 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = (
                                                                                     error
                                                                                 }) => {
     return (
-
         <form onSubmit={handleSubmit}>
             <div className={s.profileDataWrapper}>
                 <div className={s.saveProfile}>
@@ -54,6 +53,5 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = (
         </form>
     )
 }
-
 export const ProfileDataFormReduxForm = reduxForm<ProfileDataFormPropsType>({form: 'edit-profile'})(ProfileDataForm)
 

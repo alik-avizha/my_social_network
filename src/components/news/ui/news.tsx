@@ -1,11 +1,12 @@
 import React from 'react';
 import classes from './news.module.css'
-import workIcon from '../../../assets/images/work.svg';
+import workInProgressAnim from 'assets/workInProgressAnim.json'
+import Lottie from "lottie-react";
 
 const News = () => {
     return (
         <div className={classes.newsWrapper}>
-            <img className={classes.work} src={workIcon} alt=""/>
+            <Lottie animationData={workInProgressAnim} style={{width: 500, height: 500}} loop={true}/>
         </div>
     );
 };

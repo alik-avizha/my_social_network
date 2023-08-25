@@ -24,7 +24,7 @@
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 .userName{
     color: #0059b3;
@@ -33,7 +33,6 @@
 .date{
     color: #999999;
 }
-
 .postMessage {
     margin-top: 20px;
     margin-left: 22px;
@@ -43,7 +42,6 @@
     font-size: 20px;
     line-height: 1.5;
     word-break: break-word;
-
 }
 .activities {
     display: flex;
@@ -54,16 +52,19 @@
     margin-top: 10px;
     margin-left: 10px;
 }
-
-.activities img {
+.activities button{
+    all: unset;
+}
+.activities svg {
     width: 20px;
     height: 20px;
     margin-left: 20px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
-.activities img:hover {
+.activities svg:hover {
     transform: scale(1.1);
+    fill: #0059b3;
 }
 .activities span{
     margin-left: 4px;

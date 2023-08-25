@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './navbar.module.css';
 import {NavLink} from 'react-router-dom';
 
-import {NavigationType, SvgSelectorContacts} from "assets/images/navigation/svgSelectorNav";
+import {NavigationType, SvgSelectorContacts} from "common/components/svg-selectors/navigation/svgSelectorNav";
 
 const Navbar = () => {
 

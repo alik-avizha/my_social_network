@@ -5,7 +5,6 @@
     border-radius: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
 .title {
     margin-bottom: 30px;
     padding: 10px;
@@ -15,7 +14,6 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
 .search {
     font-family: inherit;
     font-size: inherit;
@@ -28,7 +26,6 @@
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
 .contactElement {
     height: 360px;
     overflow-y: auto;
@@ -37,7 +34,6 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
 /* Настройки скроллбара для браузеров на движке WebKit */
 .contactElement::-webkit-scrollbar {
     width: 10px;

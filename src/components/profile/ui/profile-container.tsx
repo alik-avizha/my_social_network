@@ -13,7 +13,7 @@ import {
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
 import {withAuthRedirect} from 'common/hoc';
-import {ProfileDataFormPropsType} from './profile-info/profile-data-form';
+import {ProfileDataFormPropsType} from 'components/profile/ui/profile-info/profile-data-form/profile-data-form';
 
 type PathParamsType = {
     userId: string

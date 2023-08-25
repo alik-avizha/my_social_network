@@ -17,8 +17,8 @@ export const Dialogs = (props: PropsType) => {
         .map((d, index) => <DialogItem name={d.name} id={d.id} key={index}/>)
 
     return (
-        <div className={classes.dialogs}>
-            <div className={classes.dialogsItems}>
+        <div className={classes.dialogsWrapper}>
+            <div className={classes.dialogs}>
                 {dialogsElements}
             </div>
             <div className={classes.messages}>

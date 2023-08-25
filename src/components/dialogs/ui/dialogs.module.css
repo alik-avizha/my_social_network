@@ -1,9 +1,9 @@
-.dialogs {
+.dialogsWrapper {
     display: grid;
     grid-template-columns: 2fr 10fr;
     grid-gap: 20px;
 }
-.dialogsItems {
+.dialogs {
     padding: 20px;
     display: flex;
     flex-direction: column;

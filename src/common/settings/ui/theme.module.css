@@ -4,15 +4,9 @@
 }
 
 [data-theme='2'] {
-    --color: #000000;
-    --background: #DDEEFF;
-}
-
-[data-theme='3'] {
     --color: #FFFFFF;
     --background: #212A34;
 }
-
 
 body {
     background-color: var(--background);

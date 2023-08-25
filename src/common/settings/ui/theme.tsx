@@ -7,8 +7,7 @@ import SuperSelect from '../../components/super-select/super-select';
 
 const themes = [
     {id: 1, value: 'light'},
-    {id: 2, value: 'blue'},
-    {id: 3, value: 'dark'},
+    {id: 2, value: 'dark'},
 ]
 
 const Theme = () => {

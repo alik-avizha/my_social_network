@@ -17,8 +17,7 @@
     position: relative;
     z-index: 1;
     background: #7d93bd;
-    border-radius: 10px;
-    border-bottom-left-radius: 0;
+    border-radius: 10px 10px 10px 0;
     padding: 10px 15px;
     margin-left: 15px;
 }
@@ -32,7 +31,6 @@
     border-top: 15px solid transparent;
     border-right: 15px solid #7d93bd;
 }
-
 .myName {
     display: flex;
     font-weight: bold;

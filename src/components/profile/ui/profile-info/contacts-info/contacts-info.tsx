@@ -1,6 +1,6 @@
 import React from 'react';
-import classes from 'components/profile/ui/profile-info/description/contacts-info/contacts-info.module.css'
-import {ContactsType, SvgSelectorContacts} from "assets/images/contacts/svgSelector";
+import classes from 'components/profile/ui/profile-info/contacts-info/contacts-info.module.css'
+import {ContactsType, SvgSelectorContacts} from "common/components/svg-selectors/contacts/svgSelector";
 
 type PropsType = {
     title: ContactsType

@@ -4,9 +4,12 @@ import {ProfileType} from '../../model/profile-reducer';
 import {Button, Preloader} from 'common/components';
 import {Description} from './description/description';
 import {StatusWithHooks} from 'components/profile/ui/profile-info/status/status-with-hooks';
-import {ProfileDataFormPropsType, ProfileDataFormReduxForm} from './profile-data-form';
-import {ContactInfo} from "components/profile/ui/profile-info/description/contacts-info/contacts-info";
-import {ContactsType} from "assets/images/contacts/svgSelector";
+import {
+    ProfileDataFormPropsType,
+    ProfileDataFormReduxForm
+} from 'components/profile/ui/profile-info/profile-data-form/profile-data-form';
+import {ContactInfo} from "components/profile/ui/profile-info/contacts-info/contacts-info";
+import {ContactsType} from "common/components/svg-selectors/contacts/svgSelector";
 import edit from '../../../../assets/images/edit-svgrepo-com.svg'
 
 type ProfileInfoPropsType = {
@@ -57,25 +60,28 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                         />
                     </label>
                     {props.isOwner && (
-                            <div className={classes.inputContainer}>
-                                <input
-                                    type={'file'}
-                                    id="mainPhotoInput"
-                                    onChange={mainPhotoSelected}
-                                    className={classes.mainPhotoInput}
-                                />
-                            </div>
+                        <div className={classes.inputContainer}>
+                            <input
+                                type={'file'}
+                                id="mainPhotoInput"
+                                onChange={mainPhotoSelected}
+                                className={classes.mainPhotoInput}
+                            />
+                        </div>
                     )}
-                    <StatusWithHooks className={classes.status} status={status} updateStatus={updateStatus} isOwner={props.isOwner}/>
+                    <StatusWithHooks className={classes.status} status={status} updateStatus={updateStatus}
+                                     isOwner={props.isOwner}/>
                 </div>
                 {!editMode && <Description profile={profile}/>}
             </div>
-            {!editMode && <div className={classes.contacts}>
-                {Object.entries(props.profile.contacts).map((el, index) => {
-                    return <ContactInfo key={index} title={el[0] as ContactsType} value={el[1]}/>
-                })}
-            </div>}
-            {editMode && <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/>}
+            {!editMode ?
+                <div className={classes.contacts}>
+                    {Object.entries(props.profile.contacts).map((el, index) => {
+                        return <ContactInfo key={index} title={el[0] as ContactsType} value={el[1]}/>
+                    })}
+                </div>
+                : <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/>
+            }
         </div>
     )
 }
