@@ -3,6 +3,7 @@ import classes from './my-posts.module.css';
 import Post from './post/post';
 import {AddItemForm} from 'common/components';
 import {PostType} from '../../model/profile-reducer';
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 type PropsType = {
     posts: PostType[]
@@ -13,6 +14,8 @@ type PropsType = {
     changeLikesAndDislikes: (postId: string, name: string) => void
 }
 export const MyPosts = React.memo((props: PropsType) => {
+
+    const [postsRef] = useAutoAnimate<HTMLDivElement>();
 
     let postsElements = props.posts.map((p) => <Post
         post={p}
@@ -26,7 +29,7 @@ export const MyPosts = React.memo((props: PropsType) => {
     return (
         <div className={classes.postsBlock}>
             <AddItemForm callback={props.addPost} placeholder={'Enter your post'}/>
-            <div className={classes.posts}>
+            <div ref={postsRef} className={classes.posts}>
                 {postsElements}
             </div>
         </div>

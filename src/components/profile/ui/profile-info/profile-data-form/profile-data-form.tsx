@@ -18,6 +18,7 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> = (
                                                                                     initialValues,
                                                                                     error
                                                                                 }) => {
+
     return (
         <form onSubmit={handleSubmit}>
             <div className={s.profileDataWrapper}>

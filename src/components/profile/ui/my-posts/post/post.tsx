@@ -12,7 +12,6 @@ type PropsType = {
     changeLikesAndDislikes: (postId: string, name: string) => void
 }
 const Post = (props: PropsType) => {
-
     const deletePost = () => {
         props.deletePost(props.post.id)
     }

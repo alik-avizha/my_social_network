@@ -5,12 +5,15 @@ import {AppStateType} from 'app/model/redux-store';
 import {UserType} from '../../users/model/users-reducer';
 import {Friend} from './friend/friend';
 import {getFriendsThunkCreator} from '../model/sidebar-reducer';
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 
 export const Sidebar = () => {
 
     const friends = useSelector<AppStateType, UserType[]>(state => state.sidebar.users)
     const dispatch = useDispatch()
+
+    const [friendsRed] = useAutoAnimate<HTMLDivElement>();
 
     useEffect(()=>{
         dispatch(getFriendsThunkCreator())
@@ -39,7 +42,7 @@ export const Sidebar = () => {
                 <input className={classes.search} type="search" placeholder="  Search Contacts..."
                        onChange={changeFilter}/>
             </div>
-            <div className={classes.contactElement}>
+            <div ref={friendsRed} className={classes.contactElement}>
                 {friendElement}
             </div>
         </div>

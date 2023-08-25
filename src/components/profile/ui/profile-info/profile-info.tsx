@@ -11,6 +11,7 @@ import {
 import {ContactInfo} from "components/profile/ui/profile-info/contacts-info/contacts-info";
 import {ContactsType} from "common/components/svg-selectors/contacts/svgSelector";
 import edit from '../../../../assets/images/edit-svgrepo-com.svg'
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -25,6 +26,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     const {profile, status, updateStatus, savePhoto} = props
     const [editMode, setEditMode] = useState(false)
 
+    const [profileInfoRef] = useAutoAnimate<HTMLDivElement>();
     const mainPhotoSelected = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length) {
             savePhoto(event.target.files[0])
@@ -50,7 +52,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                     <img className={classes.edit} src={edit} alt={'edit'}/>
                 </Button>
             </div>}
-            <div className={classes.descriptionBlock}>
+            <div ref={profileInfoRef} className={classes.descriptionBlock}>
                 <div className={classes.avatarBlock}>
                     <label htmlFor="mainPhotoInput">
                         <img
@@ -80,7 +82,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                         return <ContactInfo key={index} title={el[0] as ContactsType} value={el[1]}/>
                     })}
                 </div>
-                : <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/>
+                : <div ref={profileInfoRef}><ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/></div>
             }
         </div>
     )

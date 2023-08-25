@@ -5,7 +5,9 @@
     height: 60vh;
     overflow-y: auto;
     padding-right: 10px;
+    scroll-behavior: smooth;
 }
+
 /* Настройки скроллбара для браузеров на движке WebKit */
 .messages::-webkit-scrollbar {
     width: 10px;

@@ -13,6 +13,7 @@ export const StatusWithHooks: React.FC<PropsType> = (props) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [title, setNewTitle] = useState<string>(props.status)
 
+
     useEffect(() => {
         setNewTitle(props.status)
     }, [props.status])
@@ -31,10 +32,11 @@ export const StatusWithHooks: React.FC<PropsType> = (props) => {
 
     return (
         !(props.isOwner && editMode)
-            ? <span className={`${classes.status} ${props.className}`} onDoubleClick={activateEditMode}>{props.status || 'no status'}</span>
+            ? <span className={`${classes.status} ${props.className}`}
+                    onDoubleClick={activateEditMode}>{props.status || 'no status'}</span>
 
-            : <input className={`${classes.editModeStatus} ${props.className}`} autoFocus onBlur={deactivateEditMode} value={title}
+            : <input className={`${classes.editModeStatus} ${props.className}`} autoFocus
+                     onBlur={deactivateEditMode} value={title}
                      onChange={onStatusChange}/>
-
     )
 }

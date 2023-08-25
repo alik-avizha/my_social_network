@@ -5,6 +5,7 @@ import {MyMessage} from './my-message/my-message';
 import {FriendMessage} from './friend-message/friend-message';
 import {AddItemForm} from 'common/components';
 import {DialogItemType, MessagesType} from "components/dialogs/model/dialogs-reducer";
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 export type PropsType = {
     messages: MessagesType
@@ -14,7 +15,7 @@ export type PropsType = {
     photo: string
 }
 export const Messages = (props: PropsType) => {
-
+    const [messagesRef] = useAutoAnimate<HTMLDivElement>();
     const params = useParams<{ id: string }>()
 
     const messagesForMap = props.messages[params.id].map((el, index) => el.id !== 0
@@ -28,7 +29,7 @@ export const Messages = (props: PropsType) => {
 
     return (
         <div className={classes.messagesWrapper}>
-            <div className={classes.messages}>
+            <div ref={messagesRef} className={classes.messages}>
                 {messagesForMap}
             </div>
             <AddItemForm callback={addNewMessageHandler} placeholder={'Enter your message'}/>

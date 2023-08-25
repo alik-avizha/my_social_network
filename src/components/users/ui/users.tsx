@@ -1,8 +1,10 @@
 import React from 'react';
-import {UserType} from '../model/users-reducer';
+import {SearchType, UserType} from '../model/users-reducer';
 import styles from './users.module.css'
 import {User} from './user/user';
 import Pagination from '@mui/material/Pagination';
+import {useAutoAnimate} from "@formkit/auto-animate/react";
+import {UsersSearchForm} from "components/users/ui/user-search-form/usersSearchForm";
 
 type PropsType = {
     users: UserType[]
@@ -12,15 +14,38 @@ type PropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
+    onFilterChanged: (filter: SearchType) => void
     followingInProgress: Array<number>
 }
 export const Users: React.FC<PropsType> = (props) => {
-    const {users, pageSize, totalUsersCount, currentPage, follow, unfollow, onPageChanged, followingInProgress} = props
+    const {
+        users,
+        pageSize,
+        totalUsersCount,
+        follow,
+        unfollow,
+        onPageChanged,
+        followingInProgress,
+        onFilterChanged,
+        currentPage
+    } = props
+    const [usersRef] = useAutoAnimate<HTMLDivElement>();
 
     return (
         <div className={styles.usersWrapper}>
+            <UsersSearchForm onFilterChanged={onFilterChanged}/>
+            <div ref={usersRef} className={styles.users}>
+                {users.map(u => {
+                        return (
+                            <User key={u.id} follow={follow} unfollow={unfollow} user={u}
+                                  followingInProgress={followingInProgress}/>
+                        )
+                    }
+                )}
+            </div>
             <div className={styles.pagination}>
                 <Pagination count={Math.ceil(totalUsersCount / pageSize)}
+                            page={currentPage}
                             onChange={(e: React.ChangeEvent<unknown>, value: number) => onPageChanged(value)}
                             sx={{
                                 button: {
@@ -45,16 +70,7 @@ export const Users: React.FC<PropsType> = (props) => {
                             }}
                 />
             </div>
-
-            <div className={styles.users}>
-                {users.map(u => {
-                        return (
-                            <User key={u.id} follow={follow} unfollow={unfollow} user={u}
-                                  followingInProgress={followingInProgress}/>
-                        )
-                    }
-                )}
-            </div>
         </div>
     )
 }
+
