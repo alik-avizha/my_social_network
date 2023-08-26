@@ -3,6 +3,7 @@ import classes from './navbar.module.css';
 import {NavLink} from 'react-router-dom';
 
 import {NavigationType, SvgSelectorContacts} from "common/components/svg-selectors/navigation/svgSelectorNav";
+import {Typography} from "@mui/material";
 
 const Navbar = () => {
 
@@ -24,7 +25,7 @@ const Navbar = () => {
                         activeClassName={classes.activeLink}
                     >
                         <SvgSelectorContacts svgName={nav.name as NavigationType} />
-                        {nav.name}
+                        <Typography variant={"subtitle1"}>{nav.name}</Typography>
                     </NavLink>
                 )
             })}

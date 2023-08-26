@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './friend-message.module.css';
 import messageAva from 'assets/images/dialogsUser.png';
+import {Typography} from "@mui/material";
 
 type PropsType = {
     message: string
@@ -17,10 +18,10 @@ export const FriendMessage = (props: PropsType) => {
                 />
                 <div className={classes.friendText}>
                     <div  className={classes.friendName}>
-                        {props.name}
+                        <Typography variant={"subtitle1"}>{props.name}</Typography>
                     </div>
                     <pre className={classes.friendMessageText}>
-                            {props.message}
+                        <Typography variant={"body2"}>{props.message}</Typography>
                     </pre>
                 </div>
             </div>

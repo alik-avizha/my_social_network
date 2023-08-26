@@ -3,7 +3,7 @@ import {InjectedFormProps, reduxForm} from 'redux-form';
 import classes from './login-form.module.css';
 import {CheckboxWrapper, createField, Input} from 'common/components';
 import {required} from 'common/utils';
-import {FormLabel} from '@mui/material';
+import {FormLabel, Typography} from '@mui/material';
 
 
 export type FormDataType = {
@@ -24,18 +24,18 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
     return (
         <form onSubmit={handleSubmit} className={classes.formControl}>
             <FormLabel className={classes.formLabel}>
-                <p>
+                <Typography>
                     To log in get registered <a href={'https://social-network.samuraijs.com/'}
                                                 target={'_blank'} rel="noreferrer">here</a>
-                </p>
-                <p>
+                </Typography>
+                <Typography>
                     or use common test account credentials:
-                </p>
-                <p> Email: free@samuraijs.com
-                </p>
-                <p>
+                </Typography>
+                <Typography> Email: free@samuraijs.com
+                </Typography>
+                <Typography>
                     Password: free
-                </p>
+                </Typography>
             </FormLabel>
             <div className={classes.email}>
                 {createField<LoginFormKeyValuesType>('Email', 'email', [required], Input)}

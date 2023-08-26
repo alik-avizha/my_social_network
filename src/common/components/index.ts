@@ -1,4 +1,4 @@
-export * from './menu/menu'
+export * from '../../components/header/ui/menu/menu'
 export * from './button/button'
 export * from './add-item-form/add-item-form'
 export * from './pagination/pagination'

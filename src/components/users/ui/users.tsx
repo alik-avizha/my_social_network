@@ -14,7 +14,9 @@ import {
     getUsers,
     getUsersFilter
 } from "components/users/model/users-selectors";
+import {useHistory} from "react-router-dom";
 
+type QueryParamsType = { term?: string; page?: string; friend?: string };
 export const Users = () => {
 
     const [usersRef] = useAutoAnimate<HTMLDivElement>();
@@ -27,13 +29,51 @@ export const Users = () => {
     const filter = useSelector(getUsersFilter)
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
-        dispatch(getUsersThunkCreator(currentPage, pageSize, filter))
-        return () => {
-            dispatch(getUsersThunkCreator(1, pageSize, {term: '', friend: null}))
+        const urlSearchParams = new URLSearchParams(history.location.search.substring(1));
+        const parsed = Object.fromEntries(urlSearchParams.entries()) as QueryParamsType;
+
+        let actualPage = currentPage;
+        let actualFilter = filter;
+
+        if (!!parsed.page) actualPage = Number(parsed.page);
+        if (!!parsed.term) actualFilter = { ...actualFilter, term: parsed.term as string };
+
+        switch (parsed.friend) {
+            case 'null':
+                actualFilter = { ...actualFilter, friend: null };
+                break;
+            case 'true':
+                actualFilter = { ...actualFilter, friend: true };
+                break;
+            case 'false':
+                actualFilter = { ...actualFilter, friend: false };
+                break;
         }
+        dispatch(getUsersThunkCreator(actualPage, pageSize, actualFilter))
     }, [])
+
+    useEffect(()=>{
+        const query = new URLSearchParams();
+
+        if (!!filter.term) {
+            query.set('term', filter.term);
+        }
+        if (filter.friend !== null) {
+            query.set('friend', String(filter.friend));
+        }
+        if (currentPage !== 1) {
+            query.set('page', String(currentPage));
+        }
+
+        history.push({
+            pathname: '/users',
+            search: query.toString(),
+        });
+    }, [filter, currentPage])
+
 
     const onPageChanged = (pageNumber: number) => {
         dispatch(getUsersThunkCreator(pageNumber, pageSize, filter))

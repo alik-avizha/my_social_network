@@ -6,6 +6,7 @@ import {UserType} from '../../users/model/users-reducer';
 import {Friend} from './friend/friend';
 import {getFriendsThunkCreator} from '../model/sidebar-reducer';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
+import {Typography} from "@mui/material";
 
 
 export const Sidebar = () => {
@@ -13,7 +14,7 @@ export const Sidebar = () => {
     const friends = useSelector<AppStateType, UserType[]>(state => state.sidebar.users)
     const dispatch = useDispatch()
 
-    const [friendsRed] = useAutoAnimate<HTMLDivElement>();
+    const [friendsRef] = useAutoAnimate<HTMLDivElement>();
 
     useEffect(()=>{
         dispatch(getFriendsThunkCreator())
@@ -37,12 +38,12 @@ export const Sidebar = () => {
 
     return (
         <div className={classes.sidebarWrapper}>
-            <div className={classes.title}>Friends</div>
+            <div className={classes.title}><Typography variant={'body1'}>Friends</Typography></div>
             <div>
                 <input className={classes.search} type="search" placeholder="  Search Contacts..."
                        onChange={changeFilter}/>
             </div>
-            <div ref={friendsRed} className={classes.contactElement}>
+            <div ref={friendsRef} className={classes.contactElement}>
                 {friendElement}
             </div>
         </div>

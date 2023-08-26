@@ -5,6 +5,7 @@ import {DialogsPageType} from '../model/dialogs-reducer';
 import {Route, Switch} from 'react-router-dom';
 import {Messages} from './messages/messages';
 import messageIcon from '../../../assets/images/dialog.gif'
+import {Typography} from "@mui/material";
 
 type PropsType = {
     dialogsPage: DialogsPageType
@@ -32,7 +33,7 @@ export const Dialogs = (props: PropsType) => {
                     />}/>
                     <Route path="/dialogs" render={() => <div className={classes.choose}>
                         <img src={messageIcon} alt="message"/>
-                        Choose a dialog...
+                        <Typography variant={"body1"}>Choose a dialog...</Typography>
                     </div>}/>
                 </Switch>
             </div>

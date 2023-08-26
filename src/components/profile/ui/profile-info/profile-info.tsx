@@ -54,15 +54,17 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
             </div>}
             <div ref={profileInfoRef} className={classes.descriptionBlock}>
                 <div>
-                    <label htmlFor="mainPhotoInput" className={classes.labelBlock}>
-                        <img
-                            src={props.profile.photos.large || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'}
-                            alt={'avatar'}
-                            className={classes.mainPhoto}
-                        />
+                    <div className={classes.statusAndAvaBlock}>
+                        <label htmlFor="mainPhotoInput">
+                            <img
+                                src={props.profile.photos.large || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'}
+                                alt={'avatar'}
+                                className={classes.mainPhoto}
+                            />
+                        </label>
                         <StatusWithHooks className={classes.statusMain} status={status} updateStatus={updateStatus}
                                          isOwner={props.isOwner}/>
-                    </label>
+                    </div>
                     {props.isOwner && (
                         <div className={classes.inputContainer}>
                             <input
@@ -82,10 +84,10 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                         return <ContactInfo key={index} title={el[0] as ContactsType} value={el[1]}/>
                     })}
                 </div>
-                : <div ref={profileInfoRef}><ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/></div>
+                :
+                <div ref={profileInfoRef}><ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={profile}/></div>
             }
         </div>
     )
 }
-
 export default ProfileInfo

@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './dialog-item.module.css'
 import {NavLink} from 'react-router-dom';
 import dialogAva from 'assets/images/dialogsUser.png'
+import {Typography} from "@mui/material";
 
 export type PropsType = {
     name: string,
@@ -12,7 +13,7 @@ const DialogItem = (props: PropsType) => {
         <div className={classes.item}>
             <NavLink  to={'/dialogs/' + props.id} activeClassName={classes.activeLink}>
                 <img src={dialogAva} alt="ava" className={classes.dialogAva}/>
-                {props.name}
+                <Typography variant={'body1'}>{props.name}</Typography>
             </NavLink>
         </div>
     )

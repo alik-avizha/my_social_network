@@ -3,6 +3,7 @@ import classes from './post.module.css';
 import postImg from '../../../../../assets/images/user.jpg'
 import {PostType} from '../../../model/profile-reducer';
 import {SvgSelectorContacts} from "common/components/svg-selectors/profile/svgSelectorProfile";
+import {Typography} from "@mui/material";
 
 type PropsType = {
     post: PostType
@@ -12,6 +13,7 @@ type PropsType = {
     changeLikesAndDislikes: (postId: string, name: string) => void
 }
 const Post = (props: PropsType) => {
+
     const deletePost = () => {
         props.deletePost(props.post.id)
     }
@@ -31,7 +33,7 @@ const Post = (props: PropsType) => {
             {props.photo ? <img className={classes.userPhoto} src={props.photo} alt="avatar"/> :
                 <img className={classes.userPhoto} src={postImg} alt="avatar"/>}
             <div className={classes.postMessage}>
-                <span className={classes.message}>{props.post.message}</span>
+                <Typography variant={'body2'} className={classes.message}>{props.post.message}</Typography>
             </div>
             <div className={classes.activities}>
                 <button onClick={deletePost}>
@@ -40,15 +42,15 @@ const Post = (props: PropsType) => {
                 <button onClick={dislikePost}>
                     <SvgSelectorContacts svgName={'dislikePost'}/>
                 </button>
-                <span>{props.post.dislikesCount}</span>
+                <Typography className={classes.activity}>{props.post.dislikesCount}</Typography>
                 <button onClick={likePost}>
                     <SvgSelectorContacts svgName={'likePost'}/>
                 </button>
-                <span>{props.post.likesCount}</span>
+                <Typography className={classes.activity}>{props.post.likesCount}</Typography>
             </div>
             <div className={classes.loginAndDate}>
-                <span className={classes.userName}>{props.userName}</span>
-                <span className={classes.date}>{props.post.date}</span>
+                <Typography variant={'body2'} className={classes.userName}>{props.userName}</Typography>
+                <Typography variant={'body2'} className={classes.date}>{props.post.date}</Typography>
             </div>
         </div>
     )

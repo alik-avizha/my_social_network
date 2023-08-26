@@ -13,9 +13,14 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
 }
+
+.userPhoto:hover{
+    transform: scale(1.1);
+}
+
 .userName {
-    font-size: 14px;
     font-weight: bold;
 }
 .userId{

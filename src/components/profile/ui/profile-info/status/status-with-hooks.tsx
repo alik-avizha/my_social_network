@@ -1,5 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import classes from './status.module.css'
+import {Typography} from "@mui/material";
 
 type PropsType = {
     status: string
@@ -32,8 +33,8 @@ export const StatusWithHooks: React.FC<PropsType> = (props) => {
 
     return (
         !(props.isOwner && editMode)
-            ? <span className={`${classes.status} ${props.className}`}
-                    onDoubleClick={activateEditMode}>{props.status || 'no status'}</span>
+            ? <Typography variant={'body1'} className={`${classes.status} ${props.className}`}
+                    onDoubleClick={activateEditMode}>{props.status || 'no status'}</Typography>
 
             : <input className={`${classes.editModeStatus} ${props.className}`} autoFocus
                      onBlur={deactivateEditMode} value={title}

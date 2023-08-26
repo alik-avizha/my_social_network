@@ -12,6 +12,7 @@ import {AppStateType, store} from '../model/redux-store';
 import {Preloader} from 'common/components';
 import {withSuspense} from 'common/hoc';
 import {Sidebar} from 'components/sidebar/ui/sidebar';
+import Footer from "components/footer/footer";
 
 const DialogsContainer = React.lazy(() => import('../../components/dialogs/ui/dialogs-container'))
 const ProfileContainer = React.lazy(() => import('../../components/profile/ui/profile-container'))
@@ -38,20 +39,23 @@ class App extends React.Component<AppContainerPropsType> {
             return <Preloader/>
         }
         return (
-            <div className="app-wrapper">
-                <HeaderContainer/>
-                {this.props.isAuth && <Navbar/>}
-                <div className="app-wrapper-content">
-                    <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-                    <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
-                    <Route path="/users" render={withSuspense(UsersPage)}/>
-                    <Route path="/login" render={withSuspense(LoginPage)}/>
-                    <Route path="/news" render={() => <News/>}/>
-                    <Route path="/music" render={() => <Music/>}/>
-                    <Route exact path="/" render={() => <Redirect to="/profile"/>}/>
+            <>
+                <div className="app-wrapper">
+                    <HeaderContainer/>
+                    {this.props.isAuth && <Navbar/>}
+                    <div className="app-wrapper-content">
+                        <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
+                        <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
+                        <Route path="/users" render={withSuspense(UsersPage)}/>
+                        <Route path="/login" render={withSuspense(LoginPage)}/>
+                        <Route path="/news" render={() => <News/>}/>
+                        <Route path="/music" render={() => <Music/>}/>
+                        <Route exact path="/" render={() => <Redirect to="/profile"/>}/>
+                    </div>
+                    {this.props.isAuth && <Sidebar/>}
                 </div>
-                {this.props.isAuth && <Sidebar/>}
-            </div>
+                <Footer/>
+            </>
         );
     }
 }

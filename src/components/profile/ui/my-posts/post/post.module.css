@@ -39,8 +39,7 @@
 }
 .message {
     padding: 20px;
-    font-size: 20px;
-    line-height: 1.5;
+    font-size: 18px;
     word-break: break-word;
 }
 .activities {
@@ -66,7 +65,7 @@
     transform: scale(1.1);
     fill: #0059b3;
 }
-.activities span{
+.activity{
     margin-left: 4px;
 }
 

@@ -4,11 +4,21 @@
     gap: 20px;
 }
 .formDataWrapper input{
+    background-color: var(--background);
+    color: var(--color);
     width: 250px;
     padding: 0.5rem;
-    border: 1px solid;
+    border: 1px solid var(--color);
     border-radius: 0.2rem;
     font-size: 1.2rem;
+}
+
+.select{
+    background-color: var(--background);
+    color: var(--color);
+    border: 1px solid var(--color);
+    text-align: center;
+    font-size: 18px;
 }
 
 .sendData{
