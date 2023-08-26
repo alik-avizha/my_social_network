@@ -1,35 +1,52 @@
-import React from 'react';
-import {SearchType, UserType} from '../model/users-reducer';
+import React, {useEffect} from 'react';
+import {followThunkCreator, getUsersThunkCreator, SearchType, unfollowThunkCreator} from '../model/users-reducer';
 import styles from './users.module.css'
 import {User} from './user/user';
 import Pagination from '@mui/material/Pagination';
 import {useAutoAnimate} from "@formkit/auto-animate/react";
 import {UsersSearchForm} from "components/users/ui/user-search-form/usersSearchForm";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers,
+    getUsersFilter
+} from "components/users/model/users-selectors";
 
-type PropsType = {
-    users: UserType[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    onPageChanged: (pageNumber: number) => void
-    onFilterChanged: (filter: SearchType) => void
-    followingInProgress: Array<number>
-}
-export const Users: React.FC<PropsType> = (props) => {
-    const {
-        users,
-        pageSize,
-        totalUsersCount,
-        follow,
-        unfollow,
-        onPageChanged,
-        followingInProgress,
-        onFilterChanged,
-        currentPage
-    } = props
+export const Users = () => {
+
     const [usersRef] = useAutoAnimate<HTMLDivElement>();
+
+    const totalUsersCount = useSelector(getTotalUsersCount)
+    const currentPage = useSelector(getCurrentPage)
+    const pageSize = useSelector(getPageSize)
+    const users = useSelector(getUsers)
+    const followingInProgress = useSelector(getFollowingInProgress)
+    const filter = useSelector(getUsersFilter)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getUsersThunkCreator(currentPage, pageSize, filter))
+        return () => {
+            dispatch(getUsersThunkCreator(1, pageSize, {term: '', friend: null}))
+        }
+    }, [])
+
+    const onPageChanged = (pageNumber: number) => {
+        dispatch(getUsersThunkCreator(pageNumber, pageSize, filter))
+    }
+    const onFilterChanged = (filter: SearchType) => {
+        dispatch(getUsersThunkCreator(1, pageSize, filter))
+    }
+    const follow = (userId: number) => {
+        dispatch(followThunkCreator(userId))
+    }
+    const unfollow = (userId: number) => {
+        dispatch(unfollowThunkCreator(userId))
+    }
 
     return (
         <div className={styles.usersWrapper}>

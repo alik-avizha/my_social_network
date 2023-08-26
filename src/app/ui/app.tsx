@@ -15,8 +15,8 @@ import {Sidebar} from 'components/sidebar/ui/sidebar';
 
 const DialogsContainer = React.lazy(() => import('../../components/dialogs/ui/dialogs-container'))
 const ProfileContainer = React.lazy(() => import('../../components/profile/ui/profile-container'))
-const UsersContainer = React.lazy(() => import('../../components/users/ui/users-container'))
-const Login = React.lazy(() => import('../../components/login/ui/login'))
+const UsersPage = React.lazy(() => import('components/users/ui/users-page'))
+const LoginPage = React.lazy(() => import('components/login/ui/login-page'))
 
 type MapDispatchTopProps = {
     initializeApp: () => void
@@ -44,8 +44,8 @@ class App extends React.Component<AppContainerPropsType> {
                 <div className="app-wrapper-content">
                     <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
                     <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
-                    <Route path="/users" render={withSuspense(UsersContainer)}/>
-                    <Route path="/login" render={withSuspense(Login)}/>
+                    <Route path="/users" render={withSuspense(UsersPage)}/>
+                    <Route path="/login" render={withSuspense(LoginPage)}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route exact path="/" render={() => <Redirect to="/profile"/>}/>

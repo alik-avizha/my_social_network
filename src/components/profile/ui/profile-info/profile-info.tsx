@@ -53,13 +53,15 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                 </Button>
             </div>}
             <div ref={profileInfoRef} className={classes.descriptionBlock}>
-                <div className={classes.avatarBlock}>
-                    <label htmlFor="mainPhotoInput">
+                <div>
+                    <label htmlFor="mainPhotoInput" className={classes.labelBlock}>
                         <img
                             src={props.profile.photos.large || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0tWNyZDN7-7a-G9uggn83aL_U-kbfne1sA&usqp=CAU'}
                             alt={'avatar'}
                             className={classes.mainPhoto}
                         />
+                        <StatusWithHooks className={classes.statusMain} status={status} updateStatus={updateStatus}
+                                         isOwner={props.isOwner}/>
                     </label>
                     {props.isOwner && (
                         <div className={classes.inputContainer}>
@@ -71,8 +73,6 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                             />
                         </div>
                     )}
-                    <StatusWithHooks className={classes.status} status={status} updateStatus={updateStatus}
-                                     isOwner={props.isOwner}/>
                 </div>
                 {!editMode && <Description profile={profile}/>}
             </div>
