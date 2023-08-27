@@ -18,6 +18,7 @@ const DialogsContainer = React.lazy(() => import('../../components/dialogs/ui/di
 const ProfileContainer = React.lazy(() => import('../../components/profile/ui/profile-container'))
 const UsersPage = React.lazy(() => import('components/users/ui/users-page'))
 const LoginPage = React.lazy(() => import('components/login/ui/login-page'))
+const ChatPage = React.lazy(() => import('components/chat/ui/chat-page'))
 
 type MapDispatchTopProps = {
     initializeApp: () => void
@@ -33,7 +34,6 @@ class App extends React.Component<AppContainerPropsType> {
     componentDidMount() {
         this.props.initializeApp()
     }
-
     render() {
         if (!this.props.initialised) {
             return <Preloader/>
@@ -50,6 +50,7 @@ class App extends React.Component<AppContainerPropsType> {
                         <Route path="/login" render={withSuspense(LoginPage)}/>
                         <Route path="/news" render={() => <News/>}/>
                         <Route path="/music" render={() => <Music/>}/>
+                        <Route path="/chat" render={withSuspense(ChatPage)}/>
                         <Route exact path="/" render={() => <Redirect to="/profile"/>}/>
                     </div>
                     {this.props.isAuth && <Sidebar/>}

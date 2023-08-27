@@ -18,8 +18,7 @@ export const Messages = (props: PropsType) => {
     const params = useParams<{ id: string }>()
 
     const messagesForMap = props.messages[params.id].map((el, index) => el.id !== 0
-        ?
-        <FriendMessage key={index} message={el.message} name={props.names[Number(params.id) - 1].name} time={el.time}/>
+        ? <FriendMessage key={index} message={el.message} name={props.names[Number(params.id) - 1].name} time={el.time}/>
         : <MyMessage key={index} message={el.message} name={props.login} time={el.time} photo={props.photo}/>
     )
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './navbar.module.css';
 import {NavLink} from 'react-router-dom';
-
 import {NavigationType, SvgSelectorContacts} from "common/components/svg-selectors/navigation/svgSelectorNav";
 import {Typography} from "@mui/material";
 
@@ -13,6 +12,7 @@ const Navbar = () => {
         {to: '/users', name: 'users'},
         {to: '/news', name: 'news'},
         {to: '/music', name: 'music'},
+        {to: '/chat', name: 'chat'},
     ]
 
     return (
