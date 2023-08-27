@@ -34,7 +34,7 @@ export const StatusWithHooks: React.FC<PropsType> = (props) => {
     return (
         !(props.isOwner && editMode)
             ? <Typography variant={'body1'} className={`${classes.status} ${props.className}`}
-                    onDoubleClick={activateEditMode}>{props.status || 'no status'}</Typography>
+                               onDoubleClick={activateEditMode}>{props.status || 'no status'}</Typography>
 
             : <input className={`${classes.editModeStatus} ${props.className}`} autoFocus
                      onBlur={deactivateEditMode} value={title}
