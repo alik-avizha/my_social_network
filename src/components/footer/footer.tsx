@@ -4,7 +4,7 @@ import {Typography} from "@mui/material";
 const Footer = () => {
     return (
         <footer className={s.footer}>
-            <Typography variant={'body1'}>Copyright © Social Network 2023</Typography>
+            <Typography variant={'body1'}>Copyright © Social Network 2023 Created by Alik Avizha</Typography>
         </footer>
     );
 };

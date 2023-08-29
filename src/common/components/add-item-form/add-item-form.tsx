@@ -5,6 +5,7 @@ import {Button} from '../button/button';
 type PropsType = {
     callback: (newMessage: string) => void
     placeholder: string
+    disabled?: boolean
 }
 
 export const AddItemForm = (props: PropsType) => {
@@ -27,7 +28,7 @@ export const AddItemForm = (props: PropsType) => {
         <div className={classes.addNewContentWrapper}>
             <textarea onKeyPress={onKeyPressHandler} placeholder={props.placeholder}
                       value={value} onChange={onChangeHandler}/>
-            <Button name={'send'} callback={addNewContentHandler} disabled={value === ''}/>
+            <Button name={'send'} callback={addNewContentHandler} disabled={props.disabled || value === ''}/>
         </div>
     );
 };
