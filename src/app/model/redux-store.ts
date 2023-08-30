@@ -8,6 +8,7 @@ import thunk, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {FormAction, reducer as formReducer} from 'redux-form';
 import {AppActionsType, appReducer} from './app-reducer';
 import {ThemeActionType, themeReducer} from 'common/settings/model/theme-reducer';
+import {ChatActionsType, chatReducer} from "components/chat/model/chat-reducer";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -15,8 +16,9 @@ let rootReducer = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer,
     app: appReducer,
+    chat: chatReducer,
+    form: formReducer,
     theme: themeReducer
 })
 
@@ -35,6 +37,7 @@ export type ActionsType =
     | AppActionsType
     | SidebarActionsType
     | ThemeActionType
+    | ChatActionsType
 
 //typing dispatch for thunks
 export type AppDispatchType = ThunkDispatch<AppStateType, any, ActionsType>

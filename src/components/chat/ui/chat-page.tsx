@@ -2,15 +2,24 @@ import React, {ChangeEvent, FC, KeyboardEvent, useEffect, useState} from 'react'
 import s from './chat-page.module.css'
 import {Button} from "common/components";
 import {Typography} from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    sendMessageThunkCreator,
+    startMessagesListeningThunkCreator,
+    stopMessagesListeningThunkCreator
+} from "components/chat/model/chat-reducer";
+import {AppStateType} from "app/model/redux-store";
+import {Redirect} from "react-router-dom";
 
 
-type ChatMessageType = {
-    message: string
-    photo: string
-    userId: number
-    userName: string
-}
 const ChatPage = () => {
+
+    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
+
+    if (!isAuth) {
+        return <Redirect to="/login"/>
+    }
+
     return (
         <div className={s.chatWrapper}>
             <Chat/>
@@ -22,63 +31,37 @@ export default ChatPage
 
 const Chat = () => {
 
-    const [wsChannel, setWsChannel] = useState<WebSocket | null>(null)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        let ws: WebSocket
-        const closeHandler = () => {
-            setTimeout(createChannel, 3000)
-        }
-
-        function createChannel() {
-            ws?.removeEventListener('close', closeHandler)
-            ws?.close()
-            ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
-            ws.addEventListener('close', closeHandler)
-            setWsChannel(ws)
-        }
-
-        createChannel()
-
+        dispatch(startMessagesListeningThunkCreator())
         return () => {
-            ws.removeEventListener('close', closeHandler)
-            ws.close()
+            dispatch(stopMessagesListeningThunkCreator())
         }
     }, [])
 
 
     return (
         <div>
-            <ChatMessages wsChannel={wsChannel}/>
-            <AddIMessageForm wsChannel={wsChannel}/>
+            <ChatMessages/>
+            <AddIMessageForm/>
         </div>
     )
 }
 
-const ChatMessages: FC<{ wsChannel: WebSocket | null }> = ({wsChannel}) => {
+const ChatMessages = () => {
 
-    const [messages, setMessages] = useState<ChatMessageType[]>([])
-
-    useEffect(() => {
-        let messageHandler = (e: MessageEvent) => {
-            setMessages((prevMessages) => [...prevMessages, ...JSON.parse(e.data)])
-        };
-        wsChannel?.addEventListener('message', messageHandler)
-
-        return () => {
-            wsChannel?.removeEventListener('message', messageHandler)
-        }
-    }, [wsChannel])
+    const messages = useSelector((state: AppStateType) => state.chat.messages)
 
     return (
         <div className={s.messages}>
             {messages?.map((m, index) => <ChatMessage key={index} photo={m.photo} userName={m.userName}
-                                               message={m.message}/>)}
+                                                      message={m.message}/>)}
         </div>
     )
 }
 
-type ChatMessagePropsType = {
+export type ChatMessagePropsType = {
     photo: string
     userName: string
     message: string
@@ -103,20 +86,13 @@ const ChatMessage: FC<ChatMessagePropsType> = ({photo, userName, message}) => {
     )
 }
 
-export const AddIMessageForm: FC<{ wsChannel: WebSocket | null }> = ({wsChannel}) => {
+export const AddIMessageForm = () => {
 
     const [value, setValue] = useState('')
     const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
 
-    useEffect(() => {
-        let openHandler = () => {
-            setReadyStatus('ready')
-        };
-        wsChannel?.addEventListener('open', openHandler)
-        return () => {
-            wsChannel?.removeEventListener('open', openHandler)
-        }
-    }, [wsChannel])
+    const dispatch = useDispatch()
+
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setValue(e.currentTarget.value)
@@ -126,20 +102,20 @@ export const AddIMessageForm: FC<{ wsChannel: WebSocket | null }> = ({wsChannel}
         if (!value) {
             return
         }
-        wsChannel?.send(value)
+        dispatch(sendMessageThunkCreator(value))
         setValue('')
     }
     const onKeyPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         event.key === 'Enter' && addNewMessage()
     }
 
-    const disableButton = wsChannel === null || readyStatus !== 'ready'
+    // const disableButton = wsChannel === null || readyStatus !== 'ready'
 
     return (
         <div className={s.addNewContentWrapper}>
             <textarea onKeyPress={onKeyPressHandler} placeholder={'send new message'}
                       value={value} onChange={onChangeHandler}/>
-            <Button name={'send'} callback={addNewMessage} disabled={disableButton}/>
+            <Button name={'send'} callback={addNewMessage} disabled={false}/>
         </div>
     );
 };
