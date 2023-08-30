@@ -14,7 +14,7 @@ export type PropsType = {
     photo: string
 }
 export const Messages = (props: PropsType) => {
-    const messagesBlock = useRef<HTMLDivElement | null>(null)
+    const messagesBlock = useRef<HTMLDivElement>(null)
     const params = useParams<{ id: string }>()
 
     const messagesForMap = props.messages[params.id].map((el, index) => el.id !== 0
@@ -32,7 +32,7 @@ export const Messages = (props: PropsType) => {
 
     return (
         <div className={classes.messagesWrapper}>
-            <div ref={messagesBlock} className={classes.messages}>
+            <div  ref={messagesBlock} className={classes.messages}>
                 {messagesForMap}
             </div>
             <AddItemForm callback={addNewMessageHandler} placeholder={'Enter your message'}/>

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, KeyboardEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, KeyboardEvent, memo, UIEvent, useEffect, useRef, useState} from 'react';
 import s from './chat-page.module.css'
 import {Button} from "common/components";
 import {Typography} from "@mui/material";
@@ -30,8 +30,9 @@ const ChatPage = () => {
 export default ChatPage
 
 const Chat = () => {
-
+    const status = useSelector((state: AppStateType) => state.chat.status)
     const dispatch = useDispatch()
+
 
     useEffect(() => {
         dispatch(startMessagesListeningThunkCreator())
@@ -43,20 +44,40 @@ const Chat = () => {
 
     return (
         <div>
-            <ChatMessages/>
-            <AddIMessageForm/>
+            {status === 'error' && <div>Some error occurred. Please refresh the page</div>}
+            <>
+                <ChatMessages />
+                <AddIMessageForm/>
+            </>
         </div>
     )
 }
 
 const ChatMessages = () => {
-
+    const messagesAnchorRef = useRef<HTMLDivElement>(null)
     const messages = useSelector((state: AppStateType) => state.chat.messages)
+    const [isAutoScrollIsActive, setIsAutoScrollIsActive] = useState(true)
+
+    useEffect(()=>{
+        if (isAutoScrollIsActive) {
+            messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
+        }
+    }, [messages])
+
+    const onScrollHandler = (e: UIEvent<HTMLDivElement>) => {
+         const element = e.currentTarget
+         if ( Math.abs((element.scrollHeight - element.scrollTop) - element.clientHeight) < 300) {
+             !isAutoScrollIsActive && setIsAutoScrollIsActive(true)
+         } else {
+             isAutoScrollIsActive && setIsAutoScrollIsActive(false)
+         }
+    }
 
     return (
-        <div className={s.messages}>
-            {messages?.map((m, index) => <ChatMessage key={index} photo={m.photo} userName={m.userName}
+        <div className={s.messages} onScroll={onScrollHandler}>
+            {messages?.map((m) => <ChatMessage key={m.id} photo={m.photo} userName={m.userName}
                                                       message={m.message}/>)}
+            <div ref={messagesAnchorRef}></div>
         </div>
     )
 }
@@ -66,7 +87,7 @@ export type ChatMessagePropsType = {
     userName: string
     message: string
 }
-const ChatMessage: FC<ChatMessagePropsType> = ({photo, userName, message}) => {
+const ChatMessage: FC<ChatMessagePropsType> = memo(({photo, userName, message}) => {
     return (
         <div className={s.message}>
             <div className={s.imageAndText}>
@@ -84,12 +105,12 @@ const ChatMessage: FC<ChatMessagePropsType> = ({photo, userName, message}) => {
             </div>
         </div>
     )
-}
+})
 
 export const AddIMessageForm = () => {
 
+    const status = useSelector((state: AppStateType) => state.chat.status)
     const [value, setValue] = useState('')
-    const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
 
     const dispatch = useDispatch()
 
@@ -109,13 +130,11 @@ export const AddIMessageForm = () => {
         event.key === 'Enter' && addNewMessage()
     }
 
-    // const disableButton = wsChannel === null || readyStatus !== 'ready'
-
     return (
         <div className={s.addNewContentWrapper}>
             <textarea onKeyPress={onKeyPressHandler} placeholder={'send new message'}
                       value={value} onChange={onChangeHandler}/>
-            <Button name={'send'} callback={addNewMessage} disabled={false}/>
+            <Button name={'send'} callback={addNewMessage} disabled={status !== "ready"}/>
         </div>
     );
 };
