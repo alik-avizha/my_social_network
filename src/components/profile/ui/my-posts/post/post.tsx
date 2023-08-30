@@ -36,14 +36,14 @@ const Post = (props: PropsType) => {
                 <Typography variant={'body2'} className={classes.message}>{props.post.message}</Typography>
             </div>
             <div className={classes.activities}>
-                <button onClick={deletePost}>
+                <button onClick={deletePost} aria-label="delete post">
                     <SvgSelectorContacts svgName={'deletePost'}/>
                 </button>
-                <button onClick={dislikePost}>
+                <button onClick={dislikePost} aria-label="dislike post">
                     <SvgSelectorContacts svgName={'dislikePost'}/>
                 </button>
                 <Typography className={classes.activity}>{props.post.dislikesCount}</Typography>
-                <button onClick={likePost}>
+                <button onClick={likePost} aria-label="like post">
                     <SvgSelectorContacts svgName={'likePost'}/>
                 </button>
                 <Typography className={classes.activity}>{props.post.likesCount}</Typography>

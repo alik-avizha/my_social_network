@@ -47,7 +47,7 @@ export default function BasicMenu(props: PropsType) {
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
                         >
-                            <Avatar sx={{width: 32, height: 32}} src={props.photo}>{userName()}</Avatar>
+                            <Avatar sx={{width: 32, height: 32}} src={props.photo} alt={'avatar'}>{userName()}</Avatar>
                         </IconButton>
                     </Tooltip>
                 </Box>

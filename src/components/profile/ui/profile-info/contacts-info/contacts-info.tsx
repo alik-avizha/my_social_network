@@ -8,7 +8,7 @@ type PropsType = {
 }
 export const ContactInfo = (props: PropsType) => {
     return (
-        <a target="_blank" rel="noreferrer" href={props.value} className={classes.contactItem}>
+        <a target="_blank" rel="noreferrer" href={props.value} className={classes.contactItem} aria-label={props.title}>
             <SvgSelectorContacts svgName={props.title}/>
         </a>
     )
