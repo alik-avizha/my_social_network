@@ -25,7 +25,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormOwnProps> & L
         <form onSubmit={handleSubmit} className={classes.formControl}>
             <FormLabel className={classes.formLabel}>
                 <Typography>
-                    To log in get registered <a href={'https://social-network.samuraijs.com/'}
+                    To log in get registered <a className={classes.link} href={'https://social-network.samuraijs.com/'}
                                                 target={'_blank'} rel="noreferrer">here</a>
                 </Typography>
                 <Typography>

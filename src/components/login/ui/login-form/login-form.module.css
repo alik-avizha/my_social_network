@@ -7,6 +7,10 @@
 .formLabel p{
     margin: 0;
 }
+.link{
+    color: #007bff;
+}
+
 .formControl input{
     width: 250px;
     padding: 0.5rem;
