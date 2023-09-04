@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksamurai_way=self.webpackChunksamurai_way||[]).push([[341],{8341:function(a,i,n){n.r(i),n.d(i,{default:function(){return h}});n(2791);var s="music_musicWrapper__hMh1I",u=n(5630),e=n(9741),t=n.n(e),r=n(8535),c=n(184),h=(0,r.D)((function(){return(0,c.jsx)("div",{className:s,children:(0,c.jsx)(t(),{animationData:u,style:{width:500,height:500},loop:!0})})}))}}]);
+//# sourceMappingURL=341.ab32e3cd.chunk.js.map

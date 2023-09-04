@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksamurai_way=self.webpackChunksamurai_way||[]).push([[71],{9071:function(a,n,e){e.r(n),e.d(n,{default:function(){return h}});e(2791);var s="news_newsWrapper__2zS0s",t=e(5630),i=e(9741),r=e.n(i),u=e(8535),c=e(184),h=(0,u.D)((function(){return(0,c.jsx)("div",{className:s,children:(0,c.jsx)(r(),{animationData:t,style:{width:500,height:500},loop:!0})})}))}}]);
+//# sourceMappingURL=71.62c87738.chunk.js.map
