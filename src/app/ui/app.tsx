@@ -2,8 +2,6 @@ import React from 'react';
 import './app.css';
 import Navbar from '../../components/navbar/ui/navbar';
 import {HashRouter, Redirect, Route, withRouter} from 'react-router-dom';
-import News from '../../components/news/ui/news';
-import Music from '../../components/music/ui/music';
 import {HeaderContainer} from 'components/header/ui/header-container';
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
@@ -19,6 +17,8 @@ const ProfileContainer = React.lazy(() => import('../../components/profile/ui/pr
 const UsersPage = React.lazy(() => import('components/users/ui/users-page'))
 const LoginPage = React.lazy(() => import('components/login/ui/login-page'))
 const ChatPage = React.lazy(() => import('components/chat/ui/chat-page'))
+const News = React.lazy(() => import('../../components/news/ui/news'))
+const Music = React.lazy(() => import('../../components/music/ui/music'))
 
 type MapDispatchTopProps = {
     initializeApp: () => void
@@ -34,6 +34,7 @@ class App extends React.Component<AppContainerPropsType> {
     componentDidMount() {
         this.props.initializeApp()
     }
+
     render() {
         if (!this.props.initialised) {
             return <Preloader/>
@@ -49,8 +50,8 @@ class App extends React.Component<AppContainerPropsType> {
                         <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
                         <Route path="/users" render={withSuspense(UsersPage)}/>
                         <Route path="/login" render={withSuspense(LoginPage)}/>
-                        <Route path="/news" render={() => <News/>}/>
-                        <Route path="/music" render={() => <Music/>}/>
+                        <Route path="/news" render={withSuspense(News)}/>
+                        <Route path="/music" render={withSuspense(Music)}/>
                         <Route path="/chat" render={withSuspense(ChatPage)}/>
                         <Route exact path="/" render={() => <Redirect to="/profile"/>}/>
                     </div>

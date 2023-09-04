@@ -2,17 +2,9 @@ import React from 'react';
 import classes from './news.module.css'
 import workInProgressAnim from 'assets/workInProgressAnim.json'
 import Lottie from "lottie-react";
-import {useSelector} from "react-redux";
-import {AppStateType} from "app/model/redux-store";
-import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "common/hoc";
 
 const News = () => {
-
-    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
-
-    if (!isAuth) {
-        return <Redirect to="/login"/>
-    }
 
     return (
         <div className={classes.newsWrapper}>
@@ -20,5 +12,4 @@ const News = () => {
         </div>
     );
 };
-
-export default News;
+export default withAuthRedirect(News);

@@ -3,17 +3,10 @@ import {useSelector} from 'react-redux';
 import {Users} from './users';
 import {Preloader} from 'common/components';
 import {getIsFetching} from '../model/users-selectors';
-import {AppStateType} from "app/model/redux-store";
-import {Redirect} from "react-router-dom";
-
+import {withAuthRedirect} from "common/hoc";
 
 const  UsersPage = () => {
-    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
     const isFetching = useSelector(getIsFetching)
-
-    if (!isAuth) {
-        return <Redirect to="/login"/>
-    }
 
     return (
         <>
@@ -25,4 +18,4 @@ const  UsersPage = () => {
     )
 }
 
-export default UsersPage
+export default withAuthRedirect(UsersPage)

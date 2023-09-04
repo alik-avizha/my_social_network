@@ -9,16 +9,11 @@ import {
     stopMessagesListeningThunkCreator
 } from "components/chat/model/chat-reducer";
 import {AppStateType} from "app/model/redux-store";
-import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "common/hoc";
+import defaultPhoto from '../../../assets/images/user.jpg'
 
 
 const ChatPage = () => {
-
-    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
-
-    if (!isAuth) {
-        return <Redirect to="/login"/>
-    }
 
     return (
         <div className={s.chatWrapper}>
@@ -27,7 +22,7 @@ const ChatPage = () => {
     );
 };
 
-export default ChatPage
+export default withAuthRedirect(ChatPage);
 
 const Chat = () => {
     const status = useSelector((state: AppStateType) => state.chat.status)
@@ -46,7 +41,7 @@ const Chat = () => {
         <div>
             {status === 'error' && <div>Some error occurred. Please refresh the page</div>}
             <>
-                <ChatMessages />
+                <ChatMessages/>
                 <AddIMessageForm/>
             </>
         </div>
@@ -58,25 +53,25 @@ const ChatMessages = () => {
     const messages = useSelector((state: AppStateType) => state.chat.messages)
     const [isAutoScrollIsActive, setIsAutoScrollIsActive] = useState(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         if (isAutoScrollIsActive) {
             messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
         }
     }, [messages])
 
     const onScrollHandler = (e: UIEvent<HTMLDivElement>) => {
-         const element = e.currentTarget
-         if ( Math.abs((element.scrollHeight - element.scrollTop) - element.clientHeight) < 300) {
-             !isAutoScrollIsActive && setIsAutoScrollIsActive(true)
-         } else {
-             isAutoScrollIsActive && setIsAutoScrollIsActive(false)
-         }
+        const element = e.currentTarget
+        if (Math.abs((element.scrollHeight - element.scrollTop) - element.clientHeight) < 300) {
+            !isAutoScrollIsActive && setIsAutoScrollIsActive(true)
+        } else {
+            isAutoScrollIsActive && setIsAutoScrollIsActive(false)
+        }
     }
 
     return (
         <div className={s.messages} onScroll={onScrollHandler}>
             {messages?.map((m) => <ChatMessage key={m.id} photo={m.photo} userName={m.userName}
-                                                      message={m.message}/>)}
+                                               message={m.message}/>)}
             <div ref={messagesAnchorRef}></div>
         </div>
     )
@@ -92,7 +87,7 @@ const ChatMessage: FC<ChatMessagePropsType> = memo(({photo, userName, message}) 
         <div className={s.message}>
             <div className={s.imageAndText}>
                 <img className={s.avatar} alt={'myAvatar'}
-                     src={photo}
+                     src={photo ? photo : defaultPhoto}
                 />
                 <div className={s.text}>
                     <div className={s.name}>

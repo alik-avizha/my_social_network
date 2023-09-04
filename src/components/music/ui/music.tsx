@@ -2,17 +2,9 @@ import React from 'react';
 import classes from './music.module.css';
 import workInProgressAnim from "assets/workInProgressAnim.json";
 import Lottie from "lottie-react";
-import {useSelector} from "react-redux";
-import {AppStateType} from "app/model/redux-store";
-import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "common/hoc";
 
 const Music = () => {
-
-    const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
-
-    if (!isAuth) {
-        return <Redirect to="/login"/>
-    }
 
     return (
         <div className={classes.musicWrapper}>
@@ -21,6 +13,6 @@ const Music = () => {
     );
 };
 
-export default Music;
+export default withAuthRedirect(Music);
 
 
