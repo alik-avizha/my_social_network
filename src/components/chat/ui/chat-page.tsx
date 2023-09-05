@@ -1,15 +1,15 @@
-import React, {ChangeEvent, FC, KeyboardEvent, memo, UIEvent, useEffect, useRef, useState} from 'react';
+import React, { ChangeEvent, FC, KeyboardEvent, memo, UIEvent, useEffect, useRef, useState } from 'react';
 import s from './chat-page.module.css'
-import {Button} from "common/components";
-import {Typography} from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
+import { Button } from "common/components";
+import { Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import {
     sendMessageThunkCreator,
     startMessagesListeningThunkCreator,
     stopMessagesListeningThunkCreator
 } from "components/chat/model/chat-reducer";
-import {AppStateType} from "app/model/redux-store";
-import {withAuthRedirect} from "common/hoc";
+import { AppStateType } from "app/model/redux-store";
+import { withAuthRedirect } from "common/hoc";
 import defaultPhoto from '../../../assets/images/user.jpg'
 
 
@@ -17,7 +17,7 @@ const ChatPage = () => {
 
     return (
         <div className={s.chatWrapper}>
-            <Chat/>
+            <Chat />
         </div>
     );
 };
@@ -71,7 +71,7 @@ const ChatMessages = () => {
     return (
         <div className={s.messages} onScroll={onScrollHandler}>
             {messages?.map((m) => <ChatMessage key={m.id} photo={m.photo} userName={m.userName}
-                                               message={m.message}/>)}
+                message={m.message} />)}
             <div ref={messagesAnchorRef}></div>
         </div>
     )
@@ -82,12 +82,12 @@ export type ChatMessagePropsType = {
     userName: string
     message: string
 }
-const ChatMessage: FC<ChatMessagePropsType> = memo(({photo, userName, message}) => {
+const ChatMessage: FC<ChatMessagePropsType> = memo(({ photo, userName, message }) => {
     return (
         <div className={s.message}>
             <div className={s.imageAndText}>
                 <img className={s.avatar} alt={'myAvatar'}
-                     src={photo ? photo : defaultPhoto}
+                    src={photo ? photo : defaultPhoto}
                 />
                 <div className={s.text}>
                     <div className={s.name}>
@@ -128,8 +128,8 @@ export const AddIMessageForm = () => {
     return (
         <div className={s.addNewContentWrapper}>
             <textarea onKeyPress={onKeyPressHandler} placeholder={'send new message'}
-                      value={value} onChange={onChangeHandler}/>
-            <Button name={'send'} callback={addNewMessage} disabled={status !== "ready"}/>
+                value={value} onChange={onChangeHandler}/>
+            <Button name={'send'} callback={addNewMessage} disabled={status !== "ready"} />
         </div>
     );
 };
