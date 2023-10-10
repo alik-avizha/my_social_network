@@ -10,7 +10,6 @@ import {AppStateType, store} from '../model/redux-store';
 import {Preloader} from 'common/components';
 import {withSuspense} from 'common/hoc';
 import {Sidebar} from 'components/sidebar/ui/sidebar';
-import Footer from "components/footer/footer";
 
 const DialogsContainer = React.lazy(() => import('../../components/dialogs/ui/dialogs-container'))
 const ProfileContainer = React.lazy(() => import('../../components/profile/ui/profile-container'))
@@ -57,7 +56,6 @@ class App extends React.Component<AppContainerPropsType> {
                     </div>
                     {this.props.isAuth && <Sidebar/>}
                 </div>
-                <Footer/>
             </>
         );
     }
