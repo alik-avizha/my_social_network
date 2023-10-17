@@ -35,7 +35,9 @@ export const Messages = (props: PropsType) => {
             <div  ref={messagesBlock} className={classes.messages}>
                 {messagesForMap}
             </div>
-            <AddItemForm callback={addNewMessageHandler} placeholder={'Enter your message'}/>
+            <div className={classes.addItemFormBlock}>
+                <AddItemForm callback={addNewMessageHandler} placeholder={'Enter your message'}/>
+            </div>
         </div>
     )
 }

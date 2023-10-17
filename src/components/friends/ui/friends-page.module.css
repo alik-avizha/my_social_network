@@ -1,0 +1,31 @@
+.friendsPageWrapper{
+    border-radius: 20px;
+    width: 100%;
+}
+
+.search {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    margin-bottom: 20px;
+    height: 40px;
+    width: 100%;
+    background-color: var(--background);
+    border: 1px solid var(--color);
+    color: var(--color);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.contactElement {
+    overflow-y: auto;
+    height: calc(100vh - 140px);
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+@media (max-width: 1268px) {
+    .friendsPageWrapper{
+        padding-top: 20px;
+    }
+}

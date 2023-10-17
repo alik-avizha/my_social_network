@@ -3,8 +3,11 @@ import classes from './navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import {NavigationType, SvgSelectorContacts} from "common/components/svg-selectors/navigation/svgSelectorNav";
 import {Typography} from "@mui/material";
+import {useWindowSize} from "common/hooks/useWindowSize";
 
 const Navbar = () => {
+
+    const { windowSize} = useWindowSize()
 
     const navLinks = [
         {to: '/profile', name: 'profile'},
@@ -13,6 +16,7 @@ const Navbar = () => {
         {to: '/news', name: 'news'},
         {to: '/music', name: 'music'},
         {to: '/chat', name: 'chat'},
+        ...(windowSize <= 1268 ? [{ to: '/friends', name: 'friends' }] : [])
     ]
 
     return (

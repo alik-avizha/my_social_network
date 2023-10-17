@@ -8,3 +8,13 @@
     width: 300px;
     word-break: break-word;
 }
+
+@media (max-width: 768px) {
+    .description {
+        align-items: start;
+        box-shadow: none;
+        width: 100%;
+        padding: 10px;
+        gap: 0;
+    }
+}

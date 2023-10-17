@@ -1,13 +1,12 @@
 .loginWrapper{
-    width: 100vh;
+    margin: 0 auto;
     background-color: white;
-    height: 85vh;
+    height: calc(100vh - 60px);
     display: flex;
     justify-content: start;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
 }
 .title {
@@ -19,4 +18,10 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 1px 1px #ccc;
+}
+
+@media (max-width: 768px) {
+    .loginWrapper {
+        padding-top: 50px;
+    }
 }

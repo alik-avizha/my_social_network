@@ -15,11 +15,13 @@ import {
     getUsersFilter
 } from "components/users/model/users-selectors";
 import {useHistory} from "react-router-dom";
+import {useWindowSize} from "common/hooks/useWindowSize";
 
 type QueryParamsType = { term?: string; page?: string; friend?: string };
 export const Users = () => {
 
     const [usersRef] = useAutoAnimate<HTMLDivElement>();
+    const {windowSize} = useWindowSize()
 
     const totalUsersCount = useSelector(getTotalUsersCount)
     const currentPage = useSelector(getCurrentPage)
@@ -74,7 +76,6 @@ export const Users = () => {
         });
     }, [filter, currentPage])
 
-
     const onPageChanged = (pageNumber: number) => {
         dispatch(getUsersThunkCreator(pageNumber, pageSize, filter))
     }
@@ -107,13 +108,14 @@ export const Users = () => {
                             sx={{
                                 button: {
                                     borderRadius: '2px',
-                                    marginRight: '20px',
+                                    marginRight: `${windowSize <=600 ? '0' : '20px' }`,
                                     marginLeft: '0px',
                                     width: '24px',
                                     height: '24px',
                                     padding: '4px 8px',
-                                    fontSize: '14px',
+                                    fontSize: `${windowSize <=600 ? '12px' : '14px' }`,
                                     fontWeight: 400,
+                                    color: "var(--color)",
                                     backgroundColor: 'transparent',
                                     '&:hover': {
                                         backgroundColor: '#0066CC',
@@ -122,6 +124,9 @@ export const Users = () => {
                                     '&.Mui-selected': {
                                         backgroundColor: '#0066CC',
                                         color: '#fff',
+                                    },
+                                    '&.MuiPaginationItem-ellipsis': {
+                                        color: 'var(--color)',
                                     },
                                 },
                             }}

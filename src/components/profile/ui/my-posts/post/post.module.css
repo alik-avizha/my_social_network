@@ -69,4 +69,40 @@
     margin-left: 4px;
 }
 
-
+@media (max-width: 768px) {
+    .item {
+        padding: 20px;
+        min-height: 80px;
+    }
+    .userPhoto {
+        top: 5px;
+        height: 40px;
+        width: 40px;
+        left: 5px;
+    }
+    .loginAndDate {
+        left: 50px;
+        font-size: 12px;
+    }
+    .userName{
+        margin-bottom: 0;
+    }
+    .postMessage{
+        margin: 20px 0 0 0;
+    }
+    .message {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .activities {
+        right: 5px;
+        bottom: 5px;
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+    .activities svg {
+        width: 16px;
+        height: 16px;
+        margin-left: 10px;
+    }
+}

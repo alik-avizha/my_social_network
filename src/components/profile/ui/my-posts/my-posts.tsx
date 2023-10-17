@@ -28,7 +28,10 @@ export const MyPosts = React.memo((props: PropsType) => {
 
     return (
         <div className={classes.postsBlock}>
-            <AddItemForm callback={props.addPost} placeholder={'Enter your post'}/>
+            <div className={classes.addItemBlock}>
+                <AddItemForm callback={props.addPost} placeholder={'Enter your post'}/>
+            </div>
+
             <div ref={postsRef} className={classes.posts}>
                 {postsElements}
             </div>

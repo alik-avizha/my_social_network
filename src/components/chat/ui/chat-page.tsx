@@ -43,7 +43,7 @@ const Chat = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {status === "error" && (
         <div>Some error occurred. Please refresh the page</div>
       )}
@@ -51,7 +51,7 @@ const Chat = () => {
         <ChatMessages />
         <AddIMessageForm />
       </>
-    </div>
+    </>
   );
 };
 

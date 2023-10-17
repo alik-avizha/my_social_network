@@ -64,3 +64,37 @@
     width: 18px;
 }
 
+@media (max-width: 768px) {
+    .profileInfoWrapper {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .statusAndAvaBlock{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+    .descriptionBlock {
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 0;
+    }
+    .contacts{
+        box-shadow: none;
+        justify-content: center;
+        width: 90%;
+        padding: 0;
+    }
+    .statusMain {
+        bottom: 0;
+    }
+    .mainPhoto {
+        width: 150px;
+        height: 150px;
+    }
+}

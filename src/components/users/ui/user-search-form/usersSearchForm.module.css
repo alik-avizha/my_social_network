@@ -39,3 +39,16 @@
 .sendData:disabled{
     background: #5a86a8;
 }
+@media (max-width: 768px) {
+    .formDataWrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .formDataWrapper input {
+        width: 80%;
+    }
+    .select {
+        width: 80%;
+    }
+}

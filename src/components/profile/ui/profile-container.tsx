@@ -62,7 +62,6 @@ class ProfileContainerSecond extends React.Component<PropsType> {
 
     render() {
         return (
-            <div>
                 <Profile
                     isOwner={!this.props.match.params.userId}
                     profile={this.props.profile}
@@ -71,7 +70,6 @@ class ProfileContainerSecond extends React.Component<PropsType> {
                     savePhoto={this.props.savePhoto}
                     saveProfile={this.props.saveProfile}
                 />
-            </div>
         )
     }
 }

@@ -55,28 +55,10 @@ let initialState: ProfilePageType = {
     posts: [
         {
             id: v1(),
-            message: 'Hi there',
-            date: '05.02.2023',
-            likesCount: 51,
-            dislikesCount: 0,
-            isDislike: false,
-            isLike: false
-        },
-        {
-            id: v1(),
             message: 'Welcome to my Page',
             likesCount: 32,
             date: '26.01.2023',
             dislikesCount: 1,
-            isDislike: false,
-            isLike: false
-        },
-        {
-            id: v1(),
-            message: 'It is social network',
-            likesCount: 54,
-            date: '20.01.2023',
-            dislikesCount: 4,
             isDislike: false,
             isLike: false
         }
@@ -164,10 +146,16 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
 }
 //ActionCreators
 export const addPostActionCreator = (newPost: string) => ({type: 'PROFILE-PAGE/ADD-POST', newPost}) as const
-export const setUserProfileActionCreator = (profile: ProfileType) => ({type: 'PROFILE-PAGE/SET-USER-PROFILE', profile}) as const
+export const setUserProfileActionCreator = (profile: ProfileType) => ({
+    type: 'PROFILE-PAGE/SET-USER-PROFILE',
+    profile
+}) as const
 export const setStatusActionCreator = (status: string) => ({type: 'PROFILE-PAGE/SET-STATUS', status}) as const
 export const removePostActionCreator = (postId: string) => ({type: 'PROFILE-PAGE/REMOVE-POST', postId}) as const
-export const savePhotoSuccessActionCreator = (photos: PhotosType) => ({type: 'PROFILE-PAGE/SAVE-PHOTOS-SUCCESS', photos}) as const
+export const savePhotoSuccessActionCreator = (photos: PhotosType) => ({
+    type: 'PROFILE-PAGE/SAVE-PHOTOS-SUCCESS',
+    photos
+}) as const
 export const clickLikeAC = (id: string, name: string) => ({type: 'PROFILE-PAGE/CLICK-LIKE', id, name} as const)
 
 //ThunkCreators

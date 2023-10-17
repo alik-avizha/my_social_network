@@ -1,6 +1,6 @@
 .app-wrapper {
     display: grid;
-    width: 80vw;
+    width: 70vw;
     margin: 0 auto 16px auto;
     grid-template-rows: 44px 1fr;
     grid-template-columns: 2fr 10fr;
@@ -9,13 +9,33 @@
             "n c s";
     grid-gap: 20px;
 }
+
 .app-wrapper-content {
     grid-area: c;
 }
 
-.app-wrapper-footer {
-    grid-area: f;
-    width: 100%;
+@media (max-width: 1268px) {
+    .app-wrapper {
+        width: 100%;
+    }
+
+    .app-wrapper-content {
+        width: 100%;
+        margin: 0;
+    }
 }
 
+@media (max-width: 768px) {
+    .app-wrapper {
+        grid-template-rows: 10px auto auto auto;
+        grid-template-columns: none;
+        grid-gap: 0;
+        margin: 0;
+    }
 
+    .app-wrapper-content {
+        padding-top: 40px;
+        margin: 0;
+        height: calc(100vh - 50px);
+    }
+}

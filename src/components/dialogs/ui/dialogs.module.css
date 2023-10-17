@@ -30,3 +30,21 @@
     width: 200px;
     height: 200px;
 }
+
+@media (max-width: 768px) {
+    .dialogsWrapper {
+        grid-template-columns: 2fr;
+        grid-gap: 0;
+        height: calc(100vh - 70px);
+    }
+    .dialogs {
+        gap: 0;
+        padding: 10px;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+    .messages {
+        padding: 0;
+        box-shadow: none;
+    }
+}

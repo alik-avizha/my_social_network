@@ -50,4 +50,13 @@
     color: red;
 }
 
+@media (max-width: 768px) {
+    .formControl input {
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
 

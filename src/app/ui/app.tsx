@@ -9,15 +9,11 @@ import {initializeAppThunkCreator} from '../model/app-reducer';
 import {AppStateType, store} from '../model/redux-store';
 import {Preloader} from 'common/components';
 import {withSuspense} from 'common/hoc';
-import {Sidebar} from 'components/sidebar/ui/sidebar';
+import {ContentRouting} from "components/routing/routing";
+import Sidebar from "components/sidebar/ui/sidebar";
 
-const DialogsContainer = React.lazy(() => import('../../components/dialogs/ui/dialogs-container'))
-const ProfileContainer = React.lazy(() => import('../../components/profile/ui/profile-container'))
-const UsersPage = React.lazy(() => import('components/users/ui/users-page'))
+
 const LoginPage = React.lazy(() => import('components/login/ui/login-page'))
-const ChatPage = React.lazy(() => import('components/chat/ui/chat-page'))
-const News = React.lazy(() => import('../../components/news/ui/news'))
-const Music = React.lazy(() => import('../../components/music/ui/music'))
 
 type MapDispatchTopProps = {
     initializeApp: () => void
@@ -44,18 +40,12 @@ class App extends React.Component<AppContainerPropsType> {
                 <div className="app-wrapper">
                     <HeaderContainer/>
                     {this.props.isAuth && <Navbar/>}
-                    <div className="app-wrapper-content">
-                        <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-                        <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
-                        <Route path="/users" render={withSuspense(UsersPage)}/>
-                        <Route path="/login" render={withSuspense(LoginPage)}/>
-                        <Route path="/news" render={withSuspense(News)}/>
-                        <Route path="/music" render={withSuspense(Music)}/>
-                        <Route path="/chat" render={withSuspense(ChatPage)}/>
-                        <Route exact path="/" render={() => <Redirect to="/profile"/>}/>
-                    </div>
+                    {this.props.isAuth ? <div className="app-wrapper-content">
+                        <ContentRouting/>
+                    </div> :  <Redirect to="/login"/>}
                     {this.props.isAuth && <Sidebar/>}
                 </div>
+                <Route path="/login" render={withSuspense(LoginPage)}/>
             </>
         );
     }

@@ -8,3 +8,11 @@
 .mainPhoto:hover {
     transform: scale(1.1);
 }
+
+@media (max-width: 768px) {
+    .mainPhoto {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+    }
+}

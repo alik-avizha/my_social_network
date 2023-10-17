@@ -3,6 +3,7 @@ import ProfileInfo from './profile-info/profile-info';
 import MyPostsContainer from './my-posts/my-posts-container';
 import {ProfileType} from '../model/profile-reducer';
 import {ProfileDataFormPropsType} from 'components/profile/ui/profile-info/profile-data-form/profile-data-form';
+import s from './profile.module.css'
 
 type PropsType = {
     profile: ProfileType
@@ -14,7 +15,7 @@ type PropsType = {
 }
 const Profile = (props: PropsType) => {
     return (
-        <>
+        <div  className={s.profile}>
             <ProfileInfo
                 profile={props.profile}
                 status={props.status}
@@ -24,7 +25,7 @@ const Profile = (props: PropsType) => {
                 saveProfile={props.saveProfile}
             />
             <MyPostsContainer />
-        </>
+        </div>
     )
 }
 export default Profile

@@ -22,3 +22,10 @@
     font-size: 19px;
 }
 
+
+@media (max-width: 768px) {
+    .addNewContentWrapper {
+        padding: 10px;
+        gap:10px;
+    }
+}

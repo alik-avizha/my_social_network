@@ -9,3 +9,18 @@
 .contactItem:hover{
     transform: scale(1.1);
 }
+
+@media (max-width: 768px) {
+    .contactItem svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .contactItem {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .contactItem:hover {
+        transform: scale(1.1);
+    }
+}

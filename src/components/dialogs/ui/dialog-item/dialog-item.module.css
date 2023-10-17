@@ -26,3 +26,13 @@
 .dialogAva{
     height: 40px;
 }
+
+@media (max-width: 768px) {
+    .item{
+        display: flex;
+        flex-direction: row;
+    }
+    .dialogAva {
+        display: none;
+    }
+}
