@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/my_social_network/static/css/main.00d896ff.css",
-    "main.js": "/my_social_network/static/js/main.9fe8728a.js",
+    "main.js": "/my_social_network/static/js/main.e77e9c35.js",
     "static/css/524.d26cf73b.chunk.css": "/my_social_network/static/css/524.d26cf73b.chunk.css",
     "static/js/524.11cacf95.chunk.js": "/my_social_network/static/js/524.11cacf95.chunk.js",
     "static/css/980.65c254a0.chunk.css": "/my_social_network/static/css/980.65c254a0.chunk.css",
@@ -27,7 +27,7 @@
     "static/media/edit-svgrepo-com.svg": "/my_social_network/static/media/edit-svgrepo-com.3f0e1900950f5dbdb5d1fdf9ea74164f.svg",
     "index.html": "/my_social_network/index.html",
     "main.00d896ff.css.map": "/my_social_network/static/css/main.00d896ff.css.map",
-    "main.9fe8728a.js.map": "/my_social_network/static/js/main.9fe8728a.js.map",
+    "main.e77e9c35.js.map": "/my_social_network/static/js/main.e77e9c35.js.map",
     "524.d26cf73b.chunk.css.map": "/my_social_network/static/css/524.d26cf73b.chunk.css.map",
     "524.11cacf95.chunk.js.map": "/my_social_network/static/js/524.11cacf95.chunk.js.map",
     "980.65c254a0.chunk.css.map": "/my_social_network/static/css/980.65c254a0.chunk.css.map",
@@ -50,6 +50,6 @@
   },
   "entrypoints": [
     "static/css/main.00d896ff.css",
-    "static/js/main.9fe8728a.js"
+    "static/js/main.e77e9c35.js"
   ]
 }
